@@ -71,7 +71,9 @@ siniestralidad-vial-bogota/
 │   ├── graficos.py        # OE2: gráficos y mapas
 │   ├── describir.py       # OE2: genera tablas y figuras
 │   ├── hipotesis.py       # OE3: pruebas de H1, H2 y H3
-│   └── contrastar.py      # OE3: genera la tabla de resultados
+│   ├── contrastar.py      # OE3: genera la tabla de resultados
+│   ├── clustering.py      # OE4: K-means, DBSCAN y fichas de perfiles
+│   └── agrupar.py         # OE4: genera perfiles, zonas y figuras
 ├── notebooks/             # Exploración y gráficos
 ├── reports/
 │   ├── tablas/            # Tablas que genera el programa (CSV)
@@ -98,9 +100,12 @@ python -m siniestralidad.describir
 
 # 5. Contraste de hipótesis (OE3)
 python -m siniestralidad.contrastar
+
+# 6. Perfiles de siniestralidad (OE4)
+python -m siniestralidad.agrupar
 ```
 
-El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia. El paso 4 agrega las tablas `oe2_*.csv` y, en `reports/figuras/`, los gráficos y el mapa interactivo. El paso 5 deja `oe3_resultados.csv` con el estadístico, el p-valor, el tamaño del efecto y la decisión de cada hipótesis.
+El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia. El paso 4 agrega las tablas `oe2_*.csv` y, en `reports/figuras/`, los gráficos y el mapa interactivo. El paso 5 deja `oe3_resultados.csv` con el estadístico, el p-valor, el tamaño del efecto y la decisión de cada hipótesis. El paso 6 deja las fichas de los perfiles (`oe4_perfiles.csv`) y las zonas densas (`oe4_zonas_densas.csv`).
 
 Pruebas: `pytest`.
 
@@ -111,7 +116,7 @@ Pruebas: `pytest`.
 | **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | ✅ 3.624 siniestros en 10 corredores |
 | **OE2** Distribución espacial y temporal | Frecuencias, tasas por km, mapas y gráficos | ✅ 9 tablas, 6 gráficos y 2 mapas |
 | **OE3** Contraste de hipótesis | H1, H2 y H3 | ✅ Se rechaza H0 en las tres |
-| **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ⚪ Pendiente |
+| **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ✅ 7 perfiles y 62 zonas densas |
 | **OE5** Reglas de asociación | Apriori o FP-Growth | ⚪ Pendiente |
 | **OE6** Tablero e informe | Tablero con 4 vistas e informe final | ⚪ Pendiente |
 
