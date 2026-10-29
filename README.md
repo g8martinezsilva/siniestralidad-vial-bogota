@@ -60,6 +60,12 @@ siniestralidad-vial-bogota/
 │   ├── raw/               # Base original del SIMUR (no se sube a GitHub)
 │   └── processed/         # Base limpia de los 10 corredores
 ├── src/siniestralidad/    # Código del programa
+│   ├── config.py          # Rutas, año, franjas, columnas y parámetros
+│   ├── carga.py           # Lectura del Excel del Anuario 2024
+│   ├── diccionario.py     # Diccionario de variables
+│   ├── corredores.py      # Corredor a partir de la dirección y top 10
+│   ├── depuracion.py      # Limpieza, trazabilidad y variables derivadas
+│   └── preparar.py        # Etapas 1 a 3 de punta a punta
 ├── notebooks/             # Exploración y gráficos
 ├── reports/
 │   ├── tablas/            # Tablas que genera el programa (CSV)
@@ -77,13 +83,20 @@ python -m venv .venv && source .venv/bin/activate   # En Windows: .venv\Scripts\
 pip install -r requirements.txt
 
 # 2. Descargar la base del SIMUR y guardarla en data/raw/ (ver data/README.md)
+
+# 3. Construir la base de análisis
+python -m siniestralidad.preparar
 ```
+
+El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia.
+
+Pruebas: `pytest`.
 
 ## ✅ Avance
 
 | Objetivo | Etapa | Estado |
 |---|---|---|
-| **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | ⚪ Pendiente |
+| **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | 🟡 Código listo, falta correrlo con la base real |
 | **OE2** Distribución espacial y temporal | Frecuencias, tasas por km, mapas y gráficos | ⚪ Pendiente |
 | **OE3** Contraste de hipótesis | H1, H2 y H3 | ⚪ Pendiente |
 | **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ⚪ Pendiente |
