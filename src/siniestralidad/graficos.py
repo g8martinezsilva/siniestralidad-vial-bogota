@@ -14,6 +14,7 @@ import pandas as pd  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 
 from . import config  # noqa: E402
+from .asociacion import legible  # noqa: E402
 from .descriptivo import MESES, dia_por_hora, por_actor, por_corredor, por_franja, por_mes  # noqa: E402
 
 TEXTO = "#0b0b0b"
@@ -305,6 +306,25 @@ def mapa_zonas(df: pd.DataFrame, zonas, resumen: pd.DataFrame, carpeta: Path = c
     ax.legend(frameon=False, loc="lower right", markerscale=3, fontsize=8.5)
     ax.set_title("Zonas densas de siniestros (DBSCAN)")
     return _guardar(fig, "oe4_zonas_densas", carpeta)
+
+
+def reglas_lift(seleccion: pd.DataFrame, carpeta: Path = config.FIGURAS) -> Path:
+    """Lift de las reglas seleccionadas: cuántas veces más frecuente es la
+    combinación de lo que se esperaría si fuera independiente."""
+    tabla = seleccion.iloc[::-1]
+    etiquetas = [f"{legible(a)}  →  {legible(c)}" for a, c in
+                 zip(tabla["antecedentes"], tabla["consecuentes"])]
+    fig, ax = plt.subplots(figsize=(9, 0.45 * len(tabla) + 1.2))
+    ax.barh(range(len(tabla)), tabla["lift"], color=AZUL, height=0.6, edgecolor=SUPERFICIE, linewidth=2)
+    ax.axvline(1, color=TEXTO_2, linewidth=0.8)
+    ax.set_yticks(range(len(tabla)), etiquetas, fontsize=8.5)
+    ax.grid(axis="y", visible=False)
+    for y, (l, c) in enumerate(zip(tabla["lift"], tabla["confianza"])):
+        ax.text(l + 0.15, y, f"{l:.1f}×  ({100 * c:.0f} %)", va="center", fontsize=8.5, color=TEXTO_2)
+    ax.set_xlim(0, tabla["lift"].max() * 1.25)
+    ax.set_xlabel("Lift (1 = independencia); entre paréntesis, la confianza")
+    ax.set_title("Reglas de asociación seleccionadas")
+    return _guardar(fig, "oe5_reglas_lift", carpeta)
 
 
 def todos(df: pd.DataFrame, carpeta: Path = config.FIGURAS) -> list[Path]:
