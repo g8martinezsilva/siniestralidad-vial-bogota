@@ -235,6 +235,78 @@ def residuos_h1(tabla: pd.DataFrame, carpeta: Path = config.FIGURAS) -> Path:
     return _guardar(fig, "oe3_h1_residuos", carpeta)
 
 
+def seleccion_k(evaluacion: pd.DataFrame, k: int, carpeta: Path = config.FIGURAS) -> Path:
+    """Método del codo y coeficiente de silueta, en dos paneles (no doble eje)."""
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 3.4))
+    for ax, col, titulo in ((ax1, "inercia", "Método del codo (inercia)"),
+                            (ax2, "silueta", "Coeficiente de silueta")):
+        ax.plot(evaluacion["k"], evaluacion[col], color=AZUL, linewidth=2, marker="o",
+                markersize=5, markeredgecolor=SUPERFICIE, markeredgewidth=1.5)
+        elegido = evaluacion.loc[evaluacion["k"] == k, col].iloc[0]
+        ax.plot([k], [elegido], marker="o", markersize=10, color="#eb6834",
+                markeredgecolor=SUPERFICIE, markeredgewidth=2)
+        ax.set_xticks(evaluacion["k"])
+        ax.set_xlabel("Número de perfiles (k)")
+        ax.grid(axis="x", visible=False)
+        ax.set_title(titulo, fontsize=11)
+    ax2.annotate(f"k = {k}", (k, evaluacion.loc[evaluacion["k"] == k, "silueta"].iloc[0]),
+                 textcoords="offset points", xytext=(0, 10), ha="center", fontsize=9, color=TEXTO_2)
+    fig.tight_layout()
+    return _guardar(fig, "oe4_seleccion_k", carpeta)
+
+
+def perfiles_gravedad(fichas: pd.DataFrame, carpeta: Path = config.FIGURAS) -> Path:
+    """Composición de gravedad de cada perfil (barras apiladas al 100 %)."""
+    tabla = fichas.set_index("perfil")[["%_solo_danos", "%_con_heridos", "%_con_muertos"]]
+    tabla.columns = config.GRAVEDAD_ORDEN
+    fig, ax = plt.subplots(figsize=(7, 3.8))
+    etiquetas = [f"Perfil {p}" for p in tabla.index]
+    base = pd.Series(0.0, index=tabla.index)
+    for cat in config.GRAVEDAD_ORDEN:
+        ax.bar(etiquetas, tabla[cat], bottom=base, width=0.55, color=GRAVEDAD_COLORES[cat],
+               edgecolor=SUPERFICIE, linewidth=2, label=GRAVEDAD_ETIQUETAS[cat])
+        base += tabla[cat]
+    for x, v in enumerate(tabla["con muertos"]):
+        ax.text(x, 103, f"{v:.1f} %", ha="center", va="bottom", fontsize=8, color=TEXTO_2)
+    ax.set_ylim(0, 112)
+    ax.set_yticks(range(0, 101, 20))
+    ax.grid(axis="x", visible=False)
+    ax.set_ylabel("% de los siniestros del perfil")
+    ax.legend(ncols=3, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.12))
+    ax.set_title("Gravedad por perfil (arriba, % con muertos)")
+    return _guardar(fig, "oe4_perfiles_gravedad", carpeta)
+
+
+def mapa_zonas(df: pd.DataFrame, zonas, resumen: pd.DataFrame, carpeta: Path = config.FIGURAS,
+               n_etiquetas: int = 5) -> Path:
+    """Zonas densas de DBSCAN: siniestros en zona en azul, aislados en gris."""
+    fig, ax = plt.subplots(figsize=(6, 7.5))
+    en_zona = zonas >= 0
+    ax.scatter(df.loc[~en_zona, "longitud"], df.loc[~en_zona, "latitud"], s=3, color="#d6d5d0",
+               linewidths=0, label="Siniestro aislado")
+    ax.scatter(df.loc[en_zona, "longitud"], df.loc[en_zona, "latitud"], s=5, color=AZUL,
+               linewidths=0, label="Siniestro en zona densa")
+    centro = df["longitud"].median()
+    for _, z in resumen.head(n_etiquetas).iterrows():
+        izquierda = z["longitud"] < centro  # las etiquetas del oeste van a la izquierda
+        ax.annotate(f"{z['posicion']}. {z['cruce']} ({z['siniestros']})",
+                    (z["longitud"], z["latitud"]), textcoords="offset points",
+                    xytext=(-8 if izquierda else 8, 0), ha="right" if izquierda else "left",
+                    fontsize=7.5, color=TEXTO, va="center")
+    lat, lon = df["latitud"], df["longitud"]
+    ax.set_xlim(*lon.quantile([0.002, 0.998]).add([-0.03, 0.03]))
+    ax.set_ylim(*lat.quantile([0.002, 0.998]).add([-0.005, 0.005]))
+    ax.set_aspect("equal")
+    ax.grid(False)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.legend(frameon=False, loc="lower right", markerscale=3, fontsize=8.5)
+    ax.set_title("Zonas densas de siniestros (DBSCAN)")
+    return _guardar(fig, "oe4_zonas_densas", carpeta)
+
+
 def todos(df: pd.DataFrame, carpeta: Path = config.FIGURAS) -> list[Path]:
     return [f(df, carpeta) for f in (
         corredores_por_km, calor_dia_hora, franjas_por_hora, gravedad_por_franja,
