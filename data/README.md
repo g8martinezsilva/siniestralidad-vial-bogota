@@ -11,6 +11,8 @@ El archivo trae tres hojas principales (siniestros, vehículos y actor vial) y u
 
 ## Cómo dejarla lista
 
+El repositorio ya trae `data/raw/datos.zip` con las hojas exportadas a CSV, así que basta con ejecutar `python -m siniestralidad.preparar` desde la raíz. Para usar el Excel original:
+
 1. Descarga el archivo desde el enlace de arriba. También sirve un `.zip` con las hojas exportadas a CSV: `siniestros.csv`, `vehiculos.csv` y `actores.csv`.
 2. Guárdalo, sin cambiarle el nombre, en `data/raw/base-anuario-de-siniestralidad-2024.xlsx`.
 3. Ejecuta `python -m siniestralidad.preparar` desde la raíz del repositorio.
@@ -21,7 +23,7 @@ La primera lectura del Excel tarda unos minutos; el programa guarda una copia en
 
 | Carpeta | Contenido | ¿Se sube a GitHub? |
 |---|---|---|
-| `raw/` | Base original del SIMUR, sin modificar | No (pesa mucho y es pública) |
+| `raw/` | Base original del SIMUR, sin modificar | Solo `datos.zip` (el Excel pesa más de 100 MB) |
 | `external/` | Longitud de los corredores (`longitudes_corredores.csv`), con su fuente | Sí |
 | `processed/` | Bases generadas por el programa | No (se regeneran) |
 
