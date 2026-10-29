@@ -55,7 +55,8 @@ flowchart LR
 ```text
 siniestralidad-vial-bogota/
 ├── docs/                  # Documento del proyecto (copia del .tex de letX)
-│   └── main.tex
+│   ├── main.tex
+│   └── propuestas.md      # Propuestas preventivas (OE6)
 ├── data/
 │   ├── raw/               # Base original del SIMUR (no se sube a GitHub)
 │   ├── external/          # Longitud de los corredores
@@ -75,7 +76,9 @@ siniestralidad-vial-bogota/
 │   ├── clustering.py      # OE4: K-means, DBSCAN y fichas de perfiles
 │   ├── agrupar.py         # OE4: genera perfiles, zonas y figuras
 │   ├── asociacion.py      # OE5: FP-Growth, selección y lectura de reglas
-│   └── asociar.py         # OE5: genera las tablas de reglas
+│   ├── asociar.py         # OE5: genera las tablas de reglas
+│   ├── tablero.py         # OE6: datos, filtros e indicadores del tablero
+│   └── app.py             # OE6: tablero en Streamlit
 ├── notebooks/             # Exploración y gráficos
 ├── reports/
 │   ├── tablas/            # Tablas que genera el programa (CSV)
@@ -108,11 +111,33 @@ python -m siniestralidad.agrupar
 
 # 7. Reglas de asociación (OE5)
 python -m siniestralidad.asociar
+
+# 8. Tablero analítico (OE6)
+streamlit run src/siniestralidad/app.py
 ```
 
-El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia. El paso 4 agrega las tablas `oe2_*.csv` y, en `reports/figuras/`, los gráficos y el mapa interactivo. El paso 5 deja `oe3_resultados.csv` con el estadístico, el p-valor, el tamaño del efecto y la decisión de cada hipótesis. El paso 6 deja las fichas de los perfiles (`oe4_perfiles.csv`) y las zonas densas (`oe4_zonas_densas.csv`). El paso 7 deja las reglas de asociación (`oe5_*.csv`), entre ellas las 10 seleccionadas con su lectura en palabras y las que terminan en siniestros con muertos.
+El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia. El paso 4 agrega las tablas `oe2_*.csv` y, en `reports/figuras/`, los gráficos y el mapa interactivo. El paso 5 deja `oe3_resultados.csv` con el estadístico, el p-valor, el tamaño del efecto y la decisión de cada hipótesis. El paso 6 deja las fichas de los perfiles (`oe4_perfiles.csv`) y las zonas densas (`oe4_zonas_densas.csv`). El paso 7 deja las reglas de asociación (`oe5_*.csv`), entre ellas las 10 seleccionadas con su lectura en palabras y las que terminan en siniestros con muertos. El paso 8 abre el tablero en el navegador, con cinco vistas: mapa, comportamiento temporal, hipótesis, perfiles y reglas.
 
 Pruebas: `pytest`.
+
+En Windows, si `pip` o `python` no se reconocen, crea el entorno con la ruta completa de Python y habilita la activación solo para esa ventana:
+
+```powershell
+& "$env:LOCALAPPDATA\Programs\Python\Python312\python.exe" -m venv .venv
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+python -m streamlit run src/siniestralidad/app.py
+```
+
+## 🔎 Resultados principales
+
+- **H1:** los siniestros no se reparten según la longitud de los corredores (χ² = 623,7; V = 0,14). La Carrera 10, la NQS y la Calle 6 tienen muchos más de los esperados.
+- **H2:** la gravedad depende de la franja (V = 0,10) y del tipo de día (V = 0,09). Las noches de fin de semana tienen más siniestros con muertos (7,4 % frente a 5,2 %).
+- **H3:** con motocicleta, el 96 % de los siniestros tiene víctimas, frente al 85 % sin ella (razón de momios 4,26).
+- **Perfiles:** 7 perfiles con K-means; el de atropellos es el más grave (11,5 % con muertos). DBSCAN encuentra 62 zonas densas; la mayor es la Carrera 10 con Calle 1 (73 siniestros).
+- **Reglas:** 217 reglas con FP-Growth. Las más asociadas a muertes son la velocidad (lift 8,3) y la carga en la Avenida Boyacá (lift 4,4).
+- **Propuestas:** cuatro propuestas preventivas en [`docs/propuestas.md`](docs/propuestas.md).
 
 ## ✅ Avance
 
@@ -123,7 +148,7 @@ Pruebas: `pytest`.
 | **OE3** Contraste de hipótesis | H1, H2 y H3 | ✅ Se rechaza H0 en las tres |
 | **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ✅ 7 perfiles y 62 zonas densas |
 | **OE5** Reglas de asociación | FP-Growth | ✅ 217 reglas y 10 interpretadas |
-| **OE6** Tablero e informe | Tablero con 4 vistas e informe final | ⚪ Pendiente |
+| **OE6** Tablero e informe | Tablero con 5 vistas y propuestas preventivas | ✅ Tablero y 4 propuestas; falta pasarlas al documento |
 
 ## 🌿 Ramas
 
