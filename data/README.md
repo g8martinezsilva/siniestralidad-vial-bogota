@@ -22,6 +22,7 @@ La primera lectura del Excel tarda unos minutos; el programa guarda una copia en
 | Carpeta | Contenido | ¿Se sube a GitHub? |
 |---|---|---|
 | `raw/` | Base original del SIMUR, sin modificar | No (pesa mucho y es pública) |
+| `external/` | Longitud de los corredores (`longitudes_corredores.csv`), con su fuente | Sí |
 | `processed/` | Bases generadas por el programa | No (se regeneran) |
 
 ## Columnas de la hoja de siniestros

@@ -142,14 +142,25 @@ def seleccionar_corredores(df: pd.DataFrame, n: int = config.N_CORREDORES) -> pd
     """
     conteo = pd.concat([df["via_1"], df["via_2"]]).dropna().value_counts()
     top = conteo.head(n)
-    return pd.DataFrame({
+    ranking = pd.DataFrame({
         "posicion": range(1, len(top) + 1),
         "corredor": top.index,
         "nombre": [NOMBRES.get(c, c.title()) for c in top.index],
         "siniestros": top.values,
         "participacion_%": (100 * top.values / len(df)).round(2),
-        "longitud_km": pd.NA,
     })
+    longitudes = cargar_longitudes()
+    ranking["longitud_km"] = ranking["corredor"].map(longitudes)
+    ranking["siniestros_por_km"] = (ranking["siniestros"] / ranking["longitud_km"]).round(2)
+    return ranking
+
+
+def cargar_longitudes(archivo=config.ARCHIVO_LONGITUDES) -> pd.Series:
+    """Longitud en km de cada corredor, indexada por su código (``"KR 72"``)."""
+    if not archivo.exists():
+        return pd.Series(dtype=float)
+    tabla = pd.read_csv(archivo)
+    return tabla.set_index("corredor")["longitud_km"]
 
 
 def asignar_corredor(df: pd.DataFrame, corredores: list[str]) -> pd.Series:

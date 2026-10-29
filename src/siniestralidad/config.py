@@ -11,6 +11,7 @@ RAIZ = Path(__file__).resolve().parents[2]
 DATA = RAIZ / "data"
 RAW = DATA / "raw"
 PROCESSED = DATA / "processed"
+EXTERNAL = DATA / "external"
 REPORTS = RAIZ / "reports"
 TABLAS = REPORTS / "tablas"
 FIGURAS = REPORTS / "figuras"
@@ -22,6 +23,9 @@ URL_ANUARIO = (
     "resource/35168f38-f3b3-4411-a0c5-545f3ec8869e/download/"
     "base-anuario-de-siniestralidad-2024.xlsx"
 )
+
+# Longitud de cada corredor (km), necesaria para H1.
+ARCHIVO_LONGITUDES = EXTERNAL / "longitudes_corredores.csv"
 
 # --- Población -----------------------------------------------------------
 ANIO = 2024

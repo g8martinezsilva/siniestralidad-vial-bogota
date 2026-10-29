@@ -58,6 +58,7 @@ siniestralidad-vial-bogota/
 │   └── main.tex
 ├── data/
 │   ├── raw/               # Base original del SIMUR (no se sube a GitHub)
+│   ├── external/          # Longitud de los corredores
 │   └── processed/         # Base limpia de los 10 corredores
 ├── src/siniestralidad/    # Código del programa
 │   ├── config.py          # Rutas, año, franjas, columnas y parámetros

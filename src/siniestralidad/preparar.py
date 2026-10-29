@@ -58,7 +58,7 @@ def main(argv=None) -> None:
     print("\nTrazabilidad de la depuración:")
     print(traza.to_string(index=False))
     print("\nCorredores seleccionados:")
-    print(ranking[["posicion", "nombre", "siniestros", "participacion_%"]].to_string(index=False))
+    print(ranking[["posicion", "nombre", "siniestros", "longitud_km", "siniestros_por_km"]].to_string(index=False))
     print("\n% de nulos en variables clave:")
     print(nulos.to_string())
     print(f"\nBase limpia: {salida} ({len(final):,} siniestros)")
