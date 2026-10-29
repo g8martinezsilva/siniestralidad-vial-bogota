@@ -1,2 +1,2 @@
 # Instalación rápida: pip install -r requirements.txt
--e .[analisis,dev]
+-e .[analisis,tablero,dev]
