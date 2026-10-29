@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "siniestralidad"
+version = "0.1.0"
+description = "Patrones de siniestralidad vial en corredores principales de Bogotá (SIMUR 2024)"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.1",
+    "numpy",
+    "openpyxl",
+    "pyarrow",
+]
+
+[project.optional-dependencies]
+analisis = ["scipy", "statsmodels", "scikit-learn", "mlxtend", "matplotlib", "seaborn"]
+mapas = ["geopandas", "folium"]
+tablero = ["streamlit", "plotly"]
+dev = ["pytest", "jupyter"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+addopts = "--doctest-modules"
+testpaths = ["tests", "src"]

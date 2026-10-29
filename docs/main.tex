@@ -1,0 +1,723 @@
+% Compilar con: pdflatex proyecto.tex  (dos veces para los enlaces/numeración)
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{mathptmx}                 % Times
+\usepackage[margin=2.54cm]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{0}           % los números ya van en los títulos
+\setstretch{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\titleformat{\section}{\normalfont\bfseries\fontsize{14}{16}\selectfont}{}{0pt}{}
+\titleformat{\subsection}{\normalfont\bfseries\large}{}{0pt}{}
+\providecommand{\tightlist}{\setlength{\itemsep}{2pt}\setlength{\parskip}{0pt}}
+\renewcommand{\arraystretch}{1.2}
+\urlstyle{same}
+\Urlmuskip=0mu plus 1mu
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize, breaklines=true, columns=fullflexible,
+  frame=single, backgroundcolor=\color{black!4}, rulecolor=\color{black!30},
+  keywordstyle=\bfseries, showstringspaces=false, inputencoding=utf8,
+  extendedchars=true,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1
+}
+
+\title{An\'alisis de patrones de siniestralidad vial en corredores principales de Bogot\'a mediante miner\'ia de datos}
+\date{}
+\hypersetup{pdftitle={Análisis de patrones de siniestralidad vial en corredores principales de Bogotá mediante minería de datos}}
+
+\begin{document}
+
+% ---------------- PORTADA ----------------
+\begin{titlepage}
+\centering\setstretch{1.0}
+\vspace*{0cm}
+\includegraphics[width=0.42\textwidth]{escudo.png}\par
+\vspace{0.8cm}
+{\bfseries ENTREGA INTEGRADA DEL PROYECTO}\par
+\vspace{1.2cm}
+\begin{tabular}{@{}l@{\hspace{2.2cm}}l@{}}
+Gámez Camilo Andrés & 20231020193\\
+Martínez Silva Gabriela & 20231020205\\
+Velasco Rodríguez Carol Stefanya & 20231020215\\
+Molina Diaz Kaleth & 20232020096
+\end{tabular}\par
+\vspace{1.2cm}
+{\bfseries Metodología de la Investigación}\par
+\vspace{0.8cm}
+Acosta Rodríguez Rafael Antonio\par
+\vspace{1cm}
+Facultad de ingeniería\par
+Ingeniería de sistemas\par
+\vspace{1.2cm}
+Bogotá D.C. 22 de Octubre de 2026
+\end{titlepage}
+
+% ---------------- TÍTULO ----------------
+\begin{center}
+{\bfseries\large Análisis de patrones de siniestralidad vial en corredores principales de Bogotá mediante minería de datos}
+\end{center}
+
+\textbf{Tema:} Prevención y análisis de accidentes de tránsito mediante minería de datos.
+
+\hypertarget{introducciuxf3n}{%
+\section{Introducción}\label{introducciuxf3n}}
+
+La siniestralidad vial es un problema de seguridad, salud pública y
+movilidad urbana: los accidentes de tránsito generan pérdidas humanas,
+lesiones, daños materiales, congestión y costos sociales. En las grandes
+ciudades los siniestros no se distribuyen de manera uniforme; algunos
+corredores, intersecciones y tramos concentran más eventos, y ciertos
+horarios, días y tipos de actor vial muestran comportamientos
+recurrentes.
+
+Bogotá no es la excepción. El Anuario de Siniestralidad Vial 2024
+reportó más de 12 mil siniestros viales y 565 víctimas fatales. Los
+motociclistas representaron el 47,3 \% de las personas fallecidas, los
+sábados y viernes concentraron la mayor proporción de muertes (18,8 \% y
+18,1 \%), la franja de mayor registro fue entre las 10:00 p.~m. y las
+11:00 p.~m., y Kennedy, Engativá y Suba estuvieron entre las localidades
+con más víctimas fatales. Estas cifras muestran que el problema tiene
+una distribución territorial, temporal y poblacional diferenciada.
+
+Cada siniestro queda documentado en el Informe Policial de Accidente de
+Tránsito (IPAT), que registra lugar, fecha, hora, vehículos, actores
+involucrados, circunstancias y condiciones de la vía. Estos registros se
+publican en la base de siniestros viales del Sistema Integrado de
+Información sobre Movilidad Urbana Regional (SIMUR). La ciudad ya
+dispone de tableros que cuentan siniestros y víctimas, pero un conteo no
+dice si una concentración es mayor de lo esperable ni qué condiciones
+tienden a presentarse juntas. La riqueza de atributos del IPAT permite
+ir más allá y preguntar dónde, cuándo, con quiénes y bajo qué
+combinaciones de condiciones se repiten los siniestros.
+
+Este proyecto estudia los siniestros ocurridos en 2024 en los diez
+corredores principales de Bogotá con mayor número de registros.
+Combina la estadística, para describir su distribución y contrastar
+hipótesis sobre ella, con la minería de datos, para descubrir perfiles y
+combinaciones frecuentes de características. Su propósito es describir y
+explicar patrones en los registros existentes, no predecir accidentes
+futuros ni establecer causas, de modo que los resultados sirvan para
+priorizar corredores, horarios y actores viales en la prevención. La
+pregunta que orienta el trabajo es:
+
+\begin{quote}
+¿Qué patrones espaciales, temporales y de actor vial presentan los
+siniestros viales ocurridos en 2024 en los principales corredores de
+Bogotá, cuáles de ellos son estadísticamente significativos y cómo
+pueden identificarse mediante técnicas de minería de datos?
+\end{quote}
+
+Para responderla, el documento revisa primero lo que se sabe sobre el
+tema en el estado del arte, de donde surgen las hipótesis. Luego plantea los
+objetivos, describe en la metodología cómo se contrastarán las hipótesis
+y con qué datos, y finalmente presenta en el desarrollo el avance de la
+ejecución.
+
+\clearpage
+\hypertarget{estado-del-arte}{%
+\section{Estado del arte}\label{estado-del-arte}}
+
+Esta sección revisa qué se conoce sobre la siniestralidad vial en
+corredores urbanos, su distribución en el espacio y en el tiempo, los
+actores más expuestos y el uso de la minería de datos para estudiarla.
+Al final se sintetizan los vacíos que este proyecto aborda.
+
+\hypertarget{siniestralidad-vial-como-fenuxf3meno-urbano}{%
+\subsection{1. Siniestralidad vial como fenómeno
+urbano}\label{siniestralidad-vial-como-fenuxf3meno-urbano}}
+
+Los accidentes de tránsito son eventos multicausales. Chand, Jayesh y
+Bhasi (2021) señalan que su estudio requiere considerar fuentes de
+información y factores diversos: actores viales, vehículos,
+infraestructura, entorno y tiempo de ocurrencia. Un siniestro no es un
+hecho aislado: la repetición de eventos en un mismo tipo de vía, a
+determinada hora o con actores específicos puede revelar patrones útiles
+para la prevención.
+
+En entornos urbanos influyen la intensidad de la movilidad, la
+coexistencia de actores, la densidad de intersecciones, la velocidad, la
+señalización, la iluminación y la configuración de la vía. Por eso los
+corredores principales son especialmente relevantes: concentran grandes
+flujos de automóviles, motocicletas, transporte público, ciclistas y
+peatones, con interacciones más frecuentes y complejas. Vargas Montero
+(2022) muestra, además, que los datos abiertos de accidentalidad de
+Bogotá son una base suficiente para analizar el fenómeno en la ciudad.
+
+\hypertarget{patrones-espaciales-y-corredores-cruxedticos}{%
+\subsection{2. Patrones espaciales y corredores
+críticos}\label{patrones-espaciales-y-corredores-cruxedticos}}
+
+La identificación de puntos críticos (\emph{hotspots}) es una de las
+líneas más consolidadas del área. Klaylee, Iamtrakul y Sornlertlamvanich
+(2022) identifican puntos críticos de accidentes de motociclistas
+mediante análisis espacial con sistemas de información geográfica; la
+georreferenciación y el mapeo permiten localizar zonas de concentración
+y diferenciar niveles de riesgo. En una ciudad, un punto crítico no se
+reduce a una intersección: puede ser un tramo de avenida, un acceso, un
+retorno o el entorno de una estación de transporte. Esto es relevante
+en Bogotá, donde un mismo corredor atraviesa localidades con dinámicas
+muy distintas.
+
+Zhang, Zhu, Li, Qiu y Xie (2023) analizan patrones espacio-temporales de
+accidentes con clustering de densidad y redes bayesianas, y muestran que
+los patrones varían según el lugar y el momento: un sitio que no destaca
+en un conteo anual puede concentrar eventos en horas pico, fines de
+semana o periodos específicos. Ambos trabajos sugieren que los
+siniestros no se reparten entre los corredores en proporción a su
+tamaño, sino que algunos concentran más eventos de los esperados.
+
+\hypertarget{patrones-temporales-y-actores-viales}{%
+\subsection{3. Patrones temporales y actores
+viales}\label{patrones-temporales-y-actores-viales}}
+
+Los accidentes varían por hora, día de la semana, mes y condiciones de
+luz. Las cifras de Bogotá citadas en la introducción, con las noches de
+viernes y sábado como los momentos de mayor mortalidad, indican que el
+tiempo no solo influye en cuántos siniestros ocurren, sino también en
+qué tan graves son.
+
+Los actores viales también tienen exposiciones distintas.
+Ospina-Mateus, Berrio García, Quintana Jiménez y Salas-Navarro (2022)
+documentan un conjunto de datos de accidentes de motociclistas en
+Bogotá, lo que confirma la relevancia de este actor, que además
+concentra casi la mitad de las muertes en la ciudad. Aun así, el
+análisis de corredores no debe limitarse a un único actor: peatones,
+ciclistas, pasajeros, conductores de automóvil, transporte público y
+carga deben considerarse según la información disponible. Combinar
+variables temporales y de actor vial permite construir perfiles de
+siniestralidad, por ejemplo, corredores con recurrencia de siniestros de
+motociclistas en horario nocturno o zonas con atropellos concentrados en
+jornadas laborales.
+
+\hypertarget{mineruxeda-de-datos-aplicada-a-accidentes}{%
+\subsection{4. Minería de datos aplicada a
+accidentes}\label{mineruxeda-de-datos-aplicada-a-accidentes}}
+
+La minería de datos permite encontrar grupos y relaciones que no son
+evidentes en bases extensas. Sathiyanathan y Warnajith (2024) integran
+K-means y reglas de asociación para analizar seguridad vial: primero
+forman grupos de accidentes similares y luego buscan combinaciones
+frecuentes dentro de cada grupo, lo que ayuda a separar perfiles antes
+de buscar relaciones. Shahin et al.~(2021) aplican el mismo principio a
+accidentes en intersecciones, donde se repiten combinaciones de
+horario, flujo, tipo de vehículo, condición vial y modalidad de
+accidente.
+
+Una regla de asociación se expresa como «A y B se presentan
+frecuentemente junto con C». En siniestralidad vial, A y B podrían ser
+un corredor y una franja horaria, y C un tipo de actor o de siniestro.
+Su utilidad depende de tres indicadores: el soporte (frecuencia de la
+combinación en la base), la confianza (proporción de casos en que, dado
+el antecedente, ocurre el consecuente) y el \emph{lift} (si la
+asociación supera lo esperado por la frecuencia individual de los
+elementos; un valor mayor que 1 indica una asociación superior a la
+esperada). Una regla no demuestra que un factor cause el accidente;
+solo indica que una combinación ocurre con frecuencia en los registros.
+
+Culajay Sandoval (2025) ofrece un antecedente latinoamericano: en
+Guatemala aplica Apriori y FP-Growth, K-means y modelos supervisados
+sobre registros históricos, e identifica asociaciones entre hora, día y
+mes con la necesidad de hospitalización. Bejar Gladkowski (2023), por su
+parte, desarrolla un análisis predictivo de accidentes en Madrid. Ambos
+muestran que estas técnicas pueden extenderse a la predicción, una
+posibilidad que este proyecto deja como ampliación posterior.
+
+\hypertarget{prevenciuxf3n-y-comunicaciuxf3n-de-hallazgos}{%
+\subsection{5. Prevención y comunicación de
+hallazgos}\label{prevenciuxf3n-y-comunicaciuxf3n-de-hallazgos}}
+
+El análisis de patrones debe contribuir a la prevención, con cautela.
+Job (2022) estudia evaluaciones de intervenciones con cámaras de
+velocidad y plantea que sus resultados varían según el contexto, los
+métodos de evaluación y las condiciones de implementación. Una
+concentración de siniestros no demuestra, por sí sola, que una
+intervención concreta sea la solución; las medidas que se deriven del
+análisis deben presentarse como alternativas sujetas a validación
+institucional.
+
+La comunicación clara también importa. Ordoñez Cueto y Fernández Ebratt
+(2025) desarrollan un tablero de accidentes para Barranquilla y muestran
+que indicadores, mapas, gráficos y filtros facilitan el acceso a
+información compleja. Bogotá ya cuenta con un tablero público de
+siniestralidad por fecha, actor vial, localidad y corredor; el aporte de
+este proyecto no es reemplazarlo, sino añadir la evidencia estadística y
+los patrones que un conteo no muestra.
+
+\hypertarget{suxedntesis-y-aporte-del-proyecto}{%
+\subsection{6. Síntesis y aporte del
+proyecto}\label{suxedntesis-y-aporte-del-proyecto}}
+
+La literatura coincide en que la siniestralidad vial urbana no es
+aleatoria ni homogénea, y deja tres ideas que este proyecto convierte en
+hipótesis verificables para los corredores de Bogotá: que algunos
+corredores concentran más siniestros de los que corresponderían a su
+longitud (apartado de patrones espaciales); que la gravedad de los siniestros depende del
+momento en que ocurren (apartado de patrones temporales y actores viales); y que los siniestros con
+motocicleta tienen más víctimas que los demás (mismo apartado). A esto se
+suma que la combinación de clustering y reglas de asociación (apartado de
+minería de datos) permite describir perfiles y combinaciones que las cifras agregadas
+no revelan.
+
+El aporte del proyecto es, por tanto, doble: comprobar con pruebas
+estadísticas si esos patrones se cumplen en los corredores principales
+de Bogotá durante 2024, y describir con minería de datos los perfiles y
+combinaciones que los acompañan. Los objetivos de la siguiente sección
+se derivan directamente de esta síntesis.
+
+\clearpage
+\hypertarget{objetivos}{%
+\section{Objetivos}\label{objetivos}}
+
+\hypertarget{objetivo-general}{%
+\subsection{1. Objetivo general}\label{objetivo-general}}
+
+Determinar los patrones espaciales, temporales y de actor vial de los
+siniestros ocurridos en 2024 en los diez corredores principales de
+Bogotá con mayor número de registros, mediante pruebas de hipótesis
+estadísticas y técnicas de minería de datos aplicadas a la base de
+siniestros viales del SIMUR, con el fin de priorizar corredores, franjas
+horarias y actores viales como insumo para la prevención.
+
+\hypertarget{objetivos-especuxedficos}{%
+\subsection{2. Objetivos específicos}\label{objetivos-especuxedficos}}
+
+Cada objetivo específico enuncia primero la meta que se persigue y
+luego el entregable, destacado en cursiva, con el que se da por
+cumplido. Los objetivos siguen el orden del estudio: cada entregable es
+el insumo del objetivo siguiente.
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, align=left, itemsep=6pt]
+\item
+  Construir una base de datos depurada y documentada de los siniestros
+  de 2024 en los diez corredores seleccionados. Se cumple con la entrega
+  de \emph{un diccionario de variables, la lista de corredores con su
+  longitud y una base limpia con al menos diez variables y menos del
+  5 \% de valores nulos en las variables clave}, acompañada de la
+  trazabilidad de los registros descartados.
+\item
+  Caracterizar la distribución espacial y temporal de los siniestros por
+  corredor, mes, día de la semana, franja horaria y actor vial. Se
+  cumple con la entrega de \emph{las tablas de frecuencias y tasas por
+  kilómetro, al menos un mapa de concentración y cuatro gráficos}, que
+  identifiquen los tres corredores y las tres franjas horarias de mayor
+  concentración.
+\item
+  Contrastar las hipótesis sobre concentración espacial, franja horaria
+  y actor vial con un nivel de significancia de 0,05. Se cumple con la
+  entrega de \emph{una tabla de resultados que reporte, para cada
+  hipótesis, el estadístico, el p-valor, el tamaño del efecto y la
+  decisión}, junto con su interpretación.
+\item
+  Identificar perfiles de siniestralidad mediante algoritmos de
+  agrupamiento (K-means y DBSCAN). Se cumple con la entrega de \emph{una
+  ficha descriptiva para cada uno de los tres a ocho perfiles
+  obtenidos}, con sus variables dominantes y su composición de
+  gravedad.
+\item
+  Descubrir asociaciones frecuentes entre las características de los
+  siniestros, de forma global y dentro de cada perfil. Se cumple con la
+  entrega de \emph{al menos diez reglas de asociación interpretadas} que
+  superen los umbrales mínimos de soporte, confianza y \emph{lift}.
+\item
+  Integrar y comunicar los resultados del estudio. Se cumple con la
+  entrega de \emph{un tablero analítico con al menos cuatro vistas
+  (mapa, comportamiento temporal, perfiles y reglas) y un informe final
+  con al menos tres propuestas preventivas}.
+\end{enumerate}
+
+\clearpage
+\hypertarget{metodologuxeda}{%
+\section{Metodología}\label{metodologuxeda}}
+
+\hypertarget{paradigma-y-enfoque}{%
+\subsection{1. Paradigma y enfoque}\label{paradigma-y-enfoque}}
+
+La investigación se ubica en el paradigma positivista, en su versión
+pospositivista: asume que la siniestralidad vial puede observarse y
+medirse de forma objetiva a partir de registros, y que las afirmaciones
+sobre ella deben contrastarse con datos. En coherencia, el enfoque es
+cuantitativo y el método es hipotético-deductivo: las ideas que deja el
+estado del arte se formulan como hipótesis estadísticas y se aceptan o
+rechazan con pruebas de significancia.
+
+El estudio se aborda desde el lado estadístico. La estadística
+descriptiva caracteriza la distribución de los siniestros mediante
+frecuencias, proporciones y tasas por kilómetro, y la estadística
+inferencial contrasta las hipótesis. La minería de datos complementa
+este trabajo: descubre perfiles y combinaciones de características que
+luego se interpretan a la luz de las pruebas. Se descarta un enfoque
+cualitativo porque la pregunta busca patrones medibles en un volumen
+grande de registros, no la experiencia o el significado que los actores
+dan a los siniestros. Por la misma razón no se adopta un enfoque mixto:
+la investigación no recoge datos cualitativos, como entrevistas u
+observación, que deban integrarse con los cuantitativos.
+
+\hypertarget{alcance-y-diseuxf1o}{%
+\subsection{2. Alcance y diseño}\label{alcance-y-diseuxf1o}}
+
+El alcance es descriptivo-correlacional: el estudio describe cómo se
+distribuyen los siniestros y mide la asociación entre sus
+características, sin establecer relaciones de causalidad. Tampoco busca
+predecir siniestros futuros con redes neuronales u otros modelos
+complejos. Solo si la variable de gravedad resulta completa y confiable
+se evaluará, como componente complementario, un árbol de decisión o un
+Random Forest para clasificarla.
+
+El diseño es no experimental, transversal y retrospectivo: las variables
+no se manipulan, sino que se analizan datos secundarios de hechos ya
+ocurridos. Un diseño experimental o cuasiexperimental no es posible,
+porque exigiría provocar siniestros o asignar corredores a condiciones
+controladas, y tampoco es necesario, porque el estudio no evalúa el
+efecto de una intervención.
+
+La investigación se plantea como un estudio de caso único: el caso son
+los corredores principales de Bogotá durante 2024. Esta estrategia
+permite analizar a fondo un contexto concreto, con sus propios datos y
+dinámicas, aunque sus conclusiones no se generalizan automáticamente a
+otras ciudades o periodos.
+
+\hypertarget{hipuxf3tesis}{%
+\subsection{3. Hipótesis}\label{hipuxf3tesis}}
+
+Las tres ideas de la síntesis del estado del arte se
+formulan como hipótesis estadísticas, cada una con su prueba.
+
+\textbf{H1. Concentración espacial.}
+\begin{itemize}
+\tightlist
+\item
+  $H_0$: el número de siniestros en cada corredor es proporcional a su
+  longitud.
+\item
+  $H_1$: algunos corredores concentran más siniestros de los esperados
+  por su longitud.
+\item
+  Prueba: chi-cuadrado de bondad de ajuste, con frecuencias esperadas
+  proporcionales a la longitud de cada corredor.
+\end{itemize}
+
+\textbf{H2. Franja horaria y gravedad.}
+\begin{itemize}
+\tightlist
+\item
+  $H_0$: la gravedad del siniestro (solo daños, con heridos o con
+  muertos) es independiente de la franja horaria y del tipo de día
+  (entre semana o fin de semana).
+\item
+  $H_1$: la gravedad depende de la franja horaria y del tipo de día; las
+  noches de fin de semana presentan mayor proporción de siniestros
+  graves.
+\item
+  Prueba: chi-cuadrado de independencia, con V de Cramér como tamaño del
+  efecto.
+\end{itemize}
+
+\textbf{H3. Actor vial y gravedad.}
+\begin{itemize}
+\tightlist
+\item
+  $H_0$: la proporción de siniestros con víctimas (heridos o muertos) es
+  igual en los que involucran motocicleta y en los que no.
+\item
+  $H_1$: la proporción es mayor en los siniestros con motocicleta.
+\item
+  Prueba: prueba z unilateral de diferencia de proporciones y razón de
+  momios con intervalo de confianza del 95 \%.
+\end{itemize}
+
+Se rechaza $H_0$ cuando el p-valor es menor que 0,05, con corrección de
+Bonferroni por realizar varias pruebas. Como en una base grande casi
+cualquier diferencia resulta significativa, cada resultado se interpreta
+junto con su tamaño del efecto (V de Cramér: 0,1 pequeño, 0,3 mediano y
+0,5 grande).
+
+\hypertarget{poblaciuxf3n-y-muestra}{%
+\subsection{4. Población y muestra}\label{poblaciuxf3n-y-muestra}}
+
+Los datos provienen de la base de siniestros viales de Bogotá del SIMUR,
+construida a partir del IPAT. La unidad de análisis es el siniestro
+vial, es decir, cada registro de esa base; para H3 se consideran
+también los actores viales asociados a cada siniestro.
+
+La población objetivo son los siniestros viales ocurridos en los
+corredores principales de Bogotá, y la población accesible, los
+siniestros de 2024 registrados en la base del SIMUR en los diez
+corredores con mayor número de registros ese año. Se incluyen los
+registros con fecha y hora válidas, corredor identificable, coordenadas
+dentro de Bogotá y gravedad registrada; se excluyen los duplicados y los
+que tengan fechas, horas o coordenadas inválidas.
+
+La selección se hace en dos etapas. En la primera, los corredores se
+eligen mediante un muestreo no probabilístico por criterio: se toman los
+diez con mayor número de siniestros en 2024, porque son los de mayor
+interés para la prevención. En la segunda, dentro de esos corredores se
+trabaja con un censo, es decir, con todos los siniestros que cumplen los
+criterios de inclusión. La base completa está disponible sin costo, así
+que tomar todos los datos posibles aprovecha toda la información y evita
+el error de muestreo. El tamaño final ($N$) se reportará después de la
+depuración.
+
+\hypertarget{variables}{%
+\subsection{5. Variables}\label{variables}}
+
+La selección final de variables dependerá de la estructura y
+completitud de la base. Las previstas, y su papel en las hipótesis, son:
+
+\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.20\textwidth}@{}}
+\toprule
+\textbf{Dimensión} & \textbf{Variables} & \textbf{Tipo} & \textbf{Papel} \\
+\midrule
+\endhead
+Espacial & Corredor, localidad, tramo o intersección, coordenadas & Nominal & Independiente (H1) \\
+ & Longitud del corredor (km) & Razón & Valor esperado (H1) \\
+Temporal & Mes, día de la semana, fin de semana, hora y franja horaria & Ordinal y nominal & Independiente (H2) \\
+Actor y vehículo & Actor vial, tipo de vehículo, motocicleta involucrada & Nominal y dicotómica & Independiente (H3) \\
+Evento & Clase de siniestro & Nominal & Descriptiva \\
+ & Gravedad (solo daños, con heridos, con muertos) & Ordinal & Dependiente (H2 y H3) \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{fases-del-estudio}{%
+\subsection{6. Fases del estudio}\label{fases-del-estudio}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Preparación de datos:} revisión de la estructura de la base,
+  depuración de duplicados, nulos e inconsistencias de fecha, hora y
+  coordenadas, estandarización de categorías y selección de los
+  corredores.
+\item
+  \textbf{Análisis descriptivo:} frecuencias, proporciones y tasas por
+  kilómetro por corredor, localidad, mes, día, franja horaria, actor
+  vial y tipo de siniestro, con mapas de concentración elaborados con
+  apoyo de SIG.
+\item
+  \textbf{Contraste de hipótesis:} aplicación de las pruebas descritas
+  en el apartado de hipótesis, con verificación previa de supuestos (frecuencias
+  esperadas de al menos 5) y cálculo del tamaño del efecto.
+\item
+  \textbf{Clustering:} agrupamiento de los siniestros con K-means sobre
+  variables codificadas y con DBSCAN sobre coordenadas para detectar
+  zonas densas. El número de grupos se elige con el coeficiente de
+  silueta y el método del codo, y cada grupo se describe por sus
+  variables dominantes; una prueba chi-cuadrado indica si su composición
+  de gravedad difiere.
+\item
+  \textbf{Reglas de asociación:} transformación de los registros en
+  transacciones (corredor, franja, día, actor vial, vehículo y tipo de
+  siniestro) y aplicación de Apriori o FP-Growth, de forma global y por
+  grupo, siguiendo la secuencia de Sathiyanathan y Warnajith (2024). Las
+  reglas se filtran por soporte, confianza y \emph{lift}, con umbrales
+  definidos tras observar la distribución de la base.
+\item
+  \textbf{Visualización e interpretación:} integración de mapas,
+  indicadores por corredor, comportamiento temporal, resultados de las
+  hipótesis, perfiles y reglas en un tablero analítico, y redacción del
+  informe con las propuestas preventivas.
+\end{enumerate}
+
+\hypertarget{herramientas}{%
+\subsection{7. Herramientas}\label{herramientas}}
+
+El análisis se realizará en Python: pandas para la depuración, SciPy y
+statsmodels para las pruebas de hipótesis, scikit-learn para K-means,
+DBSCAN y el coeficiente de silueta, mlxtend para Apriori y FP-Growth,
+geopandas y folium para el análisis espacial y los mapas, y Plotly o
+Streamlit para el tablero.
+
+\hypertarget{consideraciones-y-limitaciones}{%
+\subsection{8. Consideraciones y
+limitaciones}\label{consideraciones-y-limitaciones}}
+
+La calidad de los resultados depende del subregistro y de la
+completitud del IPAT, y, como corresponde a un estudio de caso, sus
+conclusiones se limitan a los corredores seleccionados y al año 2024. Como se señaló en el estado del arte, las
+recomendaciones preventivas se formularán como propuestas sujetas a
+validación institucional y no como soluciones comprobadas.
+
+\clearpage
+\hypertarget{desarrollo}{%
+\section{Desarrollo}\label{desarrollo}}
+
+Esta sección pone en marcha las fases descritas en la metodología.
+Todavía no se reportan resultados: se presenta el plan de trabajo y se
+detalla la preparación de la base, que es el punto de partida de todos
+los análisis.
+
+\hypertarget{plan-de-trabajo}{%
+\subsection{1. Plan de trabajo}\label{plan-de-trabajo}}
+
+La tabla relaciona cada etapa con el objetivo específico al que
+responde y con su producto.
+
+\begin{longtable}[]{@{}>{\centering\arraybackslash}p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.46\textwidth}>{\centering\arraybackslash}p{0.11\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}@{}}
+\toprule
+\textbf{Etapa} & \textbf{Actividad} & \textbf{Objetivo} & \textbf{Producto} \\
+\midrule
+\endhead
+1 & Revisar la base del SIMUR de 2024 y elaborar el diccionario de variables & 1 & Base cruda y diccionario \\
+2 & Seleccionar los diez corredores con mayor número de siniestros & 1 & Lista de corredores y longitudes \\
+3 & Depurar y estandarizar la base & 1 & Base limpia \\
+4 & Análisis descriptivo espacio-temporal & 2 & Tablas, gráficos y mapas \\
+5 & Contraste de hipótesis H1 a H3 & 3 & Tabla de resultados \\
+6 & Clustering con K-means y DBSCAN & 4 & Perfiles de siniestralidad \\
+7 & Reglas de asociación con Apriori o FP-Growth & 5 & Reglas filtradas \\
+8 & Tablero e informe final & 6 & Tablero y análisis final \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}{%
+\subsection{2. Revisión de la base y diccionario de
+variables}\label{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}}
+
+Se tomará la base de siniestros viales del SIMUR, filtrada al año 2024,
+y se documentará cada campo: nombre, tipo de dato, descripción,
+proporción de nulos y valores distintos. Con ese diccionario se decidirá
+qué variables entran al análisis y cuáles se descartan por baja
+completitud. Se verificará en especial la variable de gravedad, que es
+necesaria para H2 y H3 y determina si el componente complementario de
+clasificación es viable.
+
+\hypertarget{etapa-2-definiciuxf3n-de-corredores-y-periodo}{%
+\subsection{3. Selección de
+corredores}\label{etapa-2-definiciuxf3n-de-corredores-y-periodo}}
+
+Se seleccionarán los diez corredores con mayor número de siniestros
+registrados en 2024 y se obtendrá la longitud de cada uno, necesaria
+para H1. Los nombres de vía deben normalizarse antes del conteo, ya que
+la escritura de las direcciones suele variar en la base.
+
+\hypertarget{etapa-3-depuraciuxf3n-y-estandarizaciuxf3n}{%
+\subsection{4. Depuración y
+estandarización}\label{etapa-3-depuraciuxf3n-y-estandarizaciuxf3n}}
+
+La depuración elimina los registros duplicados, trata los nulos y los
+valores inconsistentes (fechas fuera de 2024, horas inválidas,
+coordenadas fuera de Bogotá) y normaliza los nombres de corredor y las
+categorías de actor vial, vehículo y tipo de siniestro. Luego se derivan
+las variables que usan los análisis: mes, día de la semana, hora,
+franja horaria (madrugada, mañana, mediodía, tarde y noche), indicador
+de fin de semana e indicador de motocicleta involucrada. En cada paso se
+documenta cuántos registros se descartan, para garantizar la
+trazabilidad. El siguiente esqueleto muestra el flujo, que se ajustará a
+los nombres reales de las columnas:
+
+\begin{lstlisting}[language=Python]
+import pandas as pd
+
+df = pd.read_csv("siniestros_simur.csv")
+
+# 1. Perfil de calidad
+perfil = pd.DataFrame({
+    "nulos_%": df.isna().mean() * 100,
+    "distintos": df.nunique(),
+})
+
+# 2. Depuración y filtro del periodo
+df = df.drop_duplicates()
+df["fecha"] = pd.to_datetime(df["fecha"], errors="coerce")
+df = df[df["fecha"].dt.year == 2024]
+df = df.dropna(subset=["fecha", "hora", "corredor"])
+
+# 3. Variables derivadas
+df["dia_semana"] = df["fecha"].dt.day_name()
+df["mes"] = df["fecha"].dt.month
+df["fin_semana"] = df["fecha"].dt.dayofweek >= 5
+df["franja"] = pd.cut(
+    df["hora"], bins=[0, 6, 10, 16, 20, 24],
+    labels=["madrugada", "manana", "mediodia", "tarde", "noche"],
+    right=False,
+)
+\end{lstlisting}
+
+Con la base limpia, las etapas 4 a 8 aplican los análisis descritos en
+las fases del estudio.
+
+\hypertarget{resultados-esperados}{%
+\subsection{5. Resultados esperados}\label{resultados-esperados}}
+
+Al finalizar se espera contar con una base depurada y documentada, un
+ranking de corredores y tramos por concentración de siniestros, la
+decisión estadística sobre cada hipótesis, los perfiles de
+siniestralidad, un conjunto de reglas interpretables y un tablero que
+reúna los hallazgos como insumo para la prevención.
+
+\clearpage
+\section{Referencias bibliográficas}
+
+\begin{enumerate}
+\tightlist
+\item
+  Chand, A., Jayesh, S., \& Bhasi, A. B. (2021). Road traffic accidents:
+  An overview of data sources, analysis techniques and contributing
+  factors. Materials Today: Proceedings, 47, 5135--5141.
+  \url{https://doi.org/10.1016/j.matpr.2021.05.415}
+\item
+  Sathiyanathan, R., \& Warnajith, N. (2024). Integration of k-means
+  clustering and association rule mining for road safety analysis. In
+  2024 International Conference on Smart Computing and Systems
+  Engineering (SCSE) (pp.~1--7). IEEE.
+  \url{https://doi.org/10.1109/SCSE61872.2024.10550547}
+\item
+  Shahin, M., et al.~(2021). Cluster-based association rule mining for
+  an intersection accident dataset. In 2021 International Conference on
+  Computing, Electronic and Electrical Engineering (ICE Cube)
+  (pp.~1--6). IEEE.
+  \url{https://doi.org/10.1109/ICECube53880.2021.9628206}
+\item
+  Job, R. F. S. (2022). Evaluations of speed camera interventions can
+  deliver a wide range of outcomes: Causes and policy implications.
+  Sustainability, 14(3), Article 1765.
+  \url{https://doi.org/10.3390/su14031765}
+\item
+  Klaylee, J., Iamtrakul, P., \& Sornlertlamvanich, V. (2022).
+  Identification of suburban motorcycle traffic accident hotspots using
+  GIS-based spatial analysis. In 2022 10th International Conference on
+  Traffic and Logistic Engineering (ICTLE) (pp.~35--40). IEEE.
+  \url{https://doi.org/10.1109/ICTLE55577.2022.9902103}
+\item
+  Ospina-Mateus, H., Berrio García, S., Quintana Jiménez, L., \&
+  Salas-Navarro, K. (2022). Dataset of traffic accidents in
+  motorcyclists in Bogotá, Colombia. Data in Brief, 43, Article 108461.
+  \url{https://doi.org/10.1016/j.dib.2022.108461}
+\item
+  Vargas Montero, F. (2022). Análisis de datos de accidentalidad vial de
+  la ciudad de Bogotá a partir de datos abiertos y datos obtenidos desde
+  redes sociales {[}Trabajo de grado, Universidad Nacional de
+  Colombia{]}. \url{https://repositorio.unal.edu.co/handle/unal/81571}
+\item
+  Bejar Gladkowski, A. A. (2023). Análisis predictivo de accidentes de
+  tráfico en la ciudad de Madrid {[}Trabajo de fin de grado, Universitat
+  Oberta de Catalunya{]}.
+  \url{https://openaccess.uoc.edu/handle/10609/147306}
+\item
+  Zhang, Y., Zhu, F., Li, Q., Qiu, Z., \& Xie, Y. (2023). Exploring
+  spatiotemporal patterns of expressway traffic accidents based on
+  density clustering and Bayesian network. ISPRS International Journal
+  of Geo-Information, 12(2), Article 73.
+  \url{https://doi.org/10.3390/ijgi12020073}
+\item
+  Ordoñez Cueto, J. L., \& Fernández Ebratt, L. V. (2025). Diseño de un
+  dashboard para el análisis de los datos relacionados con los
+  accidentes ocurridos en la ciudad de Barranquilla {[}Trabajo de grado,
+  Universidad Nacional Abierta y a Distancia{]}.
+  \url{https://repository.unad.edu.co/handle/10596/67670}
+\end{enumerate}
+
+\end{document}
