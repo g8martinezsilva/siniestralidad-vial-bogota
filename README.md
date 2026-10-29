@@ -58,7 +58,7 @@ siniestralidad-vial-bogota/
 │   ├── main.tex
 │   └── propuestas.md      # Propuestas preventivas (OE6)
 ├── data/
-│   ├── raw/               # Base original del SIMUR (no se sube a GitHub)
+│   ├── raw/               # Base del SIMUR en CSV (datos.zip)
 │   ├── external/          # Longitud de los corredores
 │   └── processed/         # Base limpia de los 10 corredores
 ├── src/siniestralidad/    # Código del programa
@@ -95,7 +95,7 @@ cd siniestralidad-vial-bogota
 python -m venv .venv && source .venv/bin/activate   # En Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-# 2. Descargar la base del SIMUR y guardarla en data/raw/ (ver data/README.md)
+# 2. La base del SIMUR ya viene en data/raw/datos.zip (ver data/README.md)
 
 # 3. Construir la base de análisis (OE1)
 python -m siniestralidad.preparar

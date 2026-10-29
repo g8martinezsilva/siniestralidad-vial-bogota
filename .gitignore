@@ -1,5 +1,6 @@
-# Datos: la base del SIMUR pesa más de 100 MB y es pública; no se versiona.
+# Datos: solo se versiona datos.zip (las hojas del SIMUR en CSV); el Excel pesa más de 100 MB.
 data/raw/*
+!data/raw/datos.zip
 data/processed/*
 !data/**/.gitkeep
 
