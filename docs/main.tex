@@ -15,6 +15,38 @@
 \usepackage[hyphens]{url}
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
 \usepackage{titlesec}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{etoolbox}
+
+% Columnas con ancho total acotado, incluido el espacio entre columnas.
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{\dimexpr#1\linewidth-2\tabcolsep\relax}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{\dimexpr#1\linewidth-2\tabcolsep\relax}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{\dimexpr#1\linewidth-2\tabcolsep\relax}}
+\setlength{\tabcolsep}{5pt}
+\setlength{\LTleft}{\fill}
+\setlength{\LTright}{\fill}
+\setlength{\LTpre}{10pt}
+\setlength{\LTpost}{10pt}
+\AtBeginEnvironment{longtable}{\small\setstretch{1.08}}
+\captionsetup{font=small,labelfont=bf,labelsep=period,
+  justification=justified,singlelinecheck=false,skip=8pt}
+\captionsetup[longtable]{width=\textwidth}
+\captionsetup[figure]{font={normalsize,stretch=1.08},skip=10pt}
+\setlength{\emergencystretch}{2em}
+\setlength{\textfloatsep}{16pt plus 3pt minus 3pt}
+\setlength{\intextsep}{14pt plus 3pt minus 3pt}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.7}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{3}
+% Evita que las figuras pasen a una subsección posterior.
+\pretocmd{\subsection}{\FloatBarrier}{}{}
+\pretocmd{\subsubsection}{\FloatBarrier}{}{}
 
 \setcounter{secnumdepth}{0}           % los números ya van en los títulos
 \setstretch{1.15}
@@ -43,27 +75,54 @@
 
 % ---------------- PORTADA ----------------
 \begin{titlepage}
-\centering\setstretch{1.0}
-\vspace*{0cm}
-\includegraphics[width=0.42\textwidth]{escudo.png}\par
+\centering
+\setstretch{1.0}
+\vspace*{0.2cm}
+\IfFileExists{escudo.png}{%
+  \includegraphics[width=5.2cm,height=4.5cm,keepaspectratio]{escudo.png}\par
+}{\vspace*{4.5cm}}
+
 \vspace{0.8cm}
-{\bfseries ENTREGA INTEGRADA DEL PROYECTO}\par
-\vspace{1.2cm}
-\begin{tabular}{@{}l@{\hspace{2.2cm}}l@{}}
+\begin{minipage}{0.94\textwidth}
+\centering
+{\bfseries\fontsize{18}{23}\selectfont
+Análisis de patrones de siniestralidad vial en corredores principales de Bogotá mediante minería de datos\par}
+\end{minipage}
+
+\vspace{0.45cm}
+{\fontsize{11}{14}\selectfont Entrega integrada del proyecto\par}
+\vspace{0.8cm}
+{\bfseries Metodología de la Investigación\par}
+
+\vfill
+\begin{minipage}{0.84\textwidth}
+\centering
+{\bfseries Integrantes\par}
+\vspace{0.3cm}
+\begingroup
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}l@{\hspace{0.8cm}}r@{}}
 Gámez Camilo Andrés & 20231020193\\
 Martínez Silva Gabriela & 20231020205\\
 Velasco Rodríguez Carol Stefanya & 20231020215\\
 Molina Diaz Kaleth & 20232020096
 \end{tabular}\par
-\vspace{1.2cm}
-{\bfseries Metodología de la Investigación}\par
+\endgroup
+\end{minipage}
+
 \vspace{0.8cm}
+{\bfseries Docente\par}
+\vspace{0.15cm}
 Acosta Rodríguez Rafael Antonio\par
-\vspace{1cm}
-Facultad de ingeniería\par
-Ingeniería de sistemas\par
-\vspace{1.2cm}
-Bogotá D.C. 22 de Octubre de 2026
+
+\vfill
+{\bfseries Universidad Distrital Francisco José de Caldas\par}
+\vspace{0.15cm}
+Facultad de Ingeniería\par
+Ingeniería de Sistemas\par
+\vspace{0.5cm}
+Bogotá D.C., 22 de octubre de 2026\par
+\vspace*{0.2cm}
 \end{titlepage}
 
 % ---------------- TÍTULO ----------------
@@ -115,7 +174,7 @@ priorizar corredores, horarios y actores viales en la prevención. La
 pregunta que orienta el trabajo es:
 
 \begin{quote}
-¿Qué patrones espaciales, temporales y de actor vial presentan los
+{\fontfamily{lmr}\selectfont\textquestiondown}Qué patrones espaciales, temporales y de actor vial presentan los
 siniestros viales ocurridos en 2024 en los principales corredores de
 Bogotá, cuáles de ellos son estadísticamente significativos y cómo
 pueden identificarse mediante técnicas de minería de datos?
@@ -477,7 +536,12 @@ depuración.
 La selección final de variables dependerá de la estructura y
 completitud de la base. Las previstas, y su papel en las hipótesis, son:
 
-\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.20\textwidth}@{}}
+\begingroup
+\begin{longtable}{@{}L{0.18}L{0.38}L{0.19}L{0.25}@{}}
+\toprule
+\textbf{Dimensión} & \textbf{Variables} & \textbf{Tipo} & \textbf{Papel} \\
+\midrule
+\endfirsthead
 \toprule
 \textbf{Dimensión} & \textbf{Variables} & \textbf{Tipo} & \textbf{Papel} \\
 \midrule
@@ -490,6 +554,7 @@ Evento & Clase de siniestro & Nominal & Descriptiva \\
  & Gravedad (solo daños, con heridos, con muertos) & Ordinal & Dependiente (H2 y H3) \\
 \bottomrule
 \end{longtable}
+\endgroup
 
 \hypertarget{fases-del-estudio}{%
 \subsection{6. Fases del estudio}\label{fases-del-estudio}}
@@ -555,108 +620,496 @@ validación institucional y no como soluciones comprobadas.
 \hypertarget{desarrollo}{%
 \section{Desarrollo}\label{desarrollo}}
 
-Esta sección pone en marcha las fases descritas en la metodología.
-Todavía no se reportan resultados: se presenta el plan de trabajo y se
-detalla la preparación de la base, que es el punto de partida de todos
-los análisis.
+Esta sección presenta la ejecución y los resultados de los dos primeros
+objetivos específicos: la construcción de la base depurada y documentada,
+y la caracterización espacial, temporal y de actor vial. El desarrollo
+sigue las cuatro primeras etapas de la metodología. Los contrastes de
+hipótesis, los perfiles de agrupamiento, las reglas de asociación y las
+propuestas preventivas corresponden a objetivos posteriores y no se
+desarrollan en este apartado.
 
 \hypertarget{plan-de-trabajo}{%
 \subsection{1. Plan de trabajo}\label{plan-de-trabajo}}
 
-La tabla relaciona cada etapa con el objetivo específico al que
-responde y con su producto.
+Las actividades ejecutadas y sus productos se sintetizan en la tabla
+\ref{tab:avance-oe12}. En las etapas 1 a 3 se cumplió el primer objetivo;
+en la etapa 4 se elaboraron los entregables del segundo. Todos los
+conteos que se presentan a continuación se obtuvieron con los módulos
+\texttt{preparar} y \texttt{describir} del programa del proyecto.
 
-\begin{longtable}[]{@{}>{\centering\arraybackslash}p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.46\textwidth}>{\centering\arraybackslash}p{0.11\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}@{}}
+\begingroup
+\begin{longtable}{@{}C{0.11}L{0.35}C{0.10}L{0.44}@{}}
+\caption{Actividades ejecutadas para los objetivos específicos 1 y 2.}\label{tab:avance-oe12}\\
 \toprule
-\textbf{Etapa} & \textbf{Actividad} & \textbf{Objetivo} & \textbf{Producto} \\
+\textbf{Etapa} & \textbf{Actividad} & \textbf{OE} & \textbf{Producto obtenido}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Etapa} & \textbf{Actividad} & \textbf{OE} & \textbf{Producto obtenido}\\
 \midrule
 \endhead
-1 & Revisar la base del SIMUR de 2024 y elaborar el diccionario de variables & 1 & Base cruda y diccionario \\
-2 & Seleccionar los diez corredores con mayor número de siniestros & 1 & Lista de corredores y longitudes \\
-3 & Depurar y estandarizar la base & 1 & Base limpia \\
-4 & Análisis descriptivo espacio-temporal & 2 & Tablas, gráficos y mapas \\
-5 & Contraste de hipótesis H1 a H3 & 3 & Tabla de resultados \\
-6 & Clustering con K-means y DBSCAN & 4 & Perfiles de siniestralidad \\
-7 & Reglas de asociación con Apriori o FP-Growth & 5 & Reglas filtradas \\
-8 & Tablero e informe final & 6 & Tablero y análisis final \\
+1 & Revisar la estructura y documentar las variables & 1 & Perfil de los 40 campos originales y definición de variables de análisis\\
+2 & Normalizar direcciones y seleccionar corredores & 1 & Diez corredores identificados, con su longitud\\
+3 & Depurar y estandarizar los registros & 1 & Base de 3.624 siniestros, trazabilidad y control de nulos\\
+4 & Caracterizar la distribución espacio-temporal y los actores & 2 & Nueve tablas, seis gráficos, un mapa estático y un mapa interactivo\\
 \bottomrule
 \end{longtable}
+\endgroup
 
 \hypertarget{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}{%
-\subsection{2. Revisión de la base y diccionario de
-variables}\label{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}}
+\subsection{2. Revisión de la base y diccionario de variables}\label{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}}
 
-Se tomará la base de siniestros viales del SIMUR, filtrada al año 2024,
-y se documentará cada campo: nombre, tipo de dato, descripción,
-proporción de nulos y valores distintos. Con ese diccionario se decidirá
-qué variables entran al análisis y cuáles se descartan por baja
-completitud. Se verificará en especial la variable de gravedad, que es
-necesaria para H2 y H3 y determina si el componente complementario de
-clasificación es viable.
+Se utilizó el archivo \texttt{datos.zip}, suministrado al equipo como
+exportación en CSV de la base del SIMUR. Contiene los archivos de
+siniestros, vehículos, actores y diccionario. La unidad de análisis se
+mantuvo en el siniestro: las caracterizaciones de los dos primeros
+objetivos se calcularon sobre la tabla de siniestros, sin unir las tablas
+de vehículos y personas, para evitar multiplicar un evento por el número
+de participantes.
+
+La lectura identificó 278.614 registros y 40 columnas originales. Aunque
+el recurso se identifica con el anuario de 2024, el archivo recibido
+incluye registros de otros años; por ello no se trató su totalidad como
+población de 2024. La delimitación temporal dejó 13.949 siniestros de ese
+año para la selección de corredores. La base final cubre del 1 de enero
+al 31 de diciembre de 2024.
+
+Se generó un perfil de cada campo con su nombre, tipo de lectura,
+número y porcentaje de nulos, valores distintos y ejemplos. Los campos
+se leyeron inicialmente como texto para conservar identificadores y
+homogeneizar las conversiones. Por ejemplo, las coordenadas presentaban
+coma decimal y se convirtieron a valores numéricos. El perfil completo
+quedó en \texttt{diccionario\_variables.csv}; su columna de descripción
+no está diligenciada por el generador automático, por lo que la tabla
+\ref{tab:diccionario-oe1} explicita el significado operativo de las
+principales variables utilizadas.
+
+\begingroup
+\begin{longtable}{@{}L{0.25}L{0.18}L{0.57}@{}}
+\caption{Diccionario operativo de las variables principales de la base de análisis.}\label{tab:diccionario-oe1}\\
+\toprule
+\textbf{Variable} & \textbf{Tipo final} & \textbf{Definición y tratamiento}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Variable} & \textbf{Tipo final} & \textbf{Definición y tratamiento}\\
+\midrule
+\endhead
+Código del accidente & Identificador & Campo original que identifica el siniestro y permite controlar duplicados.\\
+Fecha & Fecha & Fecha de ocurrencia convertida a formato de fecha; delimita el año de estudio.\\
+Hora & Entero, 0--23 & Hora de ocurrencia; se conserva además el minuto original, pero las agrupaciones se hacen por hora.\\
+Latitud y longitud & Numérico & Coordenadas del registro, utilizadas para validar ubicación y elaborar los mapas.\\
+Localidad & Categórico & Localidad declarada en el registro; se normalizó su escritura, sin reasignarla mediante límites cartográficos.\\
+Vía principal y vía que cruza & Categórico & Ejes extraídos de la dirección y normalizados a una nomenclatura común.\\
+Corredor & Categórico & Uno de los diez ejes seleccionados; cada siniestro recibe una sola asignación.\\
+Gravedad & Ordinal & Solo daños, con heridos o con muertos, a partir del indicador tradicional.\\
+Clase & Categórico & Modalidad del evento: choque, atropello, caída de ocupante, volcamiento, otro o incendio en la base final.\\
+Mes & Entero, 1--12 & Mes derivado de la fecha de ocurrencia.\\
+Día de la semana & Categórico ordenado & De lunes a domingo, derivado de la fecha.\\
+Fin de semana & Booleano & Verdadero para sábado o domingo; no incorpora los festivos entre semana.\\
+Franja horaria & Categórico ordenado & Madrugada [0,6), mañana [6,10), mediodía [10,16), tarde [16,20) y noche [20,24).\\
+Motocicleta involucrada & Booleano & Presencia de la marca afirmativa en el indicador de motocicleta.\\
+Otros indicadores de participación & Booleano & Presencia registrada de peatón, bicicleta, carga, transporte público, persona mayor o menor de edad, entre otros.\\
+Con víctimas & Booleano & Verdadero si la gravedad corresponde a heridos o muertos; no representa un conteo de personas.\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+El perfil de la base cruda mostró un 5,41\,\% de nulos en las
+coordenadas y un 96,23\,\% en el tipo de objeto fijo. Estos porcentajes
+corresponden al archivo multianual, no a la base final. Además, algunos
+campos solo aplican a determinados eventos: no se interpretó la ausencia
+de tipo de objeto fijo como una falla general del registro.
+
+Los indicadores \texttt{Con\_*} presentan una marca \texttt{SI} cuando
+se registra la característica. El programa transforma las celdas vacías
+en falso, entendido como ausencia de marca afirmativa. Esta regla permite
+calcular participaciones, pero no verifica por sí misma la ausencia real
+del actor o la condición. Por tanto, la completitud de los indicadores
+transformados debe interpretarse junto con esa decisión de codificación.
+Para la gravedad se utilizó el indicador tradicional, sin mezclarlo con
+el indicador de seguimiento a 30 días.
 
 \hypertarget{etapa-2-definiciuxf3n-de-corredores-y-periodo}{%
-\subsection{3. Selección de
-corredores}\label{etapa-2-definiciuxf3n-de-corredores-y-periodo}}
+\subsection{3. Selección de corredores}\label{etapa-2-definiciuxf3n-de-corredores-y-periodo}}
 
-Se seleccionarán los diez corredores con mayor número de siniestros
-registrados en 2024 y se obtendrá la longitud de cada uno, necesaria
-para H1. Los nombres de vía deben normalizarse antes del conteo, ya que
-la escritura de las direcciones suele variar en la base.
+La base no contiene una variable de corredor. Se construyó a partir de
+la dirección, unificando abreviaturas de calles y carreras y equivalencias
+de avenidas: por ejemplo, Avenida Boyacá se identificó como Carrera 72.
+Se reconocieron tanto la vía principal como la vía que cruza. Sobre los
+13.949 registros válidos de 2024 se seleccionaron los diez ejes con más
+apariciones, sin realizar una selección aleatoria.
+
+\begingroup
+\begin{longtable}{@{}C{0.10}L{0.48}R{0.20}R{0.22}@{}}
+\caption{Corredores seleccionados por apariciones en las direcciones de 2024.}\label{tab:seleccion-corredores}\\
+\toprule
+\textbf{Orden} & \textbf{Corredor} & \textbf{Apariciones} & \textbf{Longitud}\newline\textbf{(km)}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Orden} & \textbf{Corredor} & \textbf{Apariciones} & \textbf{Longitud}\newline\textbf{(km)}\\
+\midrule
+\endhead
+1 & Avenida Boyacá & 637 & 52,1\\
+2 & Avenida Caracas & 525 & 25,0\\
+3 & Avenida Ciudad de Cali & 470 & 23,6\\
+4 & Avenida NQS (Carrera 30) & 467 & 17,5\\
+5 & Carrera Séptima & 316 & 24,7\\
+6 & Avenida Carrera 10 & 297 & 7,6\\
+7 & Avenida El Dorado (Calle 26) & 288 & 22,6\\
+8 & Avenida Calle 6 & 274 & 8,9\\
+9 & Autopista Norte & 267 & 28,4\\
+10 & Avenida Centenario (Calle 13) & 259 & 16,2\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+La selección y el conteo final responden a reglas distintas. Para elegir
+los corredores, un cruce puede aportar una aparición a cada uno de sus
+dos ejes. Después, si ambas vías están entre las seleccionadas, el
+siniestro se asigna a la vía principal; si solo está seleccionada la vía
+que cruza, se asigna a esta. Así se evita contar dos veces un mismo
+siniestro en los resultados descriptivos. Por esta razón, las apariciones
+de la tabla \ref{tab:seleccion-corredores} no deben sumarse como eventos
+únicos ni confundirse con las frecuencias de la tabla
+\ref{tab:distribucion-corredores}.
+
+Las longitudes se incorporaron del archivo de insumos externos del
+proyecto. Este registra OpenStreetMap como fuente para nueve corredores
+y Wikipedia para la Avenida Caracas, e incluye notas sobre los tramos
+considerados en Boyacá, Ciudad de Cali y Centenario. Se emplearon como
+longitudes de referencia: no se realizó una nueva medición cartográfica
+ni una homologación de sus límites en esta etapa. Las tasas por kilómetro
+son sensibles a esa delimitación y no sustituyen una medida de exposición
+basada en flujos de tránsito.
 
 \hypertarget{etapa-3-depuraciuxf3n-y-estandarizaciuxf3n}{%
-\subsection{4. Depuración y
-estandarización}\label{etapa-3-depuraciuxf3n-y-estandarizaciuxf3n}}
+\subsection{4. Depuración y estandarización}\label{etapa-3-depuraciuxf3n-y-estandarizaciuxf3n}}
 
-La depuración elimina los registros duplicados, trata los nulos y los
-valores inconsistentes (fechas fuera de 2024, horas inválidas,
-coordenadas fuera de Bogotá) y normaliza los nombres de corredor y las
-categorías de actor vial, vehículo y tipo de siniestro. Luego se derivan
-las variables que usan los análisis: mes, día de la semana, hora,
-franja horaria (madrugada, mañana, mediodía, tarde y noche), indicador
-de fin de semana e indicador de motocicleta involucrada. En cada paso se
-documenta cuántos registros se descartan, para garantizar la
-trazabilidad. El siguiente esqueleto muestra el flujo, que se ajustará a
-los nombres reales de las columnas:
+La depuración se ejecutó de forma secuencial y conservó los campos
+originales junto con las variables tipadas y derivadas. Se controlaron
+los duplicados por código de accidente, las fechas y horas inválidas, la
+ubicación y la gravedad. Para las coordenadas se utilizó la ventana
+geográfica definida en el programa: latitud entre 3,70 y 4,85 y longitud
+entre $-74,45$ y $-73,95$. Este filtro comprueba plausibilidad regional;
+no equivale a validar pertenencia al polígono oficial de Bogotá ni a
+comprobar que el punto esté sobre el corredor asignado.
 
-\begin{lstlisting}[language=Python]
-import pandas as pd
+\begingroup
+\begin{longtable}{@{}L{0.62}R{0.19}R{0.19}@{}}
+\caption{Trazabilidad de la construcción de la base de análisis.}\label{tab:trazabilidad}\\
+\toprule
+\textbf{Paso} & \textbf{Descartados} & \textbf{Conservados}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Paso} & \textbf{Descartados} & \textbf{Conservados}\\
+\midrule
+\endhead
+Archivo original & --- & 278.614\\
+Duplicados por código & 0 & 278.614\\
+Fecha inválida & 0 & 278.614\\
+Registros fuera de 2024 & 264.665 & 13.949\\
+Hora inválida & 0 & 13.949\\
+Coordenadas fuera de la ventana de validación & 0 & 13.949\\
+Gravedad sin registrar & 0 & 13.949\\
+Dirección sin vía identificable & 0 & 13.949\\
+Fuera de los diez corredores seleccionados & 10.325 & 3.624\\
+\bottomrule
+\end{longtable}
+\endgroup
 
-df = pd.read_csv("siniestros_simur.csv")
+La reducción principal correspondió a la delimitación temporal, no a la
+eliminación de registros de mala calidad. Dentro del subconjunto de 2024
+no se descartaron eventos por hora, coordenadas, gravedad o dirección
+bajo las reglas implementadas. Los 3.624 siniestros retenidos representan
+el 25,98\,\% de los 13.949 registros de 2024; los restantes quedaron fuera
+por no pertenecer a los diez ejes seleccionados.
 
-# 1. Perfil de calidad
-perfil = pd.DataFrame({
-    "nulos_%": df.isna().mean() * 100,
-    "distintos": df.nunique(),
-})
+Se derivaron el mes, el día, el fin de semana, la franja horaria y el
+indicador de víctimas. Las franjas son intervalos cerrados a la izquierda
+y abiertos a la derecha: un evento a las 06:00 pertenece a la mañana y
+uno a las 20:00 a la noche. Los nombres de localidad y clase se
+normalizaron para evitar categorías separadas por tildes o diferencias
+de escritura.
 
-# 2. Depuración y filtro del periodo
-df = df.drop_duplicates()
-df["fecha"] = pd.to_datetime(df["fecha"], errors="coerce")
-df = df[df["fecha"].dt.year == 2024]
-df = df.dropna(subset=["fecha", "hora", "corredor"])
+La base final contiene 77 columnas, incluidas las 40 originales. En
+corredor, fecha, hora, gravedad y motocicleta involucrada se obtuvo un
+0\,\% de nulos, por debajo del umbral del 5\,\% fijado en el primer
+objetivo. En el indicador de motocicleta, este resultado depende de la
+codificación de celdas vacías descrita anteriormente; no debe confundirse
+con una validación independiente de la calidad del reporte.
 
-# 3. Variables derivadas
-df["dia_semana"] = df["fecha"].dt.day_name()
-df["mes"] = df["fecha"].dt.month
-df["fin_semana"] = df["fecha"].dt.dayofweek >= 5
-df["franja"] = pd.cut(
-    df["hora"], bins=[0, 6, 10, 16, 20, 24],
-    labels=["madrugada", "manana", "mediodia", "tarde", "noche"],
-    right=False,
-)
+Como entregables quedaron la base limpia en formato Parquet, el perfil
+de variables, la lista de corredores con longitudes, la trazabilidad y
+el informe de nulos. Con ello se dispone de una base con más de diez
+variables y controles explícitos para continuar el análisis. La
+reproducción de esta etapa se realiza desde la raíz del repositorio:
+
+\begin{lstlisting}[language=bash]
+python -m siniestralidad.preparar
+python -m siniestralidad.describir
 \end{lstlisting}
 
-Con la base limpia, las etapas 4 a 8 aplican los análisis descritos en
-las fases del estudio.
+\hypertarget{analisis-descriptivo-oe2}{%
+\subsection{5. Análisis descriptivo espacial, temporal y de actor vial}\label{analisis-descriptivo-oe2}}
 
-\hypertarget{resultados-esperados}{%
-\subsection{5. Resultados esperados}\label{resultados-esperados}}
+El segundo objetivo se desarrolló sobre los 3.624 eventos únicos de la
+base depurada. Se calcularon frecuencias absolutas y relativas por
+corredor, localidad, mes, día, franja, clase y gravedad, además de las
+participaciones por actor y vehículo y la matriz de día por hora. Los
+porcentajes generales utilizan como denominador los 3.624 siniestros,
+salvo cuando se indica expresamente una composición dentro de cada
+franja. Los resultados describen registros observados: no prueban
+asociaciones estadísticas ni relaciones causales.
 
-Al finalizar se espera contar con una base depurada y documentada, un
-ranking de corredores y tramos por concentración de siniestros, la
-decisión estadística sobre cada hipótesis, los perfiles de
-siniestralidad, un conjunto de reglas interpretables y un tablero que
-reúna los hallazgos como insumo para la prevención.
+\subsubsection{5.1. Distribución por corredor y concentración espacial}
+
+\begingroup
+\begin{longtable}{@{}L{0.43}R{0.15}R{0.13}R{0.12}R{0.17}@{}}
+\caption{Distribución de eventos únicos y tasa descriptiva por kilómetro.}\label{tab:distribucion-corredores}\\
+\toprule
+\textbf{Corredor} & \textbf{Eventos} & \textbf{\%} & \textbf{km} & \textbf{Por km}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Corredor} & \textbf{Eventos} & \textbf{\%} & \textbf{km} & \textbf{Por km}\\
+\midrule
+\endhead
+Avenida Boyacá & 619 & 17,08 & 52,1 & 11,88\\
+Avenida Caracas & 513 & 14,16 & 25,0 & 20,52\\
+Avenida NQS (Carrera 30) & 458 & 12,64 & 17,5 & 26,17\\
+Avenida Ciudad de Cali & 455 & 12,56 & 23,6 & 19,28\\
+Carrera Séptima & 313 & 8,64 & 24,7 & 12,67\\
+Avenida Carrera 10 & 285 & 7,86 & 7,6 & 37,50\\
+Autopista Norte & 266 & 7,34 & 28,4 & 9,37\\
+Avenida El Dorado (Calle 26) & 246 & 6,79 & 22,6 & 10,88\\
+Avenida Centenario (Calle 13) & 239 & 6,59 & 16,2 & 14,75\\
+Avenida Calle 6 & 230 & 6,35 & 8,9 & 25,84\\
+\midrule
+Total & 3.624 & 100,00 & & \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+Por número de siniestros asignados, los tres primeros corredores fueron
+Boyacá, Caracas y NQS: sumaron 1.590 eventos, el 43,87\,\% de la base.
+NQS pasó por encima de Ciudad de Cali al aplicar la asignación única,
+aunque Ciudad de Cali había registrado más apariciones durante la
+selección. Esto muestra la importancia de mantener explícita la regla
+de conteo.
+
+La tasa descriptiva se calculó como $T_c=n_c/L_c$, donde $n_c$ es el
+número anual de eventos asignados al corredor y $L_c$ su longitud de
+referencia en kilómetros. Al ajustar por longitud, los tres mayores
+valores correspondieron a Carrera 10 (37,50), NQS (26,17) y Calle 6
+(25,84), como muestra la figura \ref{fig:oe2-corredores}. Boyacá lideró
+el volumen absoluto, pero su mayor longitud hizo que no liderara este
+indicador. Se trata de concentración de registros por unidad de longitud;
+sin aforos de vehículos o personas no puede interpretarse como
+probabilidad individual de sufrir un siniestro.
+
+% Bloque indivisible: la imagen y su pie pasan juntos a la página siguiente.
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=0.40\textheight,keepaspectratio]{figuras/oe2_corredores_por_km.png}
+\caption{Siniestros por kilómetro en los corredores seleccionados. Entre paréntesis se muestra el conteo de eventos únicos. Fuente: elaboración propia con la base depurada y las longitudes del proyecto.}
+\label{fig:oe2-corredores}
+\end{minipage}
+\end{figure}
+
+Por localidad declarada, Kennedy registró 486 eventos (13,41\,\%),
+Usaquén 361 (9,96\,\%) y Fontibón 350 (9,66\,\%). Estos resultados
+corresponden exclusivamente a los corredores seleccionados, no al total
+de siniestros de cada localidad. No se validó espacialmente la localidad
+declarada; por ello las etiquetas territoriales y las coordenadas deben
+entenderse como información del registro pendiente de una auditoría
+cartográfica más detallada.
+
+La figura \ref{fig:oe2-mapa} representa la concentración mediante celdas
+hexagonales: cada color indica cuántos eventos se ubican en una celda,
+sin suavizado probabilístico ni prueba de significancia espacial. Para
+facilitar la lectura, el gráfico conserva los puntos situados entre los
+percentiles 0,2 y 99,8 de ambas coordenadas: representa 3.593 eventos y
+omite visualmente 31 puntos extremos, que permanecen en la base y en los
+conteos. La ausencia de cartografía vial de fondo limita la identificación
+de cruces concretos; como complemento se generó un mapa HTML sobre
+OpenStreetMap que utiliza los 3.624 eventos y permite explorar su
+ubicación. Una celda más oscura muestra mayor concentración observada,
+no demuestra por sí sola que exista un punto de riesgo significativo.
+
+% Bloque indivisible: la imagen y su pie pasan juntos a la página siguiente.
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=0.78\linewidth,height=0.50\textheight,keepaspectratio]{figuras/oe2_mapa_concentracion.png}
+\caption{Mapa de concentración por celdas hexagonales de los siniestros de los corredores seleccionados. El recorte visual de coordenadas no modifica la base de análisis. Fuente: elaboración propia.}
+\label{fig:oe2-mapa}
+\end{minipage}
+\end{figure}
+
+\subsubsection{5.2. Distribución por mes, día y hora}
+
+El mayor conteo mensual se observó en marzo, con 333 siniestros
+(9,19\,\%), seguido de agosto, con 330 (9,11\,\%), y septiembre, con
+328 (9,05\,\%). Junio y noviembre presentaron los menores valores,
+con 253 eventos cada uno (6,98\,\%). La figura \ref{fig:oe2-meses}
+permite observar estas variaciones a lo largo del año. Son conteos
+mensuales sin ajuste por número de días o volumen de circulación; con
+un solo año no se establece un patrón estacional persistente ni se
+atribuye la variación a vacaciones, clima u otros factores no medidos.
+
+% Bloque indivisible: la imagen y su pie pasan juntos a la página siguiente.
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=0.40\textheight,keepaspectratio]{figuras/oe2_meses.png}
+\caption{Distribución mensual de los 3.624 siniestros de 2024. Fuente: elaboración propia con la base depurada.}
+\label{fig:oe2-meses}
+\end{minipage}
+\end{figure}
+
+Por día de la semana, martes registró 571 eventos (15,76\,\%), sábado
+570 (15,73\,\%) y viernes 543 (14,98\,\%). Les siguieron jueves
+con 530, miércoles con 512 y lunes con 478; domingo presentó el menor
+conteo, 420 (11,59\,\%). La diferencia de un evento entre martes y
+sábado no permite sostener una superioridad relevante de uno sobre el
+otro. Además, los totales no se ajustaron por el número de ocurrencias
+de cada día en el calendario de 2024 ni por exposición al tránsito.
+
+El cruce de día y hora (figura \ref{fig:oe2-dia-hora}) permite observar
+que el patrón horario no es idéntico todos los días. La celda con mayor
+conteo fue martes de 07:00 a 07:59, con 47 eventos durante el año;
+también destacaron sábado de 20:00 a 20:59, con 43, y martes de 18:00 a
+18:59, con 42. Estos conteos corresponden a combinaciones semanales
+acumuladas, no a eventos ocurridos en una sola fecha.
+
+% Bloque indivisible: la imagen y su pie pasan juntos a la página siguiente.
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=0.40\textheight,keepaspectratio]{figuras/oe2_dia_por_hora.png}
+\caption{Matriz de siniestros por día de la semana y hora de ocurrencia, acumulados en 2024. Fuente: elaboración propia.}
+\label{fig:oe2-dia-hora}
+\end{minipage}
+\end{figure}
+
+\subsubsection{5.3. Franjas horarias y composición de gravedad}
+
+\begingroup
+\begin{longtable}{@{}L{0.25}C{0.18}R{0.18}R{0.16}R{0.23}@{}}
+\caption{Frecuencias por franja y ajuste por duración del intervalo.}\label{tab:franjas-oe2}\\
+\toprule
+\textbf{Franja} & \textbf{Horario} & \textbf{Eventos} & \textbf{\%} & \textbf{Por hora}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Franja} & \textbf{Horario} & \textbf{Eventos} & \textbf{\%} & \textbf{Por hora}\\
+\midrule
+\endhead
+Madrugada & 00--06 & 576 & 15,89 & 96,00\\
+Mañana & 06--10 & 754 & 20,81 & 188,50\\
+Mediodía & 10--16 & 914 & 25,22 & 152,33\\
+Tarde & 16--20 & 771 & 21,27 & 192,75\\
+Noche & 20--24 & 609 & 16,80 & 152,25\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+Las tres franjas con más eventos fueron mediodía, tarde y mañana:
+reunieron 2.439 siniestros, equivalentes al 67,30\,\% del total.
+Sin embargo, mediodía comprende seis horas y mañana y tarde cuatro;
+por eso se complementó el conteo con el cociente entre eventos y ancho
+del intervalo. Con ese ajuste, el orden fue tarde (192,75), mañana
+(188,50) y mediodía (152,33), apenas por encima de noche (152,25).
+El indicador representa eventos acumulados durante el año por cada hora
+de anchura de la franja; no significa que ocurran 192,75 siniestros en
+una hora de un día particular. La figura \ref{fig:oe2-franjas} presenta
+esta comparación.
+
+% Bloque indivisible: la imagen y su pie pasan juntos a la página siguiente.
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=0.40\textheight,keepaspectratio]{figuras/oe2_franjas.png}
+\caption{Comparación de franjas ajustada por su duración. Las etiquetas del gráfico están redondeadas a enteros; la tabla conserva dos decimales. Fuente: elaboración propia.}
+\label{fig:oe2-franjas}
+\end{minipage}
+\end{figure}
+
+En la base completa, 3.149 eventos se clasificaron con heridos
+(86,89\,\%), 279 con solo daños (7,70\,\%) y 196 con muertos
+(5,41\,\%). Estas cantidades cuentan siniestros, no personas heridas
+o fallecidas. La composición por franja (figura
+\ref{fig:oe2-gravedad}) mostró un 7,47\,\% de eventos con muertos
+en madrugada y un 6,57\,\% en noche, frente al 4,24\,\% en mañana,
+4,92\,\% en mediodía y 4,67\,\% en tarde. Por tanto, las franjas de
+mayor volumen no coincidieron con las de mayor proporción de eventos
+fatales. Esta comparación es descriptiva; su significancia estadística
+corresponde al tercer objetivo.
+
+% Bloque indivisible: la imagen y su pie pasan juntos a la página siguiente.
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=0.40\textheight,keepaspectratio]{figuras/oe2_gravedad_por_franja.png}
+\caption{Composición porcentual de la gravedad dentro de cada franja horaria. Fuente: elaboración propia.}
+\label{fig:oe2-gravedad}
+\end{minipage}
+\end{figure}
+
+\subsubsection{5.4. Participación de actores y clases de siniestro}
+
+La motocicleta apareció marcada en 2.330 siniestros (64,29\,\%), el
+peatón en 675 (18,63\,\%) y el transporte público de pasajeros en
+667 (18,41\,\%). También se registraron personas mayores en 650
+(17,94\,\%), bicicletas en 443 (12,22\,\%), taxi u otro transporte
+público individual en 376 (10,38\,\%), vehículos de carga en 306
+(8,44\,\%) y menores de edad en 218 (6,02\,\%). La figura
+\ref{fig:oe2-actores} reúne estos indicadores. Las categorías combinan
+tipos de vehículo y grupos de personas, y no son excluyentes: un mismo
+evento puede involucrar motocicleta, peatón y persona mayor. En
+consecuencia, sus porcentajes no suman 100\,\% ni constituyen un
+recuento de víctimas por actor.
+
+% Bloque indivisible: la imagen y su pie pasan juntos a la página siguiente.
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=0.40\textheight,keepaspectratio]{figuras/oe2_actores.png}
+\caption{Participación registrada de actores y vehículos en los siniestros. Las categorías pueden coincidir en un mismo evento. Fuente: elaboración propia.}
+\label{fig:oe2-actores}
+\end{minipage}
+\end{figure}
+
+Por clase, predominaron los choques, con 2.583 eventos (71,27\,\%),
+seguidos de atropellos, con 652 (17,99\,\%), caídas de ocupante,
+con 204 (5,63\,\%), y volcamientos, con 133 (3,67\,\%). Se
+registraron además 50 eventos clasificados como otro (1,38\,\%) y dos
+incendios (0,06\,\%). La presencia de peatón y la clase atropello no
+son variables equivalentes: una describe la participación registrada y
+la otra la modalidad del evento, por lo que sus conteos no tienen que
+coincidir.
+
+\subsubsection{5.5. Síntesis del cumplimiento de los dos objetivos}
+
+El primer objetivo produjo una base de 3.624 eventos únicos de 2024,
+con 77 columnas, diccionario operativo, corredores y longitudes,
+trazabilidad y menos del 5\,\% de nulos en las variables clave. Su
+lectura conserva las limitaciones de la codificación de indicadores,
+la asignación de intersecciones y la validación geográfica por ventana.
+
+El segundo objetivo produjo nueve tablas descriptivas, seis gráficos y
+los mapas de concentración estático e interactivo. Se identificaron
+Boyacá, Caracas y NQS como los tres corredores de mayor conteo, y
+Carrera 10, NQS y Calle 6 como los de mayor concentración por kilómetro.
+Las franjas de mayor conteo fueron mediodía, tarde y mañana; al ajustar
+por duración, tarde y mañana ocuparon los primeros lugares. La alta
+participación registrada de motocicleta y la diferencia entre volumen
+y composición de gravedad aportan una caracterización para los análisis
+posteriores, sin anticipar sus pruebas o conclusiones.
 
 \clearpage
 \section{Referencias bibliográficas}
