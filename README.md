@@ -7,7 +7,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![pandas](https://img.shields.io/badge/pandas-2.x-150458?logo=pandas&logoColor=white)
 ![Datos](https://img.shields.io/badge/datos-SIMUR%202024-2E7D32)
-![Estado](https://img.shields.io/badge/estado-preparaci%C3%B3n%20de%20datos-F9A825)
+![Estado](https://img.shields.io/badge/estado-en%20desarrollo-F9A825)
 
 *Proyecto de Metodología de la Investigación · Ingeniería de Sistemas*
 
@@ -60,12 +60,6 @@ siniestralidad-vial-bogota/
 │   ├── raw/               # Base original del SIMUR (no se sube a GitHub)
 │   └── processed/         # Base limpia de los 10 corredores
 ├── src/siniestralidad/    # Código del programa
-│   ├── config.py          # Rutas, año, franjas, columnas y parámetros
-│   ├── carga.py           # Lectura del Excel del Anuario 2024
-│   ├── diccionario.py     # Diccionario de variables (nulos, distintos, ejemplos)
-│   ├── corredores.py      # Corredor a partir de la dirección + ranking top 10
-│   ├── depuracion.py      # Limpieza, trazabilidad y variables derivadas
-│   └── preparar.py        # Ejecuta las etapas 1 a 3 de punta a punta
 ├── notebooks/             # Exploración y gráficos
 ├── reports/
 │   ├── tablas/            # Tablas que genera el programa (CSV)
@@ -83,25 +77,31 @@ python -m venv .venv && source .venv/bin/activate   # En Windows: .venv\Scripts\
 pip install -r requirements.txt
 
 # 2. Descargar la base del SIMUR y guardarla en data/raw/ (ver data/README.md)
-
-# 3. Construir la base de análisis
-python -m siniestralidad.preparar
 ```
-
-El paso 3 deja en `reports/tablas/` el **diccionario de variables**, la **lista de corredores seleccionados**, la **trazabilidad de la depuración** y el **porcentaje de nulos en las variables clave**, y en `data/processed/` la base limpia lista para los análisis.
-
-Para correr las pruebas: `pytest`.
 
 ## ✅ Avance
 
 | Objetivo | Etapa | Estado |
 |---|---|---|
-| **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | 🟡 Código listo, falta correrlo con la base real |
+| **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | ⚪ Pendiente |
 | **OE2** Distribución espacial y temporal | Frecuencias, tasas por km, mapas y gráficos | ⚪ Pendiente |
 | **OE3** Contraste de hipótesis | H1, H2 y H3 | ⚪ Pendiente |
 | **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ⚪ Pendiente |
 | **OE5** Reglas de asociación | Apriori o FP-Growth | ⚪ Pendiente |
 | **OE6** Tablero e informe | Tablero con 4 vistas e informe final | ⚪ Pendiente |
+
+## 🌿 Ramas
+
+Cada objetivo se desarrolla en su propia rama y entra a `main` con un pull request cuando sus entregables están listos.
+
+| Rama | Objetivo |
+|---|---|
+| `oe1-base-de-datos` | OE1 |
+| `oe2-descriptivo` | OE2 |
+| `oe3-hipotesis` | OE3 |
+| `oe4-clustering` | OE4 |
+| `oe5-reglas-asociacion` | OE5 |
+| `oe6-tablero-informe` | OE6 |
 
 ## 📚 Datos
 
