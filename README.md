@@ -62,11 +62,14 @@ siniestralidad-vial-bogota/
 │   └── processed/         # Base limpia de los 10 corredores
 ├── src/siniestralidad/    # Código del programa
 │   ├── config.py          # Rutas, año, franjas, columnas y parámetros
-│   ├── carga.py           # Lectura del Excel del Anuario 2024
+│   ├── carga.py           # Lectura de la base del SIMUR (.xlsx o .zip con CSV)
 │   ├── diccionario.py     # Diccionario de variables
 │   ├── corredores.py      # Corredor a partir de la dirección y top 10
 │   ├── depuracion.py      # Limpieza, trazabilidad y variables derivadas
-│   └── preparar.py        # Etapas 1 a 3 de punta a punta
+│   ├── preparar.py        # OE1: etapas 1 a 3 de punta a punta
+│   ├── descriptivo.py     # OE2: frecuencias, tasas por km y cruces
+│   ├── graficos.py        # OE2: gráficos y mapas
+│   └── describir.py       # OE2: genera tablas y figuras
 ├── notebooks/             # Exploración y gráficos
 ├── reports/
 │   ├── tablas/            # Tablas que genera el programa (CSV)
@@ -85,11 +88,14 @@ pip install -r requirements.txt
 
 # 2. Descargar la base del SIMUR y guardarla en data/raw/ (ver data/README.md)
 
-# 3. Construir la base de análisis
+# 3. Construir la base de análisis (OE1)
 python -m siniestralidad.preparar
+
+# 4. Análisis descriptivo (OE2)
+python -m siniestralidad.describir
 ```
 
-El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia.
+El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia. El paso 4 agrega las tablas `oe2_*.csv` y, en `reports/figuras/`, los gráficos y el mapa interactivo.
 
 Pruebas: `pytest`.
 
@@ -97,8 +103,8 @@ Pruebas: `pytest`.
 
 | Objetivo | Etapa | Estado |
 |---|---|---|
-| **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | 🟡 Código listo, falta correrlo con la base real |
-| **OE2** Distribución espacial y temporal | Frecuencias, tasas por km, mapas y gráficos | ⚪ Pendiente |
+| **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | ✅ 3.624 siniestros en 10 corredores |
+| **OE2** Distribución espacial y temporal | Frecuencias, tasas por km, mapas y gráficos | ✅ 9 tablas, 6 gráficos y 2 mapas |
 | **OE3** Contraste de hipótesis | H1, H2 y H3 | ⚪ Pendiente |
 | **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ⚪ Pendiente |
 | **OE5** Reglas de asociación | Apriori o FP-Growth | ⚪ Pendiente |
