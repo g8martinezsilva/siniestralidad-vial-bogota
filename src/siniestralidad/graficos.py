@@ -214,6 +214,27 @@ def mapa_interactivo(df: pd.DataFrame, carpeta: Path = config.FIGURAS) -> Path:
     return ruta
 
 
+def residuos_h1(tabla: pd.DataFrame, carpeta: Path = config.FIGURAS) -> Path:
+    """Residuos estandarizados de H1: qué corredores tienen más siniestros de los
+    esperados por su longitud (positivos) y cuáles menos (negativos)."""
+    tabla = tabla.sort_values("residuo_estandarizado")
+    colores = ["#eb6834" if r > 0 else AZUL for r in tabla["residuo_estandarizado"]]
+    fig, ax = plt.subplots(figsize=(7, 4.2))
+    ax.barh(tabla["nombre"], tabla["residuo_estandarizado"], color=colores, height=0.6,
+            edgecolor=SUPERFICIE, linewidth=2)
+    ax.axvline(0, color=TEXTO_2, linewidth=0.8)
+    ax.grid(axis="y", visible=False)
+    for y, (r, obs, esp) in enumerate(zip(tabla["residuo_estandarizado"], tabla["observados"],
+                                          tabla["esperados"])):
+        ax.text(r + (0.4 if r > 0 else -0.4), y, f"{obs} vs. {esp:.0f}", va="center",
+                ha="left" if r > 0 else "right", fontsize=8.5, color=TEXTO_2)
+    limite = tabla["residuo_estandarizado"].abs().max() * 1.45
+    ax.set_xlim(-limite, limite)
+    ax.set_xlabel("Residuo estandarizado (observados vs. esperados por longitud)")
+    ax.set_title("H1: siniestros observados frente a los esperados por longitud")
+    return _guardar(fig, "oe3_h1_residuos", carpeta)
+
+
 def todos(df: pd.DataFrame, carpeta: Path = config.FIGURAS) -> list[Path]:
     return [f(df, carpeta) for f in (
         corredores_por_km, calor_dia_hora, franjas_por_hora, gravedad_por_franja,
