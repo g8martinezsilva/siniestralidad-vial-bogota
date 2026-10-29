@@ -44,7 +44,7 @@ def main(argv=None) -> None:
     perfil_variables(crudo).to_csv(config.TABLAS / "diccionario_variables.csv", index=False)
 
     base, traza = depurar(crudo)
-    ranking = seleccionar_corredores(base["corredor"], args.n_corredores)
+    ranking = seleccionar_corredores(base, args.n_corredores)
     ranking.to_csv(config.TABLAS / "corredores_seleccionados.csv", index=False)
 
     final, traza = filtrar_corredores(base, traza, ranking["corredor"].tolist())

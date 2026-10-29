@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 from . import config
-from .corredores import asignar_corredor
+from .corredores import asignar_corredor, vias
 from .texto import normalizar, normalizar_serie
 
 
@@ -40,7 +40,7 @@ def _a_numero(serie: pd.Series) -> pd.Series:
 def parsear_fecha(df: pd.DataFrame) -> pd.Series:
     """Fecha del siniestro; si ``Fecha_Acc`` no se entiende, usa año, mes y día."""
     crudo = df[config.COL_FECHA]
-    fecha = pd.to_datetime(crudo, errors="coerce", format="ISO8601")
+    fecha = pd.to_datetime(crudo, errors="coerce", format="%d/%m/%Y")
     faltan = fecha.isna() & crudo.notna()
     if faltan.any():
         fecha[faltan] = pd.to_datetime(crudo[faltan], errors="coerce", dayfirst=True)
@@ -67,10 +67,10 @@ def parsear_hora(serie: pd.Series) -> pd.Series:
 
 
 def parsear_si_no(serie: pd.Series) -> pd.Series:
-    """Indicadores ``Con_*``: S/N, SI/NO, 1/0, TRUE/FALSE -> booleano con nulos."""
+    """Indicadores ``Con_*``. La base solo marca "SI"; la celda vacía significa que no."""
     mapa = {"s": True, "si": True, "1": True, "1.0": True, "true": True, "x": True,
             "n": False, "no": False, "0": False, "0.0": False, "false": False}
-    return normalizar_serie(serie.astype("string")).map(mapa).astype("boolean")
+    return normalizar_serie(serie.astype("string")).map(mapa).fillna(False).astype(bool)
 
 
 def parsear_gravedad(serie: pd.Series) -> pd.Series:
@@ -100,7 +100,7 @@ def estandarizar(df: pd.DataFrame) -> pd.DataFrame:
     out["con_moto"] = parsear_si_no(df[config.COL_MOTO])
     out["localidad"] = normalizar_serie(df[config.COL_LOCALIDAD]).str.upper()
     out["clase"] = normalizar_serie(df[config.COL_CLASE])
-    out["corredor"] = asignar_corredor(df)
+    out[["via_1", "via_2"]] = vias(df)
     # Los demás indicadores Con_* también se pasan a booleano (útiles para reglas).
     for col in df.columns:
         if col.startswith("Con_") and col != config.COL_MOTO:
@@ -157,7 +157,7 @@ def depurar(df_crudo: pd.DataFrame,
          df["latitud"].between(b["lat_min"], b["lat_max"])
          & df["longitud"].between(b["lon_min"], b["lon_max"]))
     paso("gravedad sin registrar", df["gravedad"].notna())
-    paso("corredor no identificable", df["corredor"].notna())
+    paso("dirección sin vía identificable", df["via_1"].notna() | df["via_2"].notna())
 
     df = derivar_variables(df).reset_index(drop=True)
     return df, traza.tabla()
@@ -165,8 +165,9 @@ def depurar(df_crudo: pd.DataFrame,
 
 def filtrar_corredores(df: pd.DataFrame, trazabilidad: pd.DataFrame,
                        corredores: list[str]) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Conserva solo los corredores seleccionados y lo anota en la trazabilidad."""
-    filtrada = df[df["corredor"].isin(corredores)].reset_index(drop=True)
+    """Asigna el corredor, conserva solo los seleccionados y lo anota en la trazabilidad."""
+    df = df.assign(corredor=asignar_corredor(df, corredores))
+    filtrada = df[df["corredor"].notna()].reset_index(drop=True)
     n_inicial = trazabilidad["quedan"].iloc[0]
     fila = {
         "paso": f"fuera de los {len(corredores)} corredores seleccionados",

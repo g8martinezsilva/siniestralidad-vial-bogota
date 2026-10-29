@@ -26,6 +26,8 @@ URL_ANUARIO = (
 # --- Población -----------------------------------------------------------
 ANIO = 2024
 N_CORREDORES = 10
+# Si es False, un siniestro solo cuenta para la vía principal de la dirección.
+CORREDOR_AMBAS_VIAS = True
 
 # Caja que contiene el área urbana de Bogotá (grados WGS84). Sirve para
 # descartar coordenadas fuera de la ciudad, no como límite exacto.
