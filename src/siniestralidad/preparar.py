@@ -19,7 +19,7 @@ import argparse
 from pathlib import Path
 
 from . import config
-from .carga import cargar_anuario
+from .carga import archivo_por_defecto, cargar_anuario
 from .corredores import seleccionar_corredores
 from .depuracion import depurar, filtrar_corredores, nulos_variables_clave
 from .diccionario import perfil_variables
@@ -27,16 +27,17 @@ from .diccionario import perfil_variables
 
 def main(argv=None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--archivo", type=Path, default=config.ARCHIVO_ANUARIO,
-                        help="base del Anuario 2024 (.xlsx o .csv)")
+    parser.add_argument("--archivo", type=Path, default=None,
+                        help="base del Anuario 2024 (.xlsx, .zip con CSV o .csv)")
     parser.add_argument("--n-corredores", type=int, default=config.N_CORREDORES)
     args = parser.parse_args(argv)
 
     config.TABLAS.mkdir(parents=True, exist_ok=True)
     config.PROCESSED.mkdir(parents=True, exist_ok=True)
 
-    print(f"Leyendo {args.archivo} ...")
-    hojas = cargar_anuario(args.archivo)
+    archivo = args.archivo or archivo_por_defecto()
+    print(f"Leyendo {archivo} ...")
+    hojas = cargar_anuario(archivo)
     crudo = hojas["siniestros"]
     print(f"  {len(crudo):,} siniestros, {crudo.shape[1]} columnas")
 

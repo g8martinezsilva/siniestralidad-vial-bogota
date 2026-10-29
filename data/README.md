@@ -11,7 +11,7 @@ El archivo trae tres hojas principales (siniestros, vehículos y actor vial) y u
 
 ## Cómo dejarla lista
 
-1. Descarga el archivo desde el enlace de arriba.
+1. Descarga el archivo desde el enlace de arriba. También sirve un `.zip` con las hojas exportadas a CSV: `siniestros.csv`, `vehiculos.csv` y `actores.csv`.
 2. Guárdalo, sin cambiarle el nombre, en `data/raw/base-anuario-de-siniestralidad-2024.xlsx`.
 3. Ejecuta `python -m siniestralidad.preparar` desde la raíz del repositorio.
 

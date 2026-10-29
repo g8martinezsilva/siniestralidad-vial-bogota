@@ -88,3 +88,20 @@ def test_perfil_variables():
     perfil = perfil_variables(base_sintetica()).set_index("variable")
     assert perfil.loc["Gravedad_Indicador_Tradicional", "nulos"] == 1
     assert perfil.loc["Codigo_Accidente", "distintos"] == 9
+
+
+def test_cargar_zip_de_csv_exportados_de_excel(tmp_path):
+    import zipfile
+
+    from siniestralidad.carga import cargar_anuario
+
+    archivo = tmp_path / "anuario.zip"
+    siniestros = "﻿Codigo_Accidente;Latitud\n1;4,65\n2;4,60\n"
+    with zipfile.ZipFile(archivo, "w") as z:
+        z.writestr("siniestros.csv", siniestros.encode("utf-8"))
+        z.writestr("Actores.csv", "Codigo_Accidente,Condicion\n1,CONDUCTOR\n".encode("latin-1"))
+    hojas = cargar_anuario(archivo)
+    assert hojas["siniestros"].columns.tolist() == ["Codigo_Accidente", "Latitud"]
+    assert hojas["siniestros"]["Latitud"].tolist() == ["4,65", "4,60"]
+    assert len(hojas["actores"]) == 1
+    assert "vehiculos" not in hojas
