@@ -1,0 +1,11 @@
+corredor,nombre,longitud_km,fuente,nota
+KR 72,Avenida Boyacá,52.1,OpenStreetMap,Incluye los tramos con otro nombre oficial que OSM marca como Avenida Boyacá
+KR 14,Avenida Caracas,25.0,Wikipedia (Avenida Caracas),En OSM el tramo norte está marcado como obra del Metro; de Usme a la Calle 80
+KR 86,Avenida Ciudad de Cali,23.6,OpenStreetMap,Incluye los tramos con otro nombre oficial que OSM marca como Ciudad de Cali
+KR 30,Avenida NQS (Carrera 30),17.5,OpenStreetMap,
+KR 7,Carrera Séptima,24.7,OpenStreetMap,
+KR 10,Avenida Carrera 10,7.6,OpenStreetMap,
+CL 26,Avenida El Dorado (Calle 26),22.6,OpenStreetMap,
+CL 6,Avenida Calle 6,8.9,OpenStreetMap,
+KR 45,Autopista Norte,28.4,OpenStreetMap,
+CL 13,Avenida Centenario (Calle 13),16.2,OpenStreetMap,Incluye los tramos que OSM marca como Avenida Centenario
