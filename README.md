@@ -62,7 +62,7 @@ siniestralidad-vial-bogota/
 │   └── processed/         # Base limpia de los 10 corredores
 ├── src/siniestralidad/    # Código del programa
 │   ├── config.py          # Rutas, año, franjas, columnas y parámetros
-│   ├── carga.py           # Lectura del Excel del Anuario 2024
+│   ├── carga.py           # Lectura de la base del SIMUR (.xlsx o .zip con CSV)
 │   ├── diccionario.py     # Diccionario de variables
 │   ├── corredores.py      # Corredor a partir de la dirección y top 10
 │   ├── depuracion.py      # Limpieza, trazabilidad y variables derivadas
@@ -97,7 +97,7 @@ Pruebas: `pytest`.
 
 | Objetivo | Etapa | Estado |
 |---|---|---|
-| **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | 🟡 Código listo, falta correrlo con la base real |
+| **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | ✅ 3.624 siniestros en 10 corredores |
 | **OE2** Distribución espacial y temporal | Frecuencias, tasas por km, mapas y gráficos | ⚪ Pendiente |
 | **OE3** Contraste de hipótesis | H1, H2 y H3 | ⚪ Pendiente |
 | **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ⚪ Pendiente |
