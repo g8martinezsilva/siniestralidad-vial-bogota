@@ -1,0 +1,32 @@
+# Datos: la base del SIMUR pesa más de 100 MB y es pública; no se versiona.
+data/raw/*
+data/processed/*
+!data/**/.gitkeep
+
+# Salidas generadas (se regeneran con el programa)
+reports/tablas/*
+reports/figuras/*
+!reports/**/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# LaTeX
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc
+docs/*.synctex.gz
+docs/*.fls
+docs/*.fdb_latexmk
+docs/*.pdf
+
+# Sistema
+.DS_Store
+Thumbs.db
