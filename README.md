@@ -69,7 +69,9 @@ siniestralidad-vial-bogota/
 │   ├── preparar.py        # OE1: etapas 1 a 3 de punta a punta
 │   ├── descriptivo.py     # OE2: frecuencias, tasas por km y cruces
 │   ├── graficos.py        # OE2: gráficos y mapas
-│   └── describir.py       # OE2: genera tablas y figuras
+│   ├── describir.py       # OE2: genera tablas y figuras
+│   ├── hipotesis.py       # OE3: pruebas de H1, H2 y H3
+│   └── contrastar.py      # OE3: genera la tabla de resultados
 ├── notebooks/             # Exploración y gráficos
 ├── reports/
 │   ├── tablas/            # Tablas que genera el programa (CSV)
@@ -93,9 +95,12 @@ python -m siniestralidad.preparar
 
 # 4. Análisis descriptivo (OE2)
 python -m siniestralidad.describir
+
+# 5. Contraste de hipótesis (OE3)
+python -m siniestralidad.contrastar
 ```
 
-El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia. El paso 4 agrega las tablas `oe2_*.csv` y, en `reports/figuras/`, los gráficos y el mapa interactivo.
+El paso 3 deja en `reports/tablas/` el diccionario de variables, los corredores seleccionados, la trazabilidad de la depuración y el porcentaje de nulos en las variables clave, y en `data/processed/` la base limpia. El paso 4 agrega las tablas `oe2_*.csv` y, en `reports/figuras/`, los gráficos y el mapa interactivo. El paso 5 deja `oe3_resultados.csv` con el estadístico, el p-valor, el tamaño del efecto y la decisión de cada hipótesis.
 
 Pruebas: `pytest`.
 
@@ -105,7 +110,7 @@ Pruebas: `pytest`.
 |---|---|---|
 | **OE1** Base depurada y documentada | Carga, diccionario, corredores, depuración | ✅ 3.624 siniestros en 10 corredores |
 | **OE2** Distribución espacial y temporal | Frecuencias, tasas por km, mapas y gráficos | ✅ 9 tablas, 6 gráficos y 2 mapas |
-| **OE3** Contraste de hipótesis | H1, H2 y H3 | ⚪ Pendiente |
+| **OE3** Contraste de hipótesis | H1, H2 y H3 | ✅ Se rechaza H0 en las tres |
 | **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ⚪ Pendiente |
 | **OE5** Reglas de asociación | Apriori o FP-Growth | ⚪ Pendiente |
 | **OE6** Tablero e informe | Tablero con 4 vistas e informe final | ⚪ Pendiente |
