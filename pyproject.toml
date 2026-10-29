@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-analisis = ["scipy", "statsmodels", "scikit-learn", "mlxtend", "matplotlib", "seaborn"]
+analisis = ["scipy", "statsmodels", "scikit-learn", "mlxtend", "matplotlib", "folium"]
 mapas = ["geopandas", "folium"]
 tablero = ["streamlit", "plotly"]
 dev = ["pytest", "jupyter"]
