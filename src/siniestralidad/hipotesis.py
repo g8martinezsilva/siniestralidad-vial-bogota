@@ -49,16 +49,16 @@ def h1_concentracion(df: pd.DataFrame, longitudes: pd.Series | None = None) -> d
         "esperados": esperados.round(1),
         "residuo_estandarizado": ((observados - esperados) / np.sqrt(esperados)).round(2),
     }).sort_values("residuo_estandarizado", ascending=False)
-    v = v_cramer(chi2, int(observados.sum()), len(observados))
+    w = float(np.sqrt(chi2 / observados.sum()))
     return {
         "hipotesis": "H1",
         "prueba": "Chi-cuadrado de bondad de ajuste",
         "estadistico": chi2,
         "gl": len(observados) - 1,
         "p_valor": p,
-        "efecto": "V de Cramér",
-        "valor_efecto": v,
-        "magnitud": magnitud_v(v),
+        "efecto": "w de Cohen",
+        "valor_efecto": w,
+        "magnitud": magnitud_v(w),
         "supuesto_ok": bool((esperados >= FRECUENCIA_MINIMA).all()),
         "archivo": "oe3_h1_corredores",
         "tabla": tabla.reset_index(names="corredor"),

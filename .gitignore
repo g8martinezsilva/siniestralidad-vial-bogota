@@ -31,3 +31,6 @@ docs/*.pdf
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Teselas de fondo cartografico descargadas (se regeneran)
+data/external/cache_cartografia/

@@ -19,6 +19,7 @@
 \usepackage{placeins}
 \usepackage{float}
 \usepackage{etoolbox}
+\usepackage[authoryear,round]{natbib}
 
 % Columnas con ancho total acotado, incluido el espacio entre columnas.
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{\dimexpr#1\linewidth-2\tabcolsep\relax}}
@@ -48,12 +49,17 @@
 \pretocmd{\subsection}{\FloatBarrier}{}{}
 \pretocmd{\subsubsection}{\FloatBarrier}{}{}
 
-\setcounter{secnumdepth}{0}           % los números ya van en los títulos
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\renewcommand{\bibsection}{\section{Referencias bibliográficas}}
 \setstretch{1.15}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
-\titleformat{\section}{\normalfont\bfseries\fontsize{14}{16}\selectfont}{}{0pt}{}
-\titleformat{\subsection}{\normalfont\bfseries\large}{}{0pt}{}
+\titleformat{\section}{\normalfont\bfseries\fontsize{14}{16}\selectfont}{Capítulo \thesection.}{0.6em}{}
+\titleformat{\subsection}{\normalfont\bfseries\large}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalfont\bfseries}{\thesubsubsection}{0.6em}{}
 \providecommand{\tightlist}{\setlength{\itemsep}{2pt}\setlength{\parskip}{0pt}}
 \renewcommand{\arraystretch}{1.2}
 \urlstyle{same}
@@ -121,9 +127,12 @@ Acosta Rodríguez Rafael Antonio\par
 Facultad de Ingeniería\par
 Ingeniería de Sistemas\par
 \vspace{0.5cm}
-Bogotá D.C., 22 de octubre de 2026\par
+Bogotá D.C., 5 de noviembre de 2026\par
 \vspace*{0.2cm}
 \end{titlepage}
+
+\tableofcontents
+\clearpage
 
 % ---------------- TÍTULO ----------------
 \begin{center}
@@ -196,7 +205,7 @@ actores más expuestos y el uso de la minería de datos para estudiarla.
 Al final se sintetizan los vacíos que este proyecto aborda.
 
 \hypertarget{siniestralidad-vial-como-fenuxf3meno-urbano}{%
-\subsection{1. Siniestralidad vial como fenómeno
+\subsection{Siniestralidad vial como fenómeno
 urbano}\label{siniestralidad-vial-como-fenuxf3meno-urbano}}
 
 Los accidentes de tránsito son eventos multicausales. Chand, Jayesh y
@@ -217,7 +226,7 @@ peatones, con interacciones más frecuentes y complejas. Vargas Montero
 Bogotá son una base suficiente para analizar el fenómeno en la ciudad.
 
 \hypertarget{patrones-espaciales-y-corredores-cruxedticos}{%
-\subsection{2. Patrones espaciales y corredores
+\subsection{Patrones espaciales y corredores
 críticos}\label{patrones-espaciales-y-corredores-cruxedticos}}
 
 La identificación de puntos críticos (\emph{hotspots}) es una de las
@@ -240,7 +249,7 @@ siniestros no se reparten entre los corredores en proporción a su
 tamaño, sino que algunos concentran más eventos de los esperados.
 
 \hypertarget{patrones-temporales-y-actores-viales}{%
-\subsection{3. Patrones temporales y actores
+\subsection{Patrones temporales y actores
 viales}\label{patrones-temporales-y-actores-viales}}
 
 Los accidentes varían por hora, día de la semana, mes y condiciones de
@@ -263,7 +272,7 @@ motociclistas en horario nocturno o zonas con atropellos concentrados en
 jornadas laborales.
 
 \hypertarget{mineruxeda-de-datos-aplicada-a-accidentes}{%
-\subsection{4. Minería de datos aplicada a
+\subsection{Minería de datos aplicada a
 accidentes}\label{mineruxeda-de-datos-aplicada-a-accidentes}}
 
 La minería de datos permite encontrar grupos y relaciones que no son
@@ -296,7 +305,7 @@ muestran que estas técnicas pueden extenderse a la predicción, una
 posibilidad que este proyecto deja como ampliación posterior.
 
 \hypertarget{prevenciuxf3n-y-comunicaciuxf3n-de-hallazgos}{%
-\subsection{5. Prevención y comunicación de
+\subsection{Prevención y comunicación de
 hallazgos}\label{prevenciuxf3n-y-comunicaciuxf3n-de-hallazgos}}
 
 El análisis de patrones debe contribuir a la prevención, con cautela.
@@ -317,7 +326,7 @@ este proyecto no es reemplazarlo, sino añadir la evidencia estadística y
 los patrones que un conteo no muestra.
 
 \hypertarget{suxedntesis-y-aporte-del-proyecto}{%
-\subsection{6. Síntesis y aporte del
+\subsection{Síntesis y aporte del
 proyecto}\label{suxedntesis-y-aporte-del-proyecto}}
 
 La literatura coincide en que la siniestralidad vial urbana no es
@@ -342,7 +351,7 @@ se derivan directamente de esta síntesis.
 \section{Objetivos}\label{objetivos}}
 
 \hypertarget{objetivo-general}{%
-\subsection{1. Objetivo general}\label{objetivo-general}}
+\subsection{Objetivo general}\label{objetivo-general}}
 
 Determinar los patrones espaciales, temporales y de actor vial de los
 siniestros ocurridos en 2024 en los diez corredores principales de
@@ -352,7 +361,7 @@ siniestros viales del SIMUR, con el fin de priorizar corredores, franjas
 horarias y actores viales como insumo para la prevención.
 
 \hypertarget{objetivos-especuxedficos}{%
-\subsection{2. Objetivos específicos}\label{objetivos-especuxedficos}}
+\subsection{Objetivos específicos}\label{objetivos-especuxedficos}}
 
 Cada objetivo específico enuncia primero la meta que se persigue y
 luego el entregable, destacado en cursiva, con el que se da por
@@ -403,7 +412,7 @@ el insumo del objetivo siguiente.
 \section{Metodología}\label{metodologuxeda}}
 
 \hypertarget{paradigma-y-enfoque}{%
-\subsection{1. Paradigma y enfoque}\label{paradigma-y-enfoque}}
+\subsection{Paradigma y enfoque}\label{paradigma-y-enfoque}}
 
 La investigación se ubica en el paradigma positivista, en su versión
 pospositivista: asume que la siniestralidad vial puede observarse y
@@ -426,7 +435,7 @@ la investigación no recoge datos cualitativos, como entrevistas u
 observación, que deban integrarse con los cuantitativos.
 
 \hypertarget{alcance-y-diseuxf1o}{%
-\subsection{2. Alcance y diseño}\label{alcance-y-diseuxf1o}}
+\subsection{Alcance y diseño}\label{alcance-y-diseuxf1o}}
 
 El alcance es descriptivo-correlacional: el estudio describe cómo se
 distribuyen los siniestros y mide la asociación entre sus
@@ -450,7 +459,7 @@ dinámicas, aunque sus conclusiones no se generalizan automáticamente a
 otras ciudades o periodos.
 
 \hypertarget{hipuxf3tesis}{%
-\subsection{3. Hipótesis}\label{hipuxf3tesis}}
+\subsection{Hipótesis}\label{hipuxf3tesis}}
 
 Las tres ideas de la síntesis del estado del arte se
 formulan como hipótesis estadísticas, cada una con su prueba.
@@ -505,7 +514,7 @@ junto con su tamaño del efecto (V de Cramér: 0,1 pequeño, 0,3 mediano y
 0,5 grande).
 
 \hypertarget{poblaciuxf3n-y-muestra}{%
-\subsection{4. Población y muestra}\label{poblaciuxf3n-y-muestra}}
+\subsection{Población y muestra}\label{poblaciuxf3n-y-muestra}}
 
 Los datos provienen de la base de siniestros viales de Bogotá del SIMUR,
 construida a partir del IPAT. La unidad de análisis es el siniestro
@@ -531,7 +540,7 @@ el error de muestreo. El tamaño final ($N$) se reportará después de la
 depuración.
 
 \hypertarget{variables}{%
-\subsection{5. Variables}\label{variables}}
+\subsection{Variables}\label{variables}}
 
 La selección final de variables dependerá de la estructura y
 completitud de la base. Las previstas, y su papel en las hipótesis, son:
@@ -557,7 +566,7 @@ Evento & Clase de siniestro & Nominal & Descriptiva \\
 \endgroup
 
 \hypertarget{fases-del-estudio}{%
-\subsection{6. Fases del estudio}\label{fases-del-estudio}}
+\subsection{Fases del estudio}\label{fases-del-estudio}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -598,7 +607,7 @@ Evento & Clase de siniestro & Nominal & Descriptiva \\
 \end{enumerate}
 
 \hypertarget{herramientas}{%
-\subsection{7. Herramientas}\label{herramientas}}
+\subsection{Herramientas}\label{herramientas}}
 
 El análisis se realizará en Python: pandas para la depuración, SciPy y
 statsmodels para las pruebas de hipótesis, scikit-learn para K-means,
@@ -607,7 +616,7 @@ geopandas y folium para el análisis espacial y los mapas, y Plotly o
 Streamlit para el tablero.
 
 \hypertarget{consideraciones-y-limitaciones}{%
-\subsection{8. Consideraciones y
+\subsection{Consideraciones y
 limitaciones}\label{consideraciones-y-limitaciones}}
 
 La calidad de los resultados depende del subregistro y de la
@@ -620,44 +629,48 @@ validación institucional y no como soluciones comprobadas.
 \hypertarget{desarrollo}{%
 \section{Desarrollo}\label{desarrollo}}
 
-Esta sección presenta la ejecución y los resultados de los dos primeros
-objetivos específicos: la construcción de la base depurada y documentada,
-y la caracterización espacial, temporal y de actor vial. El desarrollo
-sigue las cuatro primeras etapas de la metodología. Los contrastes de
-hipótesis, los perfiles de agrupamiento, las reglas de asociación y las
-propuestas preventivas corresponden a objetivos posteriores y no se
-desarrollan en este apartado.
+Este capítulo se organiza según las seis fases de la metodología:
+preparación de datos, análisis descriptivo, contraste de hipótesis,
+clustering, reglas de asociación y visualización e interpretación.
+Se presentan los procedimientos y resultados de las cinco primeras
+fases. En la sexta se recoge la interpretación disponible y se distingue
+la integración en tablero y las propuestas preventivas, pendientes de
+una entrega posterior.
 
 \hypertarget{plan-de-trabajo}{%
-\subsection{1. Plan de trabajo}\label{plan-de-trabajo}}
+\subsection*{Plan de trabajo}\label{plan-de-trabajo}}
 
-Las actividades ejecutadas y sus productos se sintetizan en la tabla
-\ref{tab:avance-oe12}. En las etapas 1 a 3 se cumplió el primer objetivo;
-en la etapa 4 se elaboraron los entregables del segundo. Todos los
-conteos que se presentan a continuación se obtuvieron con los módulos
-\texttt{preparar} y \texttt{describir} del programa del proyecto.
+Las actividades ejecutadas se sintetizan en la tabla
+\ref{tab:avance-oe12}. Las actividades de revisión, selección de corredores y depuración se
+agrupan en la fase de preparación de datos. Las fases siguientes
+conservan el mismo orden y los mismos nombres de la metodología. Se utilizaron los
+módulos de preparación, descripción, contraste, agrupamiento y asociación
+del proyecto sobre la misma base de 3.624 eventos.
 
 \begingroup
 \begin{longtable}{@{}C{0.11}L{0.35}C{0.10}L{0.44}@{}}
-\caption{Actividades ejecutadas para los objetivos específicos 1 y 2.}\label{tab:avance-oe12}\\
+\caption{Organización del desarrollo según las fases de la metodología.}\label{tab:avance-oe12}\\
 \toprule
-\textbf{Etapa} & \textbf{Actividad} & \textbf{OE} & \textbf{Producto obtenido}\\
+\textbf{Fase} & \textbf{Actividad} & \textbf{OE} & \textbf{Producto obtenido}\\
 \midrule
 \endfirsthead
 \toprule
-\textbf{Etapa} & \textbf{Actividad} & \textbf{OE} & \textbf{Producto obtenido}\\
+\textbf{Fase} & \textbf{Actividad} & \textbf{OE} & \textbf{Producto obtenido}\\
 \midrule
 \endhead
-1 & Revisar la estructura y documentar las variables & 1 & Perfil de los 40 campos originales y definición de variables de análisis\\
-2 & Normalizar direcciones y seleccionar corredores & 1 & Diez corredores identificados, con su longitud\\
-3 & Depurar y estandarizar los registros & 1 & Base de 3.624 siniestros, trazabilidad y control de nulos\\
-4 & Caracterizar la distribución espacio-temporal y los actores & 2 & Nueve tablas, seis gráficos, un mapa estático y un mapa interactivo\\
+1 & Preparación de datos: revisión, selección de corredores y depuración & 1 & Base limpia, diccionario, longitudes y controles de calidad\\
+2 & Análisis descriptivo & 2 & Tablas, gráficos y mapas de distribución\\
+3 & Contraste de hipótesis & 3 & Estadísticos, valores p, efectos y decisiones\\
+4 & Clustering & 4 & Siete perfiles y 62 zonas densas\\
+5 & Reglas de asociación & 5 & Diez reglas interpretadas y análisis por perfil\\
+6 & Visualización e interpretación & 6 & Síntesis disponible; tablero integrado y propuestas pendientes\\
 \bottomrule
 \end{longtable}
 \endgroup
 
 \hypertarget{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}{%
-\subsection{2. Revisión de la base y diccionario de variables}\label{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}}
+\subsection{Preparación de datos}
+\subsubsection{Revisión de la base y diccionario de variables}\label{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}}
 
 Se utilizó el archivo \texttt{datos.zip}, suministrado al equipo como
 exportación en CSV de la base del SIMUR. Contiene los archivos de
@@ -666,6 +679,12 @@ mantuvo en el siniestro: las caracterizaciones de los dos primeros
 objetivos se calcularon sobre la tabla de siniestros, sin unir las tablas
 de vehículos y personas, para evitar multiplicar un evento por el número
 de participantes.
+
+La necesidad de documentar fuentes, variables y calidad de los registros
+se relaciona con la revisión de \citet{chand2021} sobre datos y técnicas
+de análisis de siniestralidad. Este antecedente orienta la revisión de
+calidad; los filtros concretos de esta investigación son decisiones del
+equipo y no una reproducción de todos los procedimientos de ese estudio.
 
 La lectura identificó 278.614 registros y 40 columnas originales. Aunque
 el recurso se identifica con el anuario de 2024, el archivo recibido
@@ -731,7 +750,14 @@ Para la gravedad se utilizó el indicador tradicional, sin mezclarlo con
 el indicador de seguimiento a 30 días.
 
 \hypertarget{etapa-2-definiciuxf3n-de-corredores-y-periodo}{%
-\subsection{3. Selección de corredores}\label{etapa-2-definiciuxf3n-de-corredores-y-periodo}}
+\subsubsection{Selección de corredores}\label{etapa-2-definiciuxf3n-de-corredores-y-periodo}}
+
+El uso de direcciones y coordenadas como insumo espacial se vincula con
+los estudios de puntos de concentración revisados en el estado del arte.
+En particular, \citet{zhang2023} combinan la representación espacial y
+temporal de accidentes con análisis de densidad. Se retoma la necesidad
+de ubicar los registros sobre una red vial; no se trasladan a Bogotá
+sus resultados ni sus umbrales de detección.
 
 La base no contiene una variable de corredor. Se construyó a partir de
 la dirección, unificando abreviaturas de calles y carreras y equivalencias
@@ -785,7 +811,7 @@ son sensibles a esa delimitación y no sustituyen una medida de exposición
 basada en flujos de tránsito.
 
 \hypertarget{etapa-3-depuraciuxf3n-y-estandarizaciuxf3n}{%
-\subsection{4. Depuración y estandarización}\label{etapa-3-depuraciuxf3n-y-estandarizaciuxf3n}}
+\subsubsection{Depuración y estandarización}\label{etapa-3-depuraciuxf3n-y-estandarizaciuxf3n}}
 
 La depuración se ejecutó de forma secuencial y conservó los campos
 originales junto con las variables tipadas y derivadas. Se controlaron
@@ -853,7 +879,13 @@ python -m siniestralidad.describir
 \end{lstlisting}
 
 \hypertarget{analisis-descriptivo-oe2}{%
-\subsection{5. Análisis descriptivo espacial, temporal y de actor vial}\label{analisis-descriptivo-oe2}}
+\subsection{Análisis descriptivo}\label{analisis-descriptivo-oe2}}
+
+La combinación de mapas y distribuciones por periodos tiene un antecedente
+en el análisis exploratorio de \citet{zhang2023}, que examina accidentes
+con distintas agregaciones temporales y referencias espaciales. En este
+proyecto se adapta esa lógica descriptiva a los corredores de Bogotá,
+sin asumir equivalencia entre una red de autopistas y una red urbana.
 
 El segundo objetivo se desarrolló sobre los 3.624 eventos únicos de la
 base depurada. Se calcularon frecuencias absolutas y relativas por
@@ -864,7 +896,7 @@ salvo cuando se indica expresamente una composición dentro de cada
 franja. Los resultados describen registros observados: no prueban
 asociaciones estadísticas ni relaciones causales.
 
-\subsubsection{5.1. Distribución por corredor y concentración espacial}
+\subsubsection{Distribución por corredor y concentración espacial}
 
 \begingroup
 \begin{longtable}{@{}L{0.43}R{0.15}R{0.13}R{0.12}R{0.17}@{}}
@@ -934,23 +966,37 @@ sin suavizado probabilístico ni prueba de significancia espacial. Para
 facilitar la lectura, el gráfico conserva los puntos situados entre los
 percentiles 0,2 y 99,8 de ambas coordenadas: representa 3.593 eventos y
 omite visualmente 31 puntos extremos, que permanecen en la base y en los
-conteos. La ausencia de cartografía vial de fondo limita la identificación
-de cruces concretos; como complemento se generó un mapa HTML sobre
-OpenStreetMap que utiliza los 3.624 eventos y permite explorar su
-ubicación. Una celda más oscura muestra mayor concentración observada,
+conteos. Se incorporó un fondo de calles y nombres de OpenStreetMap
+\citep{osm}, orientación norte y una escala de distancia. La escala
+verde--amarillo--naranja--rojo distingue cinco intervalos de conteo
+(1--4, 5--9, 10--19, 20--39 y 40 o más eventos por celda). Estos colores
+expresan cantidad, no categorías de riesgo individual.
+La figura \ref{fig:oe2-detalle} añade un acercamiento al sector central
+y occidental para reconocer mejor las vías. Su cuadrícula tiene otra
+resolución: los conteos por celda de ambos mapas no son directamente
+comparables. El detalle representa 2.944 eventos de su encuadre. El mapa HTML conserva los 3.624 eventos para exploración. Una celda más oscura muestra mayor concentración observada,
 no demuestra por sí sola que exista un punto de riesgo significativo.
 
 % Bloque indivisible: la imagen y su pie pasan juntos a la página siguiente.
 \begin{figure}[H]
 \begin{minipage}{\linewidth}
 \centering
-\includegraphics[width=0.78\linewidth,height=0.50\textheight,keepaspectratio]{figuras/oe2_mapa_concentracion.png}
-\caption{Mapa de concentración por celdas hexagonales de los siniestros de los corredores seleccionados. El recorte visual de coordenadas no modifica la base de análisis. Fuente: elaboración propia.}
+\includegraphics[width=\linewidth,height=0.68\textheight,keepaspectratio]{figuras/oe2_mapa_concentracion.png}
+\caption{Concentración de siniestros sobre la red vial de Bogotá. Verde indica menor conteo por celda y rojo mayor conteo. El recorte visual no elimina registros. Fuente: elaboración propia; fondo © OpenStreetMap contributors.}
 \label{fig:oe2-mapa}
 \end{minipage}
 \end{figure}
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.65\textheight,keepaspectratio]{figuras/oe2_mapa_detalle.png}
+\caption{Acercamiento al sector central y occidental. La leyenda expresa conteos dentro de este encuadre; no es una tasa por población o tránsito. Fuente: elaboración propia; fondo © OpenStreetMap contributors.}
+\label{fig:oe2-detalle}
+\end{minipage}
+\end{figure}
 
-\subsubsection{5.2. Distribución por mes, día y hora}
+
+\subsubsection{Distribución por mes, día y hora}
 
 El mayor conteo mensual se observó en marzo, con 333 siniestros
 (9,19\,\%), seguido de agosto, con 330 (9,11\,\%), y septiembre, con
@@ -996,7 +1042,7 @@ acumuladas, no a eventos ocurridos en una sola fecha.
 \end{minipage}
 \end{figure}
 
-\subsubsection{5.3. Franjas horarias y composición de gravedad}
+\subsubsection{Franjas horarias y composición de gravedad}
 
 \begingroup
 \begin{longtable}{@{}L{0.25}C{0.18}R{0.18}R{0.16}R{0.23}@{}}
@@ -1060,7 +1106,7 @@ corresponde al tercer objetivo.
 \end{minipage}
 \end{figure}
 
-\subsubsection{5.4. Participación de actores y clases de siniestro}
+\subsubsection{Participación de actores y clases de siniestro}
 
 La motocicleta apareció marcada en 2.330 siniestros (64,29\,\%), el
 peatón en 675 (18,63\,\%) y el transporte público de pasajeros en
@@ -1093,7 +1139,7 @@ son variables equivalentes: una describe la participación registrada y
 la otra la modalidad del evento, por lo que sus conteos no tienen que
 coincidir.
 
-\subsubsection{5.5. Síntesis del cumplimiento de los dos objetivos}
+\subsubsection{Síntesis de la preparación y el análisis descriptivo}
 
 El primer objetivo produjo una base de 3.624 eventos únicos de 2024,
 con 77 columnas, diccionario operativo, corredores y longitudes,
@@ -1102,7 +1148,7 @@ lectura conserva las limitaciones de la codificación de indicadores,
 la asignación de intersecciones y la validación geográfica por ventana.
 
 El segundo objetivo produjo nueve tablas descriptivas, seis gráficos y
-los mapas de concentración estático e interactivo. Se identificaron
+los mapas de concentración general, de detalle e interactivo. Se identificaron
 Boyacá, Caracas y NQS como los tres corredores de mayor conteo, y
 Carrera 10, NQS y Calle 6 como los de mayor concentración por kilómetro.
 Las franjas de mayor conteo fueron mediodía, tarde y mañana; al ajustar
@@ -1111,66 +1157,547 @@ participación registrada de motocicleta y la diferencia entre volumen
 y composición de gravedad aportan una caracterización para los análisis
 posteriores, sin anticipar sus pruebas o conclusiones.
 
-\clearpage
-\section{Referencias bibliográficas}
 
-\begin{enumerate}
-\tightlist
-\item
-  Chand, A., Jayesh, S., \& Bhasi, A. B. (2021). Road traffic accidents:
+\subsection{Contraste de hipótesis}
+
+\subsubsection{Fundamento y procedimiento}
+
+El tercer objetivo examinó si las diferencias descriptivas se sostienen
+frente a modelos de referencia explícitos. Las pruebas de Pearson
+permiten comparar frecuencias observadas con frecuencias esperadas,
+y estudiar independencia en tablas de categorías \citep{scipy}.
+Su utilización no supone que los estudios previos hayan demostrado las
+hipótesis para Bogotá: estas se contrastan con los datos del proyecto.
+
+Se aplicaron cuatro contrastes principales: H1 sobre distribución por
+longitud, H2a sobre franja y gravedad, H2b sobre tipo de día y gravedad,
+y H3 sobre motocicleta y presencia de víctimas. Aunque se formularon
+tres hipótesis sustantivas, H2 requiere dos pruebas; por eso la corrección
+de Bonferroni utiliza cuatro comparaciones. Se trabajó con
+$\alpha=0{,}05$ y $p_{ajustado}=\min(4p,1)$, equivalente a comparar
+cada p sin ajustar con $0{,}0125$. En las tablas principales se verificó
+que las frecuencias esperadas cumplieran el mínimo de cinco.
+
+Para H1, el valor esperado de cada corredor fue
+$E_c=N L_c/\sum L_c$: representa el número que le correspondería si
+los eventos se repartieran en proporción a la longitud. En esta prueba
+de bondad de ajuste se reportó $w=\sqrt{\chi^2/N}$ como tamaño del
+efecto; la V de Cramér se reservó para las tablas de independencia.
+Esta distinción sigue la definición de efecto para bondad de ajuste de
+\citet{statsmodels}. En H3 se empleó una prueba z unilateral para
+comparar dos proporciones y una razón de momios con intervalo de
+confianza bilateral del 95\,\% \citep{statsmodels}.
+
+\subsubsection{Resultados principales}
+
+\begingroup
+\begin{longtable}{@{}L{0.10}L{0.24}L{0.24}L{0.20}L{0.22}@{}}
+\caption{Contrastes principales con corrección de Bonferroni.}\label{tab:oe3-resultados}\\
+\toprule
+\textbf{Prueba} & \textbf{Estadístico} & \textbf{p ajustado} & \textbf{Efecto} & \textbf{Decisión}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Prueba} & \textbf{Estadístico} & \textbf{p ajustado} & \textbf{Efecto} & \textbf{Decisión}\\
+\midrule
+\endhead
+H1 & $\chi^2=623{,}664$ & $6{,}97\times10^{-128}$ & $w=0{,}415$ & Rechazar $H_0$\\
+H2a & $\chi^2=77{,}228$ & $7{,}06\times10^{-13}$ & $V=0{,}103$ & Rechazar $H_0$\\
+H2b & $\chi^2=32{,}211$ & $4{,}05\times10^{-7}$ & $V=0{,}094$ & Rechazar $H_0$\\
+H3 & $z=11{,}624$ & $6{,}19\times10^{-31}$ & $OR=4{,}257$ & Rechazar $H_0$\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+En H1, $\chi^2(9)=623{,}664$ permitió rechazar la proporcionalidad
+por longitud. Carrera 10 registró 285 eventos frente a 121,5 esperados;
+NQS, 458 frente a 279,9; y Calle 6, 230 frente a 142,3.
+Sus residuos positivos indican un exceso respecto de ese modelo,
+no respecto de la cantidad de usuarios que circulan por cada vía.
+Boyacá tuvo el mayor volumen absoluto, pero menos eventos de los
+esperados al repartirlos solo por longitud: 619 frente a 833,2.
+El efecto $w=0{,}415$ describe la desviación global, sin equipararlo
+a una probabilidad de accidente ni compararlo directamente con V.
+
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/oe3_h1_residuos.png}
+\caption{Desviación de los conteos respecto del reparto proporcional a la longitud. Rojo: más eventos que los esperados; verde: menos. Las etiquetas muestran observado frente a esperado. Fuente: elaboración propia.}
+\label{fig:oe3-h1}
+\end{minipage}
+\end{figure}
+
+En H2a, $\chi^2(8)=77{,}228$ indicó asociación entre franja y gravedad,
+con efecto pequeño ($V=0{,}103$). En H2b,
+$\chi^2(2)=32{,}211$ indicó asociación con el tipo de día, aunque el
+efecto fue reducido ($V=0{,}094$). Estas pruebas no identifican por sí
+solas una interacción específica entre noche y fin de semana.
+
+En H3, 2.240 de los 2.330 siniestros con motocicleta presentaron víctimas
+(96,14\,\%), frente a 1.105 de 1.294 sin motocicleta (85,39\,\%).
+La diferencia fue de 10,75 puntos porcentuales. La razón de momios fue
+4,257, con intervalo del 95\,\% de 3,28 a 5,53. Esta razón compara
+momios, no probabilidades: no significa que la probabilidad sea cuatro
+veces mayor ni demuestra que la motocicleta cause la gravedad observada.
+
+\subsubsection{Análisis complementario y límites}
+
+La comparación exploratoria de noche o madrugada de sábado y domingo
+mostró 29 eventos con muertos de 393 (7,38\,\%), frente a 167 de
+3.231 en el resto (5,17\,\%). Su prueba unilateral sin ajustar dio
+$p=0{,}0337$, pero el intervalo bilateral de la razón de momios
+(0,97--2,20) incluyó uno. Al no integrar la familia principal corregida,
+este resultado se interpreta como exploratorio. No constituye una
+confirmación adicional de H2 con el mismo nivel de control de error.
+
+Tampoco se encontró evidencia suficiente en el contraste complementario
+unilateral de eventos con muertos con y sin motocicleta ($p=0{,}0630$).
+Esto es compatible con el resultado principal: H3 estudia presencia de
+heridos o muertos en conjunto, no exclusivamente mortalidad.
+
+Los valores p deben leerse bajo los supuestos del modelo. La selección
+de los corredores se hizo con los mismos conteos, las longitudes son
+referencias y los eventos pueden compartir contexto espacial y temporal.
+Por tanto, los contrastes son condicionales a esta base y no autorizan
+inferencias causales ni una generalización automática a todos los
+corredores. El entregable del objetivo incluye la tabla principal,
+los efectos, las decisiones y las tablas que respaldan cada comparación.
+
+\subsection{Clustering}
+
+\subsubsection{Fundamento y construcción de los modelos}
+
+La combinación de agrupamiento y análisis posterior de características
+se relaciona con el enfoque de seguridad vial de
+\citet{sathiyanathan2024}. Este trabajo se toma como antecedente de la
+integración de técnicas; los parámetros y resultados reportados aquí
+se obtuvieron con la base de Bogotá.
+Se distinguieron dos preguntas: qué eventos se parecen por sus
+características y dónde se acumulan eventos cercanos. K-means responde
+a la primera y DBSCAN a la segunda.
+
+K-means recibió variables binarias de franja, fin de semana, clase de
+siniestro y diez indicadores de actores o circunstancias. Las categorías
+se representaron mediante columnas de presencia o ausencia. La gravedad,
+el corredor y las coordenadas no entraron en esta matriz; se reservaron
+para describir los grupos después. Así se evita construir los grupos a
+partir de la misma gravedad que luego se compara entre ellos.
+
+Se evaluaron de tres a ocho grupos con 20 inicializaciones y semilla 42.
+La decisión se basó en el mayor coeficiente de silueta dentro de ese
+rango; la inercia se presentó como apoyo visual. La silueta compara
+cohesión interna y separación entre grupos \citep{sklearn}; no mide
+capacidad de predecir accidentes. El máximo fue $k=7$, con silueta
+0,2809, frente a 0,2730 para ocho grupos. El valor indica separación
+parcial: los perfiles son una síntesis exploratoria y no tipos naturales
+perfectamente separados.
+
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/oe4_seleccion_k.png}
+\caption{Evaluación de tres a ocho perfiles. La selección se basó en el máximo de silueta; el punto rojo indica siete grupos. Fuente: elaboración propia.}
+\label{fig:oe4-k}
+\end{minipage}
+\end{figure}
+
+\subsubsection{Fichas e interpretación de los siete perfiles}
+
+Las fichas se resumen en la tabla \ref{tab:oe4-perfiles}. Los nombres
+son descripciones posteriores del equipo, no etiquetas oficiales.
+Los rasgos destacados representan características más frecuentes en
+cada perfil que en el conjunto total; no implican que todos sus eventos
+compartan todas las características.
+
+\begingroup
+\begin{longtable}{@{}L{0.55}R{0.15}R{0.15}R{0.15}@{}}
+\caption{Tamaño de los perfiles y proporción de eventos con muertos dentro de cada uno.}\label{tab:oe4-perfiles}\\
+\toprule
+\textbf{Perfil} & \textbf{Eventos} & \textbf{\% base} & \textbf{\% muertos}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Perfil} & \textbf{Eventos} & \textbf{\% base} & \textbf{\% muertos}\\
+\midrule
+\endhead
+1. Choques de madrugada & 502 & 13,9 & 6,8\\
+2. Atropellos y peatones & 650 & 17,9 & 11,5\\
+3. Choques nocturnos & 463 & 12,8 & 4,8\\
+4. Choques de tarde & 524 & 14,5 & 3,6\\
+5. Caídas y transporte público & 234 & 6,5 & 0,0\\
+6. Choques de mañana & 599 & 16,5 & 3,7\\
+7. Choques de mediodía & 652 & 18,0 & 3,7\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\begin{enumerate}[leftmargin=*,itemsep=5pt]
+\item \textbf{Choques de madrugada:} 502 eventos. Todos pertenecen a
+madrugada y el 92\,\% corresponde a choques; el indicador de
+embriaguez aparece en el 12\,\%. Su proporción de eventos con muertos
+es 6,8\,\%. La NQS está sobrerrepresentada frente a su peso global.
+\item \textbf{Atropellos y peatones:} 650 eventos, todos clasificados
+como atropello y con peatón registrado. El 31\,\% involucra persona
+mayor. Presenta la mayor proporción de eventos con muertos (11,5\,\%)
+y mayor peso relativo de Avenida Caracas.
+\item \textbf{Choques nocturnos:} 463 eventos; el 95\,\% son choques,
+el 75\,\% registra motocicleta y el 10\,\% embriaguez. La proporción
+con muertos es 4,8\,\%; El Dorado tiene mayor participación relativa.
+\item \textbf{Choques de tarde:} 524 eventos; el 93\,\% son choques y
+el 76\,\% involucra motocicleta. La proporción con muertos es 3,6\,\%.
+Centenario tiene mayor representación relativa.
+\item \textbf{Caídas y transporte público:} 234 eventos. Las caídas de
+ocupante representan el 86\,\%, transporte público el 94\,\% y
+persona mayor el 46\,\%. No se registraron eventos con muertos en
+este perfil; ello no demuestra ausencia de riesgo. Carrera 10 está
+sobrerrepresentada.
+\item \textbf{Choques de mañana:} 599 eventos; el 95\,\% corresponde
+a choques, el 73\,\% registra motocicleta y el 21\,\% bicicleta.
+Los eventos con muertos representan 3,7\,\%; destaca relativamente NQS.
+\item \textbf{Choques de mediodía:} 652 eventos, el perfil más numeroso.
+El 95\,\% son choques, el 73\,\% registra motocicleta y el
+15\,\% carga. La proporción con muertos es 3,7\,\%; Autopista Norte
+presenta mayor representación relativa.
+\end{enumerate}
+
+El contraste exploratorio de gravedad entre perfiles produjo
+$\chi^2(12)=226{,}305$, $p=1{,}17\times10^{-41}$ y $V=0{,}177$,
+con frecuencias esperadas mayores o iguales a cinco. La composición no
+fue homogénea, pero el efecto es pequeño. Esta comparación posterior al
+agrupamiento no sustituye una validación con datos independientes.
+
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/oe4_perfiles_gravedad.png}
+\caption{Composición de gravedad de cada perfil: verde para solo daños, amarillo para heridos y rojo para muertos. Cada barra suma aproximadamente 100 por ciento; las diferencias mínimas provienen del redondeo. Fuente: elaboración propia.}
+\label{fig:oe4-gravedad}
+\end{minipage}
+\end{figure}
+
+\subsubsection{Detección espacial con DBSCAN}
+
+DBSCAN se fundamenta en el algoritmo de \citet{ester1996}, que forma
+grupos a partir de vecindarios densos y permite dejar observaciones sin
+asignación. Su uso en este proyecto guarda relación con el interés por
+concentraciones espaciales de \citet{zhang2023}; no reproduce sus modelos
+bayesianos ni constituye una evaluación causal de los lugares.
+
+Se utilizaron las coordenadas geográficas con distancia haversine,
+un radio de vecindad de 150 metros y un mínimo de 15 observaciones para
+calificar un punto como núcleo. Este mínimo corresponde al vecindario,
+no a un tamaño garantizado para cada zona final. La conexión entre
+vecindarios puede producir grupos extendidos; 150 metros tampoco es
+el diámetro máximo de una zona.
+
+Se identificaron 62 zonas con 1.331 eventos (36,73\,\% de la base).
+Los 2.293 restantes no quedaron agrupados con esos parámetros; no se
+interpretan como eventos irrelevantes o exentos de gravedad. La tabla
+\ref{tab:oe4-zonas} presenta las cinco zonas más numerosas. El cruce es
+la dirección más frecuente de la zona, no una delimitación exacta de
+todos sus eventos. No se efectuó una evaluación de sensibilidad de los
+parámetros, por lo que la cantidad de zonas es condicional a esta elección.
+
+\begingroup
+\begin{longtable}{@{}C{0.10}L{0.52}R{0.18}R{0.20}@{}}
+\caption{Cinco zonas DBSCAN de mayor tamaño; los números se corresponden con el mapa.}\label{tab:oe4-zonas}\\
+\toprule
+\textbf{Zona} & \textbf{Dirección representativa} & \textbf{Eventos} & \textbf{\% muertos}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Zona} & \textbf{Dirección representativa} & \textbf{Eventos} & \textbf{\% muertos}\\
+\midrule
+\endhead
+1 & KR 10 - CL 1 & 73 & 11,0\\
+2 & AV CARACAS - CL 19 & 51 & 0,0\\
+3 & AV DE LAS AMERICAS - KR 72 & 47 & 10,6\\
+4 & AV CIUDAD DE CALI - CL 26 & 35 & 8,6\\
+5 & KR 72 - CL 44 S & 32 & 9,4\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.68\textheight,keepaspectratio]{figuras/oe4_zonas_densas.png}
+\caption{Zonas DBSCAN sobre el fondo vial. Los números identifican las cinco zonas de la tabla; el color expresa el tamaño de la zona y el gris los eventos sin agrupación. Fuente: elaboración propia; fondo © OpenStreetMap contributors.}
+\label{fig:oe4-zonas}
+\end{minipage}
+\end{figure}
+
+El objetivo produjo siete fichas dentro del rango previsto de tres a
+ocho perfiles, los indicadores de selección y una base que conserva
+el perfil y la zona de cada siniestro. Estos resultados permiten separar
+perfiles de características y agrupaciones geográficas, que no son
+conceptos intercambiables.
+
+\subsection{Reglas de asociación}
+
+\subsubsection{Fundamento, preparación y criterios de selección}
+
+Se utilizó FP-Growth, propuesto por \citet{han2000}, para encontrar
+conjuntos de características frecuentes sin enumerar candidatos del
+mismo modo que Apriori. Se eligió una de las alternativas metodológicas
+previstas; no se presenta una comparación experimental entre ambos
+algoritmos. La secuencia de describir perfiles y luego examinar reglas
+se vincula con el antecedente de \citet{sathiyanathan2024} y con el
+trabajo de reglas basadas en grupos de \citet{shahin2021}.
+
+Cada siniestro se representó como un conjunto de elementos: corredor,
+franja, tipo de día, clase, gravedad y las marcas afirmativas de actores
+o circunstancias. Los indicadores vacíos heredaron la codificación
+explicada en el primer objetivo. Los elementos con embriaguez o velocidad
+representan marcas del registro, no mediciones verificadas por el equipo.
+
+Para una regla $A\Rightarrow B$, el soporte mide la proporción total
+de eventos con $A$ y $B$; la confianza, la proporción con $B$ dentro de
+los que tienen $A$; y el lift compara esa confianza con la frecuencia
+general de $B$. Un lift mayor que uno señala coocurrencia superior a la
+que resultaría de independencia; no demuestra causalidad.
+
+Se exigió soporte mínimo de 1\,\%, confianza mínima de 30\,\% y
+lift mayor que 1,2, con un máximo de tres elementos entre antecedente y
+consecuente. El soporte del 1\,\% requiere al menos 37 eventos en la
+base de 3.624. Se descartaron reglas que combinan atropello y peatón por
+ser redundantes en la interpretación, y no se permitió que la gravedad
+figurara en el antecedente. No todas las reglas tienen gravedad como
+consecuente: algunas describen combinaciones de actores, horarios o vías.
+
+Se obtuvieron 217 reglas globales y 914 reglas dentro de los perfiles.
+Para seleccionar diez reglas globales se priorizó el lift y se evitaron
+pares que compartieran dos o más elementos. Esta selección reduce
+repeticiones, pero es exploratoria y no equivale a validación estadística.
+Los umbrales son decisiones operativas del proyecto, no valores
+universales establecidos por los artículos citados.
+
+\subsubsection{Diez reglas seleccionadas e interpretación}
+
+La tabla \ref{tab:oe5-reglas} recoge la combinación de cada regla y sus
+métricas. Los identificadores R1 a R10 corresponden a la figura
+\ref{fig:oe5-reglas}. Soporte y confianza se expresan como porcentajes;
+el lift es una razón sin unidades.
+
+\begingroup
+\begin{longtable}{@{}L{0.58}R{0.14}R{0.14}R{0.14}@{}}
+\caption{Reglas seleccionadas en la base completa.}\label{tab:oe5-reglas}\\
+\toprule
+\textbf{Regla} & \textbf{Soporte} & \textbf{Confianza} & \textbf{Lift}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Regla} & \textbf{Soporte} & \textbf{Confianza} & \textbf{Lift}\\
+\midrule
+\endhead
+R1. embriaguez $\Rightarrow$ fin de semana y solo daños & 1,57 & 37,25 & 11,64\\
+R2. caída de ocupante $\Rightarrow$ persona mayor y transporte público & 2,57 & 45,59 & 8,98\\
+R3. embriaguez $\Rightarrow$ choque y franja madrugada & 1,60 & 37,91 & 2,97\\
+R4. Avenida Caracas y franja tarde $\Rightarrow$ atropello & 1,66 & 51,72 & 2,88\\
+R5. peatón y transporte público $\Rightarrow$ Avenida Caracas & 1,02 & 37,00 & 2,61\\
+R6. atropello y franja mediodía $\Rightarrow$ persona mayor & 2,04 & 45,12 & 2,52\\
+R7. taxi y fin de semana $\Rightarrow$ franja madrugada & 1,21 & 31,88 & 2,01\\
+R8. persona mayor y franja tarde $\Rightarrow$ peatón & 1,35 & 35,51 & 1,91\\
+R9. carga $\Rightarrow$ choque y franja mediodía & 2,65 & 31,37 & 1,83\\
+R10. caída de ocupante $\Rightarrow$ entre semana y franja mediodía & 1,88 & 33,33 & 1,77\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+Las reglas se interpretan de forma condicional, siempre dentro de los
+siniestros registrados, no de todos los viajes realizados en Bogotá:
+\begin{enumerate}[label=\textbf{R\arabic*.},leftmargin=*,itemsep=5pt]
+\item En los eventos con marca de embriaguez, el 37,25\,\% combina
+fin de semana y solo daños. La combinación es 11,64 veces la frecuencia
+general de ese consecuente; no significa que la embriaguez reduzca la
+gravedad ni que permita anticipar el desenlace de un viaje.
+\item En las caídas de ocupante, el 45,59\,\% combina persona mayor y
+transporte público, con lift 8,98. La regla describe una concurrencia de
+participación y modalidad, sin identificar la causa de la caída.
+\item En los eventos con embriaguez registrada, el 37,91\,\% corresponde
+a choques de madrugada, con lift 2,97. Complementa R1 desde otra
+combinación y no representa un segundo grupo independiente de personas.
+\item Entre los eventos de Avenida Caracas durante la tarde,
+el 51,72\,\% son atropellos, con lift 2,88. Se refiere a los siniestros
+de esa combinación, no a la mitad de los peatones que usan el corredor.
+\item Entre los eventos con peatón y transporte público, el
+37,00\,\% se asignó a Avenida Caracas, con lift 2,61.
+\item Entre los atropellos de mediodía, el 45,12\,\% registra persona
+mayor, con lift 2,52. Esto delimita un grupo de interés descriptivo sin
+comparar todavía su exposición a la movilidad.
+\item Entre los eventos con taxi o transporte público individual en
+fin de semana, el 31,88\,\% ocurrió en madrugada, con lift 2,01.
+\item En los eventos de tarde con persona mayor, el 35,51\,\% registra
+peatón, con lift 1,91. Persona mayor es una característica del evento
+y no identifica por sí sola el rol de cada persona involucrada.
+\item En los eventos con carga, el 31,37\,\% combina choque y
+mediodía, con lift 1,83. No permite inferir tasas por vehículo de carga.
+\item Entre las caídas de ocupante, el 33,33\,\% ocurre entre semana
+al mediodía, con lift 1,77. Su soporte de 1,88\,\% muestra que la
+combinación es relativamente poco frecuente en el total.
+\end{enumerate}
+
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.44\textheight,keepaspectratio]{figuras/oe5_reglas_lift.png}
+\caption{Lift de las diez reglas seleccionadas. La línea vertical marca lift igual a uno, la referencia de independencia. Entre paréntesis se indica la confianza. Los identificadores se desarrollan en la tabla. Fuente: elaboración propia.}
+\label{fig:oe5-reglas}
+\end{minipage}
+\end{figure}
+
+\subsubsection{Reglas por perfil y exploración de eventos con muertos}
+
+Las 914 reglas por perfil se calcularon con los mismos umbrales relativos,
+pero el denominador es el tamaño de cada grupo. Por ello un soporte de
+1\,\% dentro de un perfil no representa el mismo número de eventos
+que en la base completa, y sus lifts utilizan referencias distintas.
+Estas reglas se conservan como apoyo para examinar combinaciones dentro
+de los siete perfiles, sin sumarlas como observaciones independientes.
+
+Se realizó además una búsqueda separada con consecuente ``con muertos''.
+Debido a su menor frecuencia, se redujo el soporte a 0,3\,\% (al menos
+11 eventos) y no se exigió confianza mínima; se mantuvo lift mayor que
+1,2. Estas reglas no se mezclaron con las diez reglas que cumplen los
+umbrales principales.
+
+La marca de velocidad presentó confianza de 44,83\,\%, soporte
+0,36\,\% y lift 8,29 hacia eventos con muertos. La combinación de
+carga y Boyacá alcanzó confianza de 24,00\,\%, soporte de 0,50\,\%
+y lift 4,44. Son combinaciones de bajo soporte: la primera corresponde
+a 13 eventos conjuntos y la segunda a 18. El alto lift requiere cautela
+por el tamaño reducido de las combinaciones, la posible selección en el
+registro y la ausencia de control de otras variables.
+
+El objetivo se cumplió mediante diez reglas interpretadas y las tablas
+globales, por perfil y de exploración de mortalidad. No se validaron
+las reglas en otro año ni se ajustó por la multiplicidad de todas las
+reglas examinadas; se consideran hallazgos exploratorios que orientan
+preguntas posteriores, no recomendaciones preventivas ya comprobadas.
+
+\subsection{Visualización e interpretación}
+
+\subsubsection{Síntesis de los resultados disponibles}
+
+El trabajo avanzó desde una base multianual de 278.614 registros hasta
+3.624 siniestros únicos de 2024 en diez corredores. Sobre esa base se
+produjeron descripciones espaciales y temporales, cuatro contrastes
+principales, siete perfiles y 62 zonas densas, y diez reglas globales
+interpretadas entre 217 candidatas que superaron los filtros.
+
+Las referencias sustentan las técnicas y la forma de analizar el problema;
+los conteos, modelos ajustados e interpretaciones de Bogotá son resultados
+del equipo. Las decisiones dependen de las longitudes de referencia,
+la calidad de las direcciones, la codificación de indicadores, la
+selección de corredores y los parámetros explorados. Los resultados
+identifican concentraciones y asociaciones; no establecen causas ni
+sustituyen una evaluación de exposición o de intervenciones.
+\subsubsection{Integración pendiente}
+
+Esta fase cuenta por ahora con las figuras, los mapas y la interpretación
+incluidos en el documento. La integración completa en un tablero y la
+formulación de propuestas preventivas se desarrollarán en una entrega
+posterior; no se presentan aquí como productos terminados.
+
+\clearpage
+\begin{thebibliography}{99}
+\bibitem[Chand et al.(2021)]{chand2021}
+Chand, A., Jayesh, S., \& Bhasi, A. B. (2021). Road traffic accidents:
   An overview of data sources, analysis techniques and contributing
   factors. Materials Today: Proceedings, 47, 5135--5141.
   \url{https://doi.org/10.1016/j.matpr.2021.05.415}
-\item
-  Sathiyanathan, R., \& Warnajith, N. (2024). Integration of k-means
+
+\bibitem[Sathiyanathan y Warnajith(2024)]{sathiyanathan2024}
+Sathiyanathan, R., \& Warnajith, N. (2024). Integration of k-means
   clustering and association rule mining for road safety analysis. In
   2024 International Conference on Smart Computing and Systems
   Engineering (SCSE) (pp.~1--7). IEEE.
   \url{https://doi.org/10.1109/SCSE61872.2024.10550547}
-\item
-  Shahin, M., et al.~(2021). Cluster-based association rule mining for
+
+\bibitem[Shahin et al.(2021)]{shahin2021}
+Shahin, M., et al.~(2021). Cluster-based association rule mining for
   an intersection accident dataset. In 2021 International Conference on
   Computing, Electronic and Electrical Engineering (ICE Cube)
   (pp.~1--6). IEEE.
   \url{https://doi.org/10.1109/ICECube53880.2021.9628206}
-\item
-  Job, R. F. S. (2022). Evaluations of speed camera interventions can
+
+\bibitem[Job(2022)]{job2022}
+Job, R. F. S. (2022). Evaluations of speed camera interventions can
   deliver a wide range of outcomes: Causes and policy implications.
   Sustainability, 14(3), Article 1765.
   \url{https://doi.org/10.3390/su14031765}
-\item
-  Klaylee, J., Iamtrakul, P., \& Sornlertlamvanich, V. (2022).
+
+\bibitem[Klaylee et al.(2022)]{klaylee2022}
+Klaylee, J., Iamtrakul, P., \& Sornlertlamvanich, V. (2022).
   Identification of suburban motorcycle traffic accident hotspots using
   GIS-based spatial analysis. In 2022 10th International Conference on
   Traffic and Logistic Engineering (ICTLE) (pp.~35--40). IEEE.
   \url{https://doi.org/10.1109/ICTLE55577.2022.9902103}
-\item
-  Ospina-Mateus, H., Berrio García, S., Quintana Jiménez, L., \&
+
+\bibitem[Ospina-Mateus et al.(2022)]{ospina2022}
+Ospina-Mateus, H., Berrio García, S., Quintana Jiménez, L., \&
   Salas-Navarro, K. (2022). Dataset of traffic accidents in
   motorcyclists in Bogotá, Colombia. Data in Brief, 43, Article 108461.
   \url{https://doi.org/10.1016/j.dib.2022.108461}
-\item
-  Vargas Montero, F. (2022). Análisis de datos de accidentalidad vial de
+
+\bibitem[Vargas Montero(2022)]{vargas2022}
+Vargas Montero, F. (2022). Análisis de datos de accidentalidad vial de
   la ciudad de Bogotá a partir de datos abiertos y datos obtenidos desde
   redes sociales {[}Trabajo de grado, Universidad Nacional de
   Colombia{]}. \url{https://repositorio.unal.edu.co/handle/unal/81571}
-\item
-  Bejar Gladkowski, A. A. (2023). Análisis predictivo de accidentes de
+
+\bibitem[Bejar Gladkowski(2023)]{bejar2023}
+Bejar Gladkowski, A. A. (2023). Análisis predictivo de accidentes de
   tráfico en la ciudad de Madrid {[}Trabajo de fin de grado, Universitat
   Oberta de Catalunya{]}.
   \url{https://openaccess.uoc.edu/handle/10609/147306}
-\item
-  Zhang, Y., Zhu, F., Li, Q., Qiu, Z., \& Xie, Y. (2023). Exploring
+
+\bibitem[Zhang et al.(2023)]{zhang2023}
+Zhang, Y., Zhu, F., Li, Q., Qiu, Z., \& Xie, Y. (2023). Exploring
   spatiotemporal patterns of expressway traffic accidents based on
   density clustering and Bayesian network. ISPRS International Journal
   of Geo-Information, 12(2), Article 73.
   \url{https://doi.org/10.3390/ijgi12020073}
-\item
-  Ordoñez Cueto, J. L., \& Fernández Ebratt, L. V. (2025). Diseño de un
+
+\bibitem[Ordoñez Cueto y Fernández Ebratt(2025)]{ordonez2025}
+Ordoñez Cueto, J. L., \& Fernández Ebratt, L. V. (2025). Diseño de un
   dashboard para el análisis de los datos relacionados con los
   accidentes ocurridos en la ciudad de Barranquilla {[}Trabajo de grado,
   Universidad Nacional Abierta y a Distancia{]}.
   \url{https://repository.unad.edu.co/handle/10596/67670}
-\end{enumerate}
+
+\bibitem[Ester et al.(1996)]{ester1996}
+Ester, M., Kriegel, H.-P., Sander, J., \& Xu, X. (1996).
+A density-based algorithm for discovering clusters in large spatial databases with noise.
+Proceedings of KDD-96 (pp.~226--231). AAAI Press.
+\url{https://cdn.aaai.org/KDD/1996/KDD96-037.pdf}
+
+\bibitem[Han et al.(2000)]{han2000}
+Han, J., Pei, J., \& Yin, Y. (2000). Mining frequent patterns without candidate generation.
+Proceedings of ACM SIGMOD (pp.~1--12).
+\url{https://doi.org/10.1145/342009.335372}
+
+\bibitem[SciPy(s.f.)]{scipy}
+SciPy. (s.f.). Chi2\_contingency. Documentación oficial. Consultada el 5 de noviembre de 2026.
+\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html}
+
+\bibitem[statsmodels(s.f.)]{statsmodels}
+statsmodels. (s.f.). Chisquare\_effectsize y proportions\_ztest. Documentación oficial.
+Consultada el 5 de noviembre de 2026.
+\url{https://www.statsmodels.org/stable/generated/statsmodels.stats.gof.chisquare_effectsize.html}
+\url{https://www.statsmodels.org/stable/generated/statsmodels.stats.proportion.proportions_ztest.html}
+
+\bibitem[scikit-learn(s.f.)]{sklearn}
+scikit-learn. (s.f.). Clustering y silhouette\_score. Documentación oficial.
+Consultada el 5 de noviembre de 2026.
+\url{https://scikit-learn.org/stable/modules/clustering.html}
+\url{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html}
+
+\bibitem[OpenStreetMap(s.f.)]{osm}
+OpenStreetMap contributors. (s.f.). OpenStreetMap. Datos cartográficos bajo ODbL.
+Fondo consultado el 5 de noviembre de 2026.
+\url{https://www.openstreetmap.org/copyright}
+\end{thebibliography}
 
 \end{document}

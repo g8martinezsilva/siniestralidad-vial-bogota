@@ -49,3 +49,9 @@ def test_contrastar_aplica_bonferroni(monkeypatch):
 @pytest.mark.parametrize("v, esperado", [(0.05, "despreciable"), (0.2, "pequeño"), (0.4, "mediano"), (0.6, "grande")])
 def test_magnitud_v(v, esperado):
     assert magnitud_v(v) == esperado
+
+
+def test_h1_efecto_bondad_ajuste_es_w_de_cohen():
+    r = h1_concentracion(base_aleatoria(), longitudes=pd.Series({"A": 10., "B": 10.}))
+    assert r["efecto"] == "w de Cohen"
+    assert r["valor_efecto"] == pytest.approx(np.sqrt(r["estadistico"] / 2000))

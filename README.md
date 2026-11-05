@@ -30,7 +30,7 @@ Este proyecto toma **todos los siniestros de 2024** registrados en la base del *
 
 | | Hipótesis | Prueba | Tamaño del efecto |
 |---|---|---|---|
-| **H1** | Algunos corredores concentran más siniestros de los esperados por su longitud | χ² de bondad de ajuste | V de Cramér |
+| **H1** | Algunos corredores concentran más siniestros de los esperados por su longitud | χ² de bondad de ajuste | w de Cohen |
 | **H2** | La gravedad depende de la franja horaria y del tipo de día (las noches de fin de semana son más graves) | χ² de independencia | V de Cramér |
 | **H3** | Los siniestros con motocicleta tienen mayor proporción de víctimas | Prueba z de proporciones (unilateral) | Razón de momios (IC 95 %) |
 
@@ -132,7 +132,7 @@ python -m streamlit run src/siniestralidad/app.py
 
 ## 🔎 Resultados principales
 
-- **H1:** los siniestros no se reparten según la longitud de los corredores (χ² = 623,7; V = 0,14). La Carrera 10, la NQS y la Calle 6 tienen muchos más de los esperados.
+- **H1:** los siniestros no se reparten según la longitud de los corredores (χ² = 623,7; w = 0,415). La Carrera 10, la NQS y la Calle 6 tienen muchos más de los esperados.
 - **H2:** la gravedad depende de la franja (V = 0,10) y del tipo de día (V = 0,09). Las noches de fin de semana tienen más siniestros con muertos (7,4 % frente a 5,2 %).
 - **H3:** con motocicleta, el 96 % de los siniestros tiene víctimas, frente al 85 % sin ella (razón de momios 4,26).
 - **Perfiles:** 7 perfiles con K-means; el de atropellos es el más grave (11,5 % con muertos). DBSCAN encuentra 62 zonas densas; la mayor es la Carrera 10 con Calle 1 (73 siniestros).
