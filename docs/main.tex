@@ -789,16 +789,16 @@ apariciones, sin realizar una selección aleatoria.
 \textbf{Orden} & \textbf{Corredor} & \textbf{Apariciones} & \textbf{Longitud}\newline\textbf{(km)}\\
 \midrule
 \endhead
-1 & Avenida Boyacá & 637 & 29,3\\
+1 & Avenida Boyacá & 637 & 29,5\\
 2 & Avenida Caracas & 525 & 26,4\\
-3 & Avenida Ciudad de Cali & 470 & 22,0\\
+3 & Avenida Ciudad de Cali & 470 & 22,2\\
 4 & Avenida NQS (Carrera 30) & 467 & 15,5\\
-5 & Carrera Séptima & 316 & 24,7\\
-6 & Avenida Carrera 10 & 297 & 7,2\\
-7 & Avenida El Dorado (Calle 26) & 288 & 11,8\\
-8 & Avenida Calle 6 & 274 & 9,0\\
-9 & Autopista Norte & 267 & 16,9\\
-10 & Avenida Centenario (Calle 13) & 259 & 14,9\\
+5 & Carrera Séptima & 316 & 29,5\\
+6 & Avenida Carrera 10 & 297 & 8,3\\
+7 & Avenida El Dorado (Calle 26) & 288 & 11,9\\
+8 & Avenida Calle 6 & 274 & 11,3\\
+9 & Autopista Norte & 267 & 18,2\\
+10 & Avenida Centenario (Calle 13) & 259 & 16,3\\
 \bottomrule
 \end{longtable}
 \endgroup
@@ -815,18 +815,29 @@ de la tabla \ref{tab:seleccion-corredores} no deben sumarse como eventos
 
 Las longitudes se midieron sobre la Malla Vial Integral de Bogotá
 \citep{ideca}, la capa oficial de la red vial de la ciudad, que trae cada
-tramo con su nombre y geometría. Para cada corredor se midió el
-recorrido más largo a lo largo de su eje, contando una sola vez las vías
-de doble calzada, sumando los trozos separados y omitiendo los de menos
-de 0,3 km. Estas longitudes oficiales reemplazaron las de OpenStreetMap
-de una primera versión del proyecto, que en algunos corredores eran
-mucho mayores: por ejemplo, El Dorado pasó de 22,6 a 11,8 km y
-Autopista Norte de 28,4 a 16,9 km. Como control, se verificó qué parte de los siniestros asignados
-a cada corredor cae a menos de 150 m de su eje: entre el 89\,\% y el
-97\,\% en ocho corredores, el 80\,\% en la Séptima, cuyo eje oficial
-empieza en el centro, y el 76\,\% en la Calle 6, cuyo trazado combina
-tramos con varios nombres. En Centenario, la longitud incluye la Avenida
-Colón y el tramo occidental. Las tasas por kilómetro
+tramo con su nombre y geometría. Para cada corredor se incluyeron
+todos los tramos con el nombre oficial de la avenida, aunque cambie su
+nomenclatura (por ejemplo, la Autopista Norte aparece como AK 45, AK 20
+y KR 23), y los tramos sin nombre que la continúan con el mismo número.
+Se midió el recorrido más largo a lo largo del eje, contando una sola
+vez las vías de doble calzada, sumando los trozos separados y omitiendo
+los de menos de 0,3 km. El procedimiento es reproducible con el módulo
+\texttt{siniestralidad.longitudes} del repositorio. Estas longitudes
+reemplazaron las de OpenStreetMap de una primera versión del proyecto,
+que en algunos corredores eran mucho mayores: El Dorado pasó de 22,6 a
+11,9 km y Autopista Norte de 28,4 a 18,2 km. Como control, se verificó
+qué parte de los siniestros asignados a cada corredor cae a menos de
+150 m del eje medido: entre el 85,2\,\% (Calle 6) y el 97,1\,\%
+(Caracas).
+
+La asignación de siniestros y la medición de longitudes no siguen
+exactamente la misma regla: la longitud incluye los tramos con otra
+nomenclatura, pero el siniestro se asigna por el número o el nombre que
+aparece en su dirección. Por ello, algunos eventos ocurridos sobre esos
+tramos quedaron fuera de los corredores; una cota aproximada, que
+incluye cruces y puede repetir eventos entre corredores, va de 6 en la
+Carrera 10 a 114 en Centenario. Se decidió conservar la asignación por
+dirección y reportar esta diferencia como limitación. Las tasas por kilómetro
 son sensibles a esa delimitación y no sustituyen una medida de exposición
 basada en flujos de tránsito.
 
@@ -929,16 +940,16 @@ asociaciones estadísticas ni relaciones causales.
 \textbf{Corredor} & \textbf{Eventos} & \textbf{\%} & \textbf{km} & \textbf{Por km}\\
 \midrule
 \endhead
-Avenida Boyacá & 619 & 17,08 & 29,3 & 21,13\\
+Avenida Boyacá & 619 & 17,08 & 29,5 & 20,98\\
 Avenida Caracas & 513 & 14,16 & 26,4 & 19,43\\
 Avenida NQS (Carrera 30) & 458 & 12,64 & 15,5 & 29,55\\
-Avenida Ciudad de Cali & 455 & 12,56 & 22,0 & 20,68\\
-Carrera Séptima & 313 & 8,64 & 24,7 & 12,67\\
-Avenida Carrera 10 & 285 & 7,86 & 7,2 & 39,58\\
-Autopista Norte & 266 & 7,34 & 16,9 & 15,74\\
-Avenida El Dorado (Calle 26) & 246 & 6,79 & 11,8 & 20,85\\
-Avenida Centenario (Calle 13) & 239 & 6,59 & 14,9 & 16,04\\
-Avenida Calle 6 & 230 & 6,35 & 9,0 & 25,56\\
+Avenida Ciudad de Cali & 455 & 12,56 & 22,2 & 20,50\\
+Carrera Séptima & 313 & 8,64 & 29,5 & 10,61\\
+Avenida Carrera 10 & 285 & 7,86 & 8,3 & 34,34\\
+Autopista Norte & 266 & 7,34 & 18,2 & 14,62\\
+Avenida El Dorado (Calle 26) & 246 & 6,79 & 11,9 & 20,67\\
+Avenida Centenario (Calle 13) & 239 & 6,59 & 16,3 & 14,66\\
+Avenida Calle 6 & 230 & 6,35 & 11,3 & 20,35\\
 \midrule
 Total & 3.624 & 100,00 & & \\
 \bottomrule
@@ -955,8 +966,9 @@ de conteo.
 La tasa descriptiva se calculó como $T_c=n_c/L_c$, donde $n_c$ es el
 número anual de eventos asignados al corredor y $L_c$ su longitud de
 referencia en kilómetros. Al ajustar por longitud, los tres mayores
-valores correspondieron a Carrera 10 (39,58), NQS (29,55) y Calle 6
-(25,56), como muestra la figura \ref{fig:oe2-corredores}. Boyacá lideró
+valores correspondieron a Carrera 10 (34,34), NQS (29,55) y Boyacá
+(20,98), seguidos muy de cerca por El Dorado (20,67), Ciudad de Cali
+(20,50) y Calle 6 (20,35), como muestra la figura \ref{fig:oe2-corredores}. Boyacá lideró
 el volumen absoluto, pero su mayor longitud hizo que no liderara este
 indicador. Se trata de concentración de registros por unidad de longitud;
 sin aforos de vehículos o personas no puede interpretarse como
@@ -1170,7 +1182,7 @@ la asignación de intersecciones y la validación geográfica por ventana.
 El segundo objetivo produjo nueve tablas descriptivas, seis gráficos y
 los mapas de concentración general, de detalle e interactivo. Se identificaron
 Boyacá, Caracas y NQS como los tres corredores de mayor conteo, y
-Carrera 10, NQS y Calle 6 como los de mayor concentración por kilómetro.
+Carrera 10 y NQS como los de mayor concentración por kilómetro, por encima de un grupo de cuatro corredores con valores muy similares.
 Las franjas de mayor conteo fueron mediodía, tarde y mañana; al ajustar
 por duración, tarde y mañana ocuparon los primeros lugares. La alta
 participación registrada de motocicleta y la diferencia entre volumen
@@ -1221,7 +1233,7 @@ confianza bilateral del 95\,\% \citep{statsmodels}.
 \textbf{Prueba} & \textbf{Estadístico} & \textbf{p ajustado} & \textbf{Efecto} & \textbf{Decisión}\\
 \midrule
 \endhead
-H1 & $\chi^2=311{,}648$ & $3{,}52\times10^{-61}$ & $w=0{,}293$ & Rechazar $H_0$\\
+H1 & $\chi^2=345{,}932$ & $1{,}82\times10^{-68}$ & $w=0{,}309$ & Rechazar $H_0$\\
 H2a & $\chi^2=77{,}228$ & $7{,}06\times10^{-13}$ & $V=0{,}103$ & Rechazar $H_0$\\
 H2b & $\chi^2=32{,}211$ & $4{,}05\times10^{-7}$ & $V=0{,}094$ & Rechazar $H_0$\\
 H3 & $z=11{,}624$ & $6{,}19\times10^{-31}$ & $OR=4{,}257$ & Rechazar $H_0$\\
@@ -1229,19 +1241,19 @@ H3 & $z=11{,}624$ & $6{,}19\times10^{-31}$ & $OR=4{,}257$ & Rechazar $H_0$\\
 \end{longtable}
 \endgroup
 
-En H1, $\chi^2(9)=311{,}648$ permitió rechazar la proporcionalidad
-por longitud. Carrera 10 registró 285 eventos frente a 146,8 esperados;
-NQS, 458 frente a 316,1; y Calle 6, 230 frente a 183,5. El exceso de
-la Calle 6 es el menos firme: si se cuentan solo los siniestros situados
-a menos de 150 m de su eje, prácticamente coincide con lo esperado.
+En H1, $\chi^2(9)=345{,}932$ permitió rechazar la proporcionalidad
+por longitud. Carrera 10 registró 285 eventos frente a 159,1 esperados
+y NQS, 458 frente a 297,0. Ambos excesos se mantienen si se cuentan
+solo los siniestros situados a menos de 150 m del eje (264 frente a
+149,1 y 428 frente a 278,5).
 Sus residuos positivos indican un exceso respecto de ese modelo,
 no respecto de la cantidad de usuarios que circulan por cada vía.
-Boyacá tuvo el mayor volumen absoluto, pero un número cercano al
-esperado por su longitud: 619 frente a 597,5; lo mismo ocurrió con El
-Dorado y Ciudad de Cali. Los mayores déficits correspondieron a la
-Séptima (313 frente a 503,7), Autopista Norte (266 frente a 344,7) y
-Centenario (239 frente a 303,9). El efecto $w=0{,}293$, pequeño según
-los umbrales adoptados, describe la desviación global, sin equipararlo
+Boyacá tuvo el mayor volumen absoluto y un exceso moderado (619 frente
+a 565,4). Ciudad de Cali, El Dorado, Calle 6 y Caracas quedaron cerca de
+lo esperado. Los mayores déficits correspondieron a la Séptima (313
+frente a 565,4), Autopista Norte (266 frente a 348,8) y Centenario (239
+frente a 312,4). El efecto $w=0{,}309$, apenas por encima del umbral de
+0,3 y por tanto en el límite entre pequeño y mediano, describe la desviación global, sin equipararlo
 a una probabilidad de accidente ni compararlo directamente con V.
 
 \begin{figure}[H]
@@ -1647,12 +1659,13 @@ causales.
 En la dimensión espacial, Boyacá fue el corredor con mayor número absoluto
 de eventos (619), seguido por Caracas (513) y NQS (458). Sin embargo, el
 riesgo operacional no puede inferirse únicamente de estos totales. Al ajustar
-por longitud, Carrera 10 obtuvo la mayor concentración descriptiva (39,58
-eventos por kilómetro), seguida por NQS (29,55) y Calle 6 (25,56). La
+por longitud, Carrera 10 obtuvo la mayor concentración descriptiva (34,34
+eventos por kilómetro), seguida por NQS (29,55); los demás corredores se
+situaron por debajo de 21. La
 hipótesis H1 confirmó que la distribución observada no es proporcional a la
-longitud de los corredores: $\chi^2(9)=311{,}648$, $p=3{,}52\times10^{-61}$
-y $w=0{,}293$. Los excesos de Carrera 10 y NQS, el menos firme de la Calle 6
-y los déficits de la Séptima y Autopista Norte son consistentes con la concentración por kilómetro; no indican
+longitud de los corredores: $\chi^2(9)=345{,}932$, $p=1{,}82\times10^{-68}$
+y $w=0{,}309$. Los excesos de Carrera 10 y NQS y los déficits de la
+Séptima, Autopista Norte y Centenario son consistentes con la concentración por kilómetro; no indican
 por sí solos mayor probabilidad de siniestro para una persona que transita,
 dado que no se contó con aforos ni exposición vehicular.
 
@@ -1811,7 +1824,7 @@ muertos. La tabla \ref{tab:oe6-propuestas} las resume.
 \textbf{Propuesta} & \textbf{Hallazgo que la sustenta} & \textbf{Corredores}\\
 \midrule
 \endhead
-1. Intervención en los cruces densos de las avenidas cortas & Más siniestros por kilómetro de los esperados por su longitud (H1) y zonas densas como Carrera 10 con Calle 1 (11,0\,\% con muertos) y NQS con Calle 29 Sur (12,9\,\%) & Carrera 10, NQS y Calle 6\\
+1. Intervención en los cruces densos de la Carrera 10 y la NQS & Más siniestros de los esperados por su longitud (H1) y zonas densas como Carrera 10 con Calle 1 (11,0\,\% con muertos) y NQS con Calle 29 Sur (12,9\,\%) & Carrera 10 y NQS\\
 2. Protección de peatones y personas mayores & El perfil de atropellos tiene 11,5\,\% de eventos con muertos y está sobrerrepresentado en la Caracas & Caracas\\
 3. Control a vehículos de carga & El 16,7\,\% de los siniestros con carga tiene muertos, cerca de tres veces el promedio & Boyacá y Ciudad de Cali\\
 4. Control de velocidad y alcohol en la noche y la madrugada & La velocidad es la condición más asociada a siniestros con muertos (\emph{lift} de 8,3) y la embriaguez se concentra de noche & Todos, entre las 20:00 y las 6:00\\
@@ -1819,10 +1832,10 @@ muertos. La tabla \ref{tab:oe6-propuestas} las resume.
 \end{longtable}
 \endgroup
 
-\paragraph{1. Intervención en los cruces densos de las avenidas cortas.}
-La Carrera 10, la NQS y la Calle 6 tienen más siniestros de los que
-corresponden a su longitud: 285 frente a 146,8 esperados en la Carrera
-10, 458 frente a 316,1 en la NQS y 230 frente a 183,5 en la Calle 6. El
+\paragraph{1. Intervención en los cruces densos de la Carrera 10 y la NQS.}
+La Carrera 10 y la NQS son los únicos corredores con un exceso claro
+respecto de su longitud: 285 frente a 159,1 esperados en la Carrera 10
+y 458 frente a 297,0 en la NQS. El
 cruce de la Carrera 10 con Calle 1 es la zona más densa de la base, con
 73 siniestros, de los cuales el 11,0\,\% tuvo muertos. Se propone hacer
 auditorías de seguridad vial en las diez zonas densas que lista el
@@ -1885,7 +1898,7 @@ propuestas se cumple el entregable del sexto objetivo.
 \begin{enumerate}[leftmargin=*,itemsep=6pt]
 \item Después del proceso de preparación y depuración, se obtuvieron 3.624 siniestros únicos registrados durante 2024 en diez corredores viales. Aunque se logró organizar y validar la información, es importante aclarar que estos datos no representan la totalidad de los siniestros en Bogotá, ya que el estudio se concentra únicamente en los corredores seleccionados.
 
-\item Las avenidas Boyacá, Caracas y NQS registraron la mayor cantidad de siniestros y concentraron en conjunto el 43,87\,\% de los casos. Sin embargo, al dividir por la longitud, la Carrera 10 presentó la mayor concentración (39,58 siniestros por kilómetro). Esto muestra que el total de siniestros de un corredor no basta para compararlo con otros: también debe considerarse su longitud.
+\item Las avenidas Boyacá, Caracas y NQS registraron la mayor cantidad de siniestros y concentraron en conjunto el 43,87\,\% de los casos. Sin embargo, al dividir por la longitud, la Carrera 10 presentó la mayor concentración (34,34 siniestros por kilómetro). Esto muestra que el total de siniestros de un corredor no basta para compararlo con otros: también debe considerarse su longitud.
 
 \item Los resultados muestran que el mediodía presentó la mayor cantidad de siniestros, seguido de la tarde. Esto indica que durante estos periodos se registra una actividad importante de siniestros viales. Sin embargo, para determinar si existe una mayor probabilidad de ocurrencia en estas horas, sería necesario contar con información adicional sobre el flujo vehicular.
 

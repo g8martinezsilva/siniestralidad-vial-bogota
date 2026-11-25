@@ -4,14 +4,14 @@ Cuatro propuestas, cada una apoyada en al menos dos fuentes de evidencia: el an�
 
 | Propuesta | Hallazgo que la sustenta | Corredores |
 |---|---|---|
-| 1. Intervención en los cruces densos de las avenidas cortas | Más siniestros por km de los esperados por su longitud y zonas densas como Carrera 10 con Calle 1 (11 % con muertos) y NQS con Calle 29 Sur (13 %) | Carrera 10, NQS y Calle 6 |
+| 1. Intervención en los cruces densos de la Carrera 10 y la NQS | Más siniestros por km de los esperados por su longitud y zonas densas como Carrera 10 con Calle 1 (11 % con muertos) y NQS con Calle 29 Sur (13 %) | Carrera 10 y NQS |
 | 2. Protección de peatones y personas mayores | El perfil de atropellos tiene 11,5 % con muertos y se concentra en la Caracas | Caracas |
 | 3. Control a vehículos de carga | El 16,7 % de los siniestros con carga tiene muertos, cerca de 3 veces el promedio | Boyacá y Ciudad de Cali |
 | 4. Control de velocidad y alcohol en la noche y la madrugada | La velocidad es la condición más asociada a muertes (lift 8,3) | Todos, entre las 20:00 y las 6:00 |
 
-## 1. Intervención en los cruces densos de las avenidas cortas
+## 1. Intervención en los cruces densos de la Carrera 10 y la NQS
 
-La Carrera 10, la NQS y la Calle 6 tienen muchos más siniestros de los que corresponden a su longitud: 285 frente a 147 esperados en la Carrera 10, 458 frente a 316 en la NQS y 230 frente a 184 en la Calle 6 (H1). La Carrera 10 llega a 39,6 siniestros por km, el doble que la Caracas (19,4).
+La Carrera 10 y la NQS son los únicos corredores con un exceso claro respecto de su longitud: 285 frente a 159 esperados en la Carrera 10 y 458 frente a 297 en la NQS (H1). La Carrera 10 llega a 34,3 siniestros por km, casi el doble que la Caracas (19,4).
 
 El cruce de la Carrera 10 con Calle 1 es la zona más densa de toda la base, con 73 siniestros, de los cuales el 11 % tuvo muertos y el 63 % involucró motocicleta. En la NQS, las zonas de la Calle 17 y la Calle 29 Sur suman 62 siniestros, con 7 % y 13 % con muertos.
 
