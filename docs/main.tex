@@ -815,12 +815,13 @@ de la tabla \ref{tab:seleccion-corredores} no deben sumarse como eventos
 
 Las longitudes se midieron sobre la Malla Vial Integral de Bogotá
 \citep{ideca}, la capa oficial de la red vial de la ciudad, que trae cada
-tramo con su nombre y geometría. Para cada corredor se sumó la longitud
-del eje, contando una sola vez las vías de doble calzada. Una primera
-versión del proyecto usaba longitudes de OpenStreetMap que, en varios
-corredores, sumaban ambas calzadas o tramos con otro nombre oficial; por
-ejemplo, El Dorado pasó de 22,6 a 11,8 km y Autopista Norte de 28,4 a
-16,9 km. Como control, se verificó qué parte de los siniestros asignados
+tramo con su nombre y geometría. Para cada corredor se midió el
+recorrido más largo a lo largo de su eje, contando una sola vez las vías
+de doble calzada, sumando los trozos separados y omitiendo los de menos
+de 0,3 km. Estas longitudes oficiales reemplazaron las de OpenStreetMap
+de una primera versión del proyecto, que en algunos corredores eran
+mucho mayores: por ejemplo, El Dorado pasó de 22,6 a 11,8 km y
+Autopista Norte de 28,4 a 16,9 km. Como control, se verificó qué parte de los siniestros asignados
 a cada corredor cae a menos de 150 m de su eje: entre el 89\,\% y el
 97\,\% en ocho corredores, el 80\,\% en la Séptima, cuyo eje oficial
 empieza en el centro, y el 76\,\% en la Calle 6, cuyo trazado combina
