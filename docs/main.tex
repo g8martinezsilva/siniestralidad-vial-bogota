@@ -189,11 +189,11 @@ Bogotá, cuáles de ellos son estadísticamente significativos y cómo
 pueden identificarse mediante técnicas de minería de datos?
 \end{quote}
 
-Para responderla, el documento revisa primero lo que se sabe sobre este
-tema, de donde surgen las hipótesis, luego se plantean los
-objetivos, describe la metodología cómo se contrastarán estas mismas
-y con qué datos, y finalmente presenta en el desarrollo el avance de la
-ejecución.
+Para responderla, el documento revisa primero lo que se sabe sobre el
+tema en el estado del arte, de donde surgen las hipótesis. Luego plantea
+los objetivos, describe en la metodología cómo se contrastarán las
+hipótesis y con qué datos, presenta en el desarrollo los resultados de
+cada fase y cierra con las conclusiones.
 
 \clearpage
 \hypertarget{estado-del-arte}{%
@@ -632,10 +632,8 @@ validación institucional y no como soluciones comprobadas.
 Este capítulo se organiza según las seis fases de la metodología:
 preparación de datos, análisis descriptivo, contraste de hipótesis,
 clustering, reglas de asociación y visualización e interpretación.
-Se presentan los procedimientos y resultados de las cinco primeras
-fases. En la sexta se recoge la interpretación disponible y se distingue
-la integración en tablero y las propuestas preventivas, pendientes de
-una entrega posterior.
+Para cada fase se presentan el procedimiento, los resultados y el
+entregable con el que se cumple el objetivo específico correspondiente.
 
 \hypertarget{plan-de-trabajo}{%
 \subsection*{Plan de trabajo}\label{plan-de-trabajo}}
@@ -663,7 +661,7 @@ del proyecto sobre la misma base de 3.624 eventos.
 3 & Contraste de hipótesis & 3 & Estadísticos, valores p, efectos y decisiones\\
 4 & Clustering & 4 & Siete perfiles y 62 zonas densas\\
 5 & Reglas de asociación & 5 & Diez reglas interpretadas y análisis por perfil\\
-6 & Visualización e interpretación & 6 & Síntesis disponible; tablero integrado y propuestas pendientes\\
+6 & Visualización e interpretación & 6 & Tablero analítico con cinco vistas y cuatro propuestas preventivas\\
 \bottomrule
 \end{longtable}
 \endgroup
@@ -1184,7 +1182,7 @@ los eventos se repartieran en proporción a la longitud. En esta prueba
 de bondad de ajuste se reportó $w=\sqrt{\chi^2/N}$ como tamaño del
 efecto; la V de Cramér se reservó para las tablas de independencia.
 Esta distinción sigue la definición de efecto para bondad de ajuste de
-\citet{statsmodels}. En H3 se empleó una prueba z unilateral para
+\citet{cohen1988}, implementada en \citet{statsmodels}. En H3 se empleó una prueba z unilateral para
 comparar dos proporciones y una razón de momios con intervalo de
 confianza bilateral del 95\,\% \citep{statsmodels}.
 
@@ -1614,7 +1612,7 @@ una celda puntual en una intervención general.
 
 El volumen también se separó de la gravedad. Las franjas de mayor cantidad
 de eventos no fueron las de mayor proporción de muertos: madrugada presentó
-7,47\,% y noche 6,57\,% frente a valores entre 4,24\,% y 4,92\,% en las
+7,47\,\% y noche 6,57\,\% frente a valores entre 4,24\,\% y 4,92\,\% en las
 restantes. H2a confirmó asociación entre franja y gravedad
 ($V=0{,}103$), y H2b entre tipo de día y gravedad ($V=0{,}094$), aunque
 ambos efectos fueron pequeños. Por tanto, existe evidencia estadística de
@@ -1625,8 +1623,8 @@ del desenlace.
 La participación de actores añadió un hallazgo relacionado con la vulnerabilidad.
 La motocicleta estuvo registrada en 2.330 siniestros (64,29\,\%), mientras
 que peatones y transporte público aparecieron en 675 y 667 eventos,
-respectivamente. En H3, el 96,14\,% de los eventos con motocicleta incluyó
-víctimas frente a 85,39\,% de los eventos sin motocicleta. La diferencia de
+respectivamente. En H3, el 96,14\,\% de los eventos con motocicleta incluyó
+víctimas frente a 85,39\,\% de los eventos sin motocicleta. La diferencia de
 10,75 puntos porcentuales y la razón de momios de 4,257 fueron estadísticamente
 significativas, pero la asociación no demuestra que la motocicleta cause
 heridos o muertos ni excluye diferencias en notificación, exposición o
@@ -1635,9 +1633,9 @@ condiciones del entorno.
 El clustering complementó estas evidencias al agrupar características antes
 de utilizar la gravedad. Los siete perfiles muestran diferentes prioridades
 operativas: los atropellos y peatones fueron el perfil con mayor mortalidad
-(11,5\,% de eventos con muertos), seguido por choques de madrugada (6,8\,%).
+(11,5\,\% de eventos con muertos), seguido por choques de madrugada (6,8\,\%).
 Los choques de tarde, mañana y mediodía tuvieron menor proporción de eventos
-mortales (3,6\,%--3,7\,%), pese a representar casi la mitad de los registros.
+mortales (3,6\,\%--3,7\,\%), pese a representar casi la mitad de los registros.
 El perfil de caídas y transporte público no registró muertos en 234 eventos,
 pero este resultado no debe interpretarse como ausencia de riesgo y sí como
 una característica de la muestra observada. La silueta de 0,2809 confirma
@@ -1645,8 +1643,8 @@ que los perfiles son útiles para sintetizar patrones, aunque no forman tipos
 naturales claramente separados.
 
 La detección con DBSCAN identificó 62 zonas densas que concentraron 1.331
-eventos (36,73\,% de la base). La zona más grande fue la intersección de
-Carrera 10 con Calle 1 (73 eventos y 11,0\,% con muertos), seguida por Caracas
+eventos (36,73\,\% de la base). La zona más grande fue la intersección de
+Carrera 10 con Calle 1 (73 eventos y 11,0\,\% con muertos), seguida por Caracas
 con Calle 19 y las Américas con Carrera 72. La asignación espacial es
 condicional al radio de 150 metros y al mínimo de quince observaciones; por
 ello las zonas sirven para priorizar exploraciones y auditorías, no para
@@ -1654,8 +1652,8 @@ establecer puntos de riesgo significativos sin contraste espacial adicional.
 
 Las reglas de asociación permitieron verificar que las relaciones observadas
 varían según el nivel de análisis. R1 mostró la asociación más fuerte entre
-embriaguez y el consecuente fin de semana y solo daños ($lift=11{,}64$), pero
-su confianza fue 37,25\,% y su soporte 1,57\,%: describe una coocurrencia de
+embriaguez y el consecuente fin de semana y solo daños (\emph{lift} de 11,64), pero
+su confianza fue 37,25\,\% y su soporte 1,57\,\%: describe una coocurrencia de
 bajo respaldo, no una propiedad de todos los eventos con embriaguez. R4 y R6
 señalan la combinación Caracas--tarde--atropello y la de atropellos al
 mediodía con personas mayores. R2 vincula caídas de ocupante, persona mayor
@@ -1666,7 +1664,7 @@ validación en datos posteriores.
 
 Finalmente, los resultados deben interpretarse como evidencia de una
 subpoblación delimitada. Se analizaron corredores seleccionados en un solo
-año y se excluyó aproximadamente el 74\,% de los registros de 2024 al aplicar
+año y se excluyó aproximadamente el 74\,\% de los registros de 2024 al aplicar
 esa selección. Además, las bases carecen de aforos, velocidades continuas,
 exposición vial y descripciones homogéneas de las causas. Por esta razón, los
 tres productos principales --concentraciones, diferencias estadísticas y
@@ -1674,24 +1672,148 @@ patrones exploratorios-- son complementarios, no intercambiables, y no
 permiten atribuir causalidad ni formular intervenciones plenamente
 demostradas.
 
-\subsubsection{Integración para visualización y toma de decisiones}
+\subsubsection{Tablero analítico}
 
-La fase de visualización debe integrar, en un tablero posterior, al menos
-cuatro niveles: temporal, por corredor, por perfil y por zona densa. Los
-gráficos descriptivos deben conservar la diferencia entre conteos absolutos,
-tasas por longitud y tasas por hora; las vistas espaciales deben mostrar
-además el porcentaje de eventos con víctimas o muertos dentro de la celda.
-Las pruebas deben presentar el estadístico, el tamaño del efecto y los
-límites de inferencia, mientras que las reglas deben informar soporte,
-confianza y lift sin presentarse como predicciones.
+El sexto objetivo se cumplió con un tablero analítico desarrollado en
+Streamlit y Plotly, que reúne en una sola aplicación los resultados de
+las cinco fases anteriores. El tablero se ejecuta desde la raíz del
+repositorio con \texttt{streamlit run src/siniestralidad/app.py} y lee
+la base depurada y las tablas que generan los módulos de análisis, de
+modo que siempre muestra las mismas cifras que este documento.
 
-Como prioridades de exploración, Bogotá debería profundizar en Carrera 10,
-NQS y Calle 6 desde una perspectiva de exposición; ampliar la caracterización
-de atropellos y peatones, especialmente en Avenida Caracas y en personas
-mayores; y revisar los escenarios de madrugada y noche con mayor gravedad.
-Estas prioridades son propuestas de investigación y gestión sujetas a
-contrastes con aforos, información hospitalaria, siniestros no registrados
-y datos de años adicionales.
+En la parte superior, cuatro filtros permiten seleccionar corredor,
+franja horaria, tipo de día y gravedad. Debajo, cuatro indicadores
+resumen la selección: número de siniestros, porcentaje con víctimas,
+siniestros con muertos y porcentaje con motocicleta. Para toda la base,
+estos valores son 3.624 siniestros, 92,3\,\% con víctimas, 196 con
+muertos y 64,3\,\% con motocicleta. El contenido se organiza en cinco
+vistas, una más de las cuatro que exigía el objetivo:
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{Mapa:} mapa de densidad o de siniestros coloreados por
+gravedad sobre el plano de Bogotá, siniestros por kilómetro de cada
+corredor y la tabla de zonas densas de DBSCAN.
+\item \textbf{Comportamiento temporal:} matriz de siniestros por día y
+hora, distribución por franja y evolución mensual.
+\item \textbf{Hipótesis:} estadístico, valor p con corrección de
+Bonferroni, tamaño del efecto y decisión de H1 a H3, junto con los
+siniestros observados frente a los esperados por longitud.
+\item \textbf{Perfiles:} ficha de los siete perfiles de K-means con sus
+rasgos dominantes, el corredor sobrerrepresentado y la gravedad dentro
+de cada perfil.
+\item \textbf{Reglas:} las diez reglas interpretadas en palabras y una
+tabla para explorar todas las reglas por soporte, confianza y
+\emph{lift}.
+\end{enumerate}
+
+Los filtros cambian el mapa, la vista temporal y la gravedad por perfil.
+Las hipótesis, las zonas densas y las reglas se muestran siempre sobre
+toda la base, porque fueron calculadas con ella y recalcularlas sobre un
+subconjunto cambiaría su interpretación. Las figuras
+\ref{fig:oe6-mapa} y \ref{fig:oe6-perfiles} muestran dos de las vistas.
+
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.42\textheight,keepaspectratio]{figuras/oe6_tablero_mapa.png}
+\caption{Vista de mapa del tablero analítico, con los filtros, los indicadores y los siniestros por kilómetro. Fuente: elaboración propia con datos del SIMUR y fondo de \citet{osm}.}
+\label{fig:oe6-mapa}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth,height=.42\textheight,keepaspectratio]{figuras/oe6_tablero_perfiles.png}
+\caption{Vista de perfiles del tablero analítico, con la ficha de cada perfil y su gravedad. Fuente: elaboración propia.}
+\label{fig:oe6-perfiles}
+\end{minipage}
+\end{figure}
+
+\subsubsection{Propuestas preventivas}
+
+A partir de los resultados se formularon cuatro propuestas preventivas,
+una más de las tres que exigía el objetivo. Cada una se apoya en al menos
+dos análisis distintos: la concentración por kilómetro (H1), los
+perfiles y las zonas densas (OE4) o las reglas de asociación (OE5). Se
+priorizaron los patrones con mayor proporción de siniestros con muertos;
+en los diez corredores, 196 de los 3.624 siniestros (5,4\,\%) tuvieron
+muertos. La tabla \ref{tab:oe6-propuestas} las resume.
+
+\begingroup
+\begin{longtable}{@{}L{0.26}L{0.48}L{0.26}@{}}
+\caption{Propuestas preventivas y hallazgos que las sustentan.}\label{tab:oe6-propuestas}\\
+\toprule
+\textbf{Propuesta} & \textbf{Hallazgo que la sustenta} & \textbf{Corredores}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Propuesta} & \textbf{Hallazgo que la sustenta} & \textbf{Corredores}\\
+\midrule
+\endhead
+1. Intervención en los cruces densos de las avenidas cortas & Más siniestros por kilómetro de los esperados por su longitud (H1) y zonas densas con 7\,\% a 13\,\% de eventos con muertos & Carrera 10, NQS y Calle 6\\
+2. Protección de peatones y personas mayores & El perfil de atropellos tiene 11,5\,\% de eventos con muertos y está sobrerrepresentado en la Caracas & Caracas\\
+3. Control a vehículos de carga & El 16,7\,\% de los siniestros con carga tiene muertos, cerca de tres veces el promedio & Boyacá y Ciudad de Cali\\
+4. Control de velocidad y alcohol en la noche y la madrugada & La velocidad es la condición más asociada a siniestros con muertos (\emph{lift} de 8,3) & Todos, entre las 20:00 y las 6:00\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\paragraph{1. Intervención en los cruces densos de las avenidas cortas.}
+La Carrera 10, la NQS y la Calle 6 tienen más siniestros de los que
+corresponden a su longitud: 285 frente a 121,5 esperados en la Carrera
+10, 458 frente a 279,9 en la NQS y 230 frente a 142,3 en la Calle 6. El
+cruce de la Carrera 10 con Calle 1 es la zona más densa de la base, con
+73 siniestros, de los cuales el 11,0\,\% tuvo muertos. Se propone hacer
+auditorías de seguridad vial en las diez zonas densas que lista el
+tablero, empezando por ese cruce; revisar la semaforización, las fases
+peatonales y la demarcación de carriles para motocicletas; y medir el
+efecto comparando los siniestros del año siguiente en cada zona con los
+de 2024.
+
+\paragraph{2. Protección de peatones y personas mayores en la Caracas.}
+Los atropellos forman el perfil más grave: 650 siniestros con 11,5\,\%
+de eventos con muertos, el doble del promedio. Cuando el peatón es una
+persona mayor, la proporción sube a 18,8\,\%. La regla «Avenida Caracas
+y franja tarde $\rightarrow$ atropello» tiene una confianza de 52\,\%,
+2,9 veces lo esperado. Se propone revisar los tiempos de cruce peatonal
+para que alcancen a una persona mayor, con prioridad entre las 16:00 y
+las 20:00; reforzar los cruces a nivel y los accesos a las estaciones
+de TransMilenio con más atropellos; y hacer campañas con los operadores
+del SITP sobre arranques y frenadas con personas mayores a bordo, ya que
+las caídas de ocupantes en transporte público se asocian con ellas
+(\emph{lift} de 9,0).
+
+\paragraph{3. Control a vehículos de carga en la Boyacá y la Ciudad de Cali.}
+Los vehículos de carga aparecen en el 8,4\,\% de los siniestros, pero el
+16,7\,\% de ellos tiene muertos, la proporción más alta entre los actores
+viales. La Boyacá suma 18 siniestros con muertos de 75 con carga, y la
+Ciudad de Cali, 10 de 49. Las reglas «carga y Avenida Boyacá
+$\rightarrow$ con muertos» y «carga y moto $\rightarrow$ con muertos»
+tienen \emph{lift} de 4,4 y 3,7. Se propone reforzar los controles de
+velocidad y del estado mecánico de los vehículos de carga en esos
+corredores, evaluar restricciones horarias o carriles definidos en los
+tramos con más siniestros y hacer campañas con transportadores sobre
+puntos ciegos y convivencia con motociclistas.
+
+\paragraph{4. Control de velocidad y alcohol en la noche y la madrugada.}
+Solo 29 siniestros registran exceso de velocidad, pero el 44,8\,\% de
+ellos tuvo muertos, y 23 de los 29 ocurrieron entre las 20:00 y las
+6:00. La embriaguez aparece en 153 siniestros, el 71\,\% de noche o de
+madrugada y el 58\,\% en fin de semana. Se propone programar controles
+de alcohol y velocidad en los corredores entre las 20:00 y las 6:00, con
+prioridad de viernes a domingo, y revisar el registro de la velocidad en
+el IPAT, porque 29 casos en un año sugieren subregistro.
+
+\paragraph{Alcance de las propuestas.}
+Las propuestas salen de asociaciones en los registros de 2024 y no
+prueban causas. Se plantean como alternativas sujetas a validación
+institucional, por ejemplo con la Secretaría Distrital de Movilidad, y a
+contraste con aforos, información hospitalaria y datos de otros años.
+Los siniestros con solo daños están subregistrados desde 2023, lo que
+eleva los porcentajes con víctimas, y las cifras por kilómetro dependen
+de las longitudes estimadas con OpenStreetMap. Con el tablero y estas
+propuestas se cumple el entregable del sexto objetivo.
 
 \clearpage
 
@@ -1700,7 +1822,7 @@ y datos de años adicionales.
 \begin{enumerate}[leftmargin=*,itemsep=6pt]
 \item Después del proceso de preparación y depuración, se obtuvieron 3.624 siniestros únicos registrados durante 2024 en diez corredores viales. Aunque se logró organizar y validar la información, es importante aclarar que estos datos no representan la totalidad de los siniestros en Bogotá, ya que el estudio se concentra únicamente en los corredores seleccionados.
 
-\item Los corredores Av Boyacá, Av Caracas y ANQS registraron la mayor cantidad de siniestros, concentrando en conjunto el 43,87\,\% de los casos. Por otra parte, la Carrera 10 presentó la mayor concentración descriptiva. Esto demuestra que la cantidad de siniestros no depende únicamente del número de registros, sino que también es importante considerar la longitud de cada corredor.
+\item Las avenidas Boyacá, Caracas y NQS registraron la mayor cantidad de siniestros y concentraron en conjunto el 43,87\,\% de los casos. Sin embargo, al dividir por la longitud, la Carrera 10 presentó la mayor concentración (37,50 siniestros por kilómetro). Esto muestra que el total de siniestros de un corredor no basta para compararlo con otros: también debe considerarse su longitud.
 
 \item Los resultados muestran que el mediodía presentó la mayor cantidad de siniestros, seguido de la tarde. Esto indica que durante estos periodos se registra una actividad importante de siniestros viales. Sin embargo, para determinar si existe una mayor probabilidad de ocurrencia en estas horas, sería necesario contar con información adicional sobre el flujo vehicular.
 
@@ -1714,12 +1836,11 @@ y datos de años adicionales.
 
 \item Las diez reglas de asociación identificadas permitieron encontrar relaciones interesantes entre las características de los siniestros. Entre ellas se destacan la presencia de embriaguez durante los fines de semana en eventos de solo daños, las caídas de ocupantes relacionadas con personas mayores y el transporte público, y los atropellos registrados en la Avenida Caracas durante la tarde. Estas relaciones son de carácter exploratorio y no deben interpretarse como causas o predicciones, debido a las limitaciones de los datos y a la falta de validación con otros periodos.
 
-\item El desarrollo del proyecto permitió cumplir los objetivos relacionados con la preparación de los datos, el análisis de patrones, la evaluación de hipótesis, la construcción de perfiles, la identificación de zonas de concentración y la extracción de reglas de asociación. No obstante, todavía existen aspectos por fortalecer, como la integración completa de los resultados en un tablero y la formulación de propuestas preventivas respaldadas por información adicional y validación institucional.
+\item El proyecto cumplió los seis objetivos específicos: preparó y documentó la base, describió los patrones espaciales y temporales, contrastó las hipótesis, construyó perfiles y zonas densas, extrajo reglas de asociación e integró los resultados en un tablero analítico con cinco vistas y cuatro propuestas preventivas. Las propuestas se apoyan en al menos dos análisis cada una, pero deben validarse con la Secretaría Distrital de Movilidad y con información adicional antes de aplicarse.
 
 \item En general, este estudio proporciona una visión organizada de los siniestros viales registrados en los diez corredores seleccionados durante 2024. Los resultados permiten identificar patrones y zonas que merecen mayor atención, además de servir como punto de partida para futuros análisis. Sin embargo, para tomar decisiones más precisas es necesario complementar esta información con datos de flujo vehicular, exposición al tránsito, calidad de los registros y otros periodos de tiempo, evitando basar las decisiones únicamente en cantidades de siniestros o relaciones estadísticas.
 
 \end{enumerate}
-```
 
 \clearpage
 \begin{thebibliography}{99}
@@ -1787,6 +1908,10 @@ Ordoñez Cueto, J. L., \& Fernández Ebratt, L. V. (2025). Diseño de un
   accidentes ocurridos en la ciudad de Barranquilla {[}Trabajo de grado,
   Universidad Nacional Abierta y a Distancia{]}.
   \url{https://repository.unad.edu.co/handle/10596/67670}
+
+\bibitem[Cohen(1988)]{cohen1988}
+Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences}
+(2.ª ed.). Lawrence Erlbaum Associates.
 
 \bibitem[Ester et al.(1996)]{ester1996}
 Ester, M., Kriegel, H.-P., Sander, J., \& Xu, X. (1996).
