@@ -296,10 +296,10 @@ elementos; un valor mayor que 1 indica una asociación superior a la
 esperada). Una regla no demuestra que un factor cause el accidente;
 solo indica que una combinación ocurre con frecuencia en los registros.
 
-Culajay Sandoval (2025) ofrece un antecedente latinoamericano: en
-Guatemala aplica Apriori y FP-Growth, K-means y modelos supervisados
-sobre registros históricos, e identifica asociaciones entre hora, día y
-mes con la necesidad de hospitalización. Bejar Gladkowski (2023), por su
+\citet{davila2024} ofrece un antecedente latinoamericano: en
+Guatemala aplica Apriori, K-means y árboles de decisión a 10.722
+registros de accidentes de 2022, e identifica asociaciones entre la
+franja horaria y la hospitalización de las personas involucradas. Bejar Gladkowski (2023), por su
 parte, desarrolla un análisis predictivo de accidentes en Madrid. Ambos
 muestran que estas técnicas pueden extenderse a la predicción, una
 posibilidad que este proyecto deja como ampliación posterior.
@@ -789,7 +789,7 @@ apariciones, sin realizar una selección aleatoria.
 \textbf{Orden} & \textbf{Corredor} & \textbf{Apariciones} & \textbf{Longitud}\newline\textbf{(km)}\\
 \midrule
 \endhead
-1 & Avenida Boyacá & 637 & 52,1\\
+1 & Avenida Boyacá & 637 & 34,4\\
 2 & Avenida Caracas & 525 & 25,0\\
 3 & Avenida Ciudad de Cali & 470 & 23,6\\
 4 & Avenida NQS (Carrera 30) & 467 & 17,5\\
@@ -814,9 +814,12 @@ de la tabla \ref{tab:seleccion-corredores} no deben sumarse como eventos
 \ref{tab:distribucion-corredores}.
 
 Las longitudes se incorporaron del archivo de insumos externos del
-proyecto. Este registra OpenStreetMap como fuente para nueve corredores
+proyecto. Este registra OpenStreetMap como fuente para ocho corredores
 y Wikipedia para la Avenida Caracas, e incluye notas sobre los tramos
-considerados en Boyacá, Ciudad de Cali y Centenario. Se emplearon como
+considerados en Ciudad de Cali y Centenario. Para la Avenida Boyacá se
+usaron los 34,4 km de su troncal entre Yomasa y la Calle 170, según la
+\citet{alcaldiaboyaca}. La medición de OpenStreetMap (52,1 km) se
+descartó porque sumaba tramos con otro nombre oficial. Se emplearon como
 longitudes de referencia: no se realizó una nueva medición cartográfica
 ni una homologación de sus límites en esta etapa. Las tasas por kilómetro
 son sensibles a esa delimitación y no sustituyen una medida de exposición
@@ -921,7 +924,7 @@ asociaciones estadísticas ni relaciones causales.
 \textbf{Corredor} & \textbf{Eventos} & \textbf{\%} & \textbf{km} & \textbf{Por km}\\
 \midrule
 \endhead
-Avenida Boyacá & 619 & 17,08 & 52,1 & 11,88\\
+Avenida Boyacá & 619 & 17,08 & 34,4 & 17,99\\
 Avenida Caracas & 513 & 14,16 & 25,0 & 20,52\\
 Avenida NQS (Carrera 30) & 458 & 12,64 & 17,5 & 26,17\\
 Avenida Ciudad de Cali & 455 & 12,56 & 23,6 & 19,28\\
@@ -1213,7 +1216,7 @@ confianza bilateral del 95\,\% \citep{statsmodels}.
 \textbf{Prueba} & \textbf{Estadístico} & \textbf{p ajustado} & \textbf{Efecto} & \textbf{Decisión}\\
 \midrule
 \endhead
-H1 & $\chi^2=623{,}664$ & $6{,}97\times10^{-128}$ & $w=0{,}415$ & Rechazar $H_0$\\
+H1 & $\chi^2=510{,}000$ & $1{,}66\times10^{-103}$ & $w=0{,}375$ & Rechazar $H_0$\\
 H2a & $\chi^2=77{,}228$ & $7{,}06\times10^{-13}$ & $V=0{,}103$ & Rechazar $H_0$\\
 H2b & $\chi^2=32{,}211$ & $4{,}05\times10^{-7}$ & $V=0{,}094$ & Rechazar $H_0$\\
 H3 & $z=11{,}624$ & $6{,}19\times10^{-31}$ & $OR=4{,}257$ & Rechazar $H_0$\\
@@ -1221,14 +1224,15 @@ H3 & $z=11{,}624$ & $6{,}19\times10^{-31}$ & $OR=4{,}257$ & Rechazar $H_0$\\
 \end{longtable}
 \endgroup
 
-En H1, $\chi^2(9)=623{,}664$ permitió rechazar la proporcionalidad
-por longitud. Carrera 10 registró 285 eventos frente a 121,5 esperados;
-NQS, 458 frente a 279,9; y Calle 6, 230 frente a 142,3.
+En H1, $\chi^2(9)=510{,}000$ permitió rechazar la proporcionalidad
+por longitud. Carrera 10 registró 285 eventos frente a 131,8 esperados;
+NQS, 458 frente a 303,6; y Calle 6, 230 frente a 154,4.
 Sus residuos positivos indican un exceso respecto de ese modelo,
 no respecto de la cantidad de usuarios que circulan por cada vía.
-Boyacá tuvo el mayor volumen absoluto, pero menos eventos de los
-esperados al repartirlos solo por longitud: 619 frente a 833,2.
-El efecto $w=0{,}415$ describe la desviación global, sin equipararlo
+Boyacá tuvo el mayor volumen absoluto, pero un número cercano al
+esperado por su longitud: 619 frente a 596,8. Los mayores déficits
+correspondieron a Autopista Norte (266 frente a 492,7) y El Dorado
+(246 frente a 392,1). El efecto $w=0{,}375$ describe la desviación global, sin equipararlo
 a una probabilidad de accidente ni compararlo directamente con V.
 
 \begin{figure}[H]
@@ -1637,9 +1641,9 @@ riesgo operacional no puede inferirse únicamente de estos totales. Al ajustar
 por longitud, Carrera 10 obtuvo la mayor concentración descriptiva (37,50
 eventos por kilómetro), seguida por NQS (26,17) y Calle 6 (25,84). La
 hipótesis H1 confirmó que la distribución observada no es proporcional a la
-longitud de los corredores: $\chi^2(9)=623{,}664$, $p=6{,}97\times10^{-128}$
-y $w=0{,}415$. Los excesos de Carrera 10, NQS y Calle 6, y el déficit relativo
-de Boyacá, son consistentes con la concentración por kilómetro; no indican
+longitud de los corredores: $\chi^2(9)=510{,}000$, $p=1{,}66\times10^{-103}$
+y $w=0{,}375$. Los excesos de Carrera 10, NQS y Calle 6, y los déficits de
+Autopista Norte y El Dorado, son consistentes con la concentración por kilómetro; no indican
 por sí solos mayor probabilidad de siniestro para una persona que transita,
 dado que no se contó con aforos ni exposición vehicular.
 
@@ -1808,8 +1812,8 @@ muertos. La tabla \ref{tab:oe6-propuestas} las resume.
 
 \paragraph{1. Intervención en los cruces densos de las avenidas cortas.}
 La Carrera 10, la NQS y la Calle 6 tienen más siniestros de los que
-corresponden a su longitud: 285 frente a 121,5 esperados en la Carrera
-10, 458 frente a 279,9 en la NQS y 230 frente a 142,3 en la Calle 6. El
+corresponden a su longitud: 285 frente a 131,8 esperados en la Carrera
+10, 458 frente a 303,6 en la NQS y 230 frente a 154,4 en la Calle 6. El
 cruce de la Carrera 10 con Calle 1 es la zona más densa de la base, con
 73 siniestros, de los cuales el 11,0\,\% tuvo muertos. Se propone hacer
 auditorías de seguridad vial en las diez zonas densas que lista el
@@ -1894,6 +1898,10 @@ propuestas se cumple el entregable del sexto objetivo.
 
 \clearpage
 \begin{thebibliography}{99}
+\bibitem[Alcaldía Mayor de Bogotá(s.f.)]{alcaldiaboyaca}
+Alcaldía Mayor de Bogotá. (s.f.). Distrito licitará 28,7 kms. de 34,4 kms. de la troncal avenida Boyacá.
+\url{https://bogota.gov.co/mi-ciudad/obras/distrito-licitara-287-kms-de-344-kms-de-la-troncal-avenida-boyaca}
+
 \bibitem[Bejar Gladkowski(2023)]{bejar2023}
 Bejar Gladkowski, A. A. (2023). Análisis predictivo de accidentes de
   tráfico en la ciudad de Madrid {[}Trabajo de fin de grado, Universitat
@@ -1909,6 +1917,11 @@ Chand, A., Jayesh, S., \& Bhasi, A. B. (2021). Road traffic accidents:
 \bibitem[Cohen(1988)]{cohen1988}
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences}
 (2.ª ed.). Lawrence Erlbaum Associates.
+
+\bibitem[Dávila Hernández(2024)]{davila2024}
+Dávila Hernández, E. E. (2024). Analysis of traffic accident data in Guatemala for the year 2022:
+Identification of patterns and event prediction [Artículo]. Universidad de San Carlos de Guatemala.
+\url{https://www.researchgate.net/publication/380073005}
 
 \bibitem[Ester et al.(1996)]{ester1996}
 Ester, M., Kriegel, H.-P., Sander, J., \& Xu, X. (1996).

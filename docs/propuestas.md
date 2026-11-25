@@ -11,7 +11,7 @@ Cuatro propuestas, cada una apoyada en al menos dos fuentes de evidencia: el an�
 
 ## 1. Intervención en los cruces densos de las avenidas cortas
 
-La Carrera 10, la NQS y la Calle 6 tienen muchos más siniestros de los que corresponden a su longitud: 285 frente a 122 esperados en la Carrera 10, 458 frente a 280 en la NQS y 230 frente a 142 en la Calle 6 (H1). La Carrera 10 llega a 37,5 siniestros por km, casi el doble que la Caracas (19,3).
+La Carrera 10, la NQS y la Calle 6 tienen muchos más siniestros de los que corresponden a su longitud: 285 frente a 132 esperados en la Carrera 10, 458 frente a 304 en la NQS y 230 frente a 154 en la Calle 6 (H1). La Carrera 10 llega a 37,5 siniestros por km, casi el doble que la Caracas (20,5).
 
 El cruce de la Carrera 10 con Calle 1 es la zona más densa de toda la base, con 73 siniestros, de los cuales el 11 % tuvo muertos y el 63 % involucró motocicleta. En la NQS, las zonas de la Calle 17 y la Calle 29 Sur suman 62 siniestros, con 7 % y 13 % con muertos.
 
