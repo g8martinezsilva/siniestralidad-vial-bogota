@@ -132,7 +132,7 @@ python -m streamlit run src/siniestralidad/app.py
 
 ## 🔎 Resultados principales
 
-- **H1:** los siniestros no se reparten según la longitud de los corredores (χ² = 510,0; w = 0,375). La Carrera 10, la NQS y la Calle 6 tienen muchos más de los esperados.
+- **H1:** los siniestros no se reparten según la longitud de los corredores (χ² = 311,6; w = 0,293, con longitudes de la Malla Vial Integral de Bogotá). La Carrera 10 y la NQS tienen muchos más de los esperados, y la Calle 6 un exceso menor.
 - **H2:** la gravedad depende de la franja (V = 0,10) y del tipo de día (V = 0,09). Las noches de fin de semana tienen más siniestros con muertos (7,4 % frente a 5,2 %).
 - **H3:** con motocicleta, el 96 % de los siniestros tiene víctimas, frente al 85 % sin ella (razón de momios 4,26).
 - **Perfiles:** 7 perfiles con K-means; el de atropellos es el más grave (11,5 % con muertos). DBSCAN encuentra 62 zonas densas; la mayor es la Carrera 10 con Calle 1 (73 siniestros).
