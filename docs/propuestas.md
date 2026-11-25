@@ -21,7 +21,7 @@ El cruce de la Carrera 10 con Calle 1 es la zona más densa de toda la base, con
 
 ## 2. Protección de peatones y personas mayores en la Caracas
 
-Los atropellos son el perfil más grave: 652 siniestros con 11,5 % con muertos, el doble del promedio. Cuando el peatón es una persona mayor, la proporción sube a 18,8 %. La Caracas concentra 156 atropellos, y la regla «Avenida Caracas y franja tarde → atropello» tiene confianza de 52 % (2,9 veces lo esperado).
+Los atropellos son el perfil más grave: 650 siniestros con 11,5 % con muertos, el doble del promedio. Cuando el peatón es una persona mayor, la proporción sube a 18,8 %. La Caracas concentra 156 atropellos, y la regla «Avenida Caracas y franja tarde → atropello» tiene confianza de 52 % (2,9 veces lo esperado).
 
 Las reglas también unen peatón con transporte público en la Caracas (lift 2,6), lo que apunta a los accesos a las estaciones de TransMilenio. Además, las caídas de ocupantes en transporte público se asocian con personas mayores (lift 9,0).
 
