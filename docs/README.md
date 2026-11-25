@@ -1,6 +1,6 @@
 # Documento del proyecto
 
-`main.tex` es una copia del documento que el equipo edita en **letX** (proyecto "New Project"). La versión que se entrega es la de letX; esta copia sirve para tener el texto junto al código y ver sus cambios en el historial.
+`main.tex` es el informe del proyecto. La versión que se entrega es la de este repositorio.
 
 ## Compilar
 

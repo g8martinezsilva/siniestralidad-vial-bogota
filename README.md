@@ -54,7 +54,7 @@ flowchart LR
 
 ```text
 siniestralidad-vial-bogota/
-├── docs/                  # Documento del proyecto (copia del .tex de letX)
+├── docs/                  # Informe del proyecto (main.tex)
 │   ├── main.tex
 │   └── propuestas.md      # Propuestas preventivas (OE6)
 ├── data/
@@ -156,16 +156,7 @@ python -m streamlit run src/siniestralidad/app.py
 
 ## 🌿 Ramas
 
-Cada objetivo se desarrolla en su propia rama y entra a `main` con un pull request cuando sus entregables están listos.
-
-| Rama | Objetivo |
-|---|---|
-| `oe1-base-de-datos` | OE1 |
-| `oe2-descriptivo` | OE2 |
-| `oe3-hipotesis` | OE3 |
-| `oe4-clustering` | OE4 |
-| `oe5-reglas-asociacion` | OE5 |
-| `oe6-tablero-informe` | OE6 |
+Los objetivos se desarrollaron en ramas por objetivo; ahora el trabajo se integra directamente en `main`.
 
 ## 📚 Datos
 

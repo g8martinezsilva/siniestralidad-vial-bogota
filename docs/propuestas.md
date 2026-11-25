@@ -46,4 +46,4 @@ Solo 29 siniestros registran exceso de velocidad, pero el 44,8 % de ellos tuvo m
 
 ## Alcance y limitaciones
 
-Las propuestas salen de asociaciones en los registros de 2024 y no prueban causas. Se proponen como alternativas sujetas a validación institucional, por ejemplo con la Secretaría Distrital de Movilidad. Los siniestros con solo daños están subregistrados desde 2023, lo que infla los porcentajes con víctimas. Las cifras por corredor dependen de las longitudes calculadas con OpenStreetMap.
+Las propuestas salen de asociaciones en los registros de 2024 y no prueban causas. Se proponen como alternativas sujetas a validación institucional, por ejemplo con la Secretaría Distrital de Movilidad. Los siniestros con solo daños están subregistrados desde 2023, lo que infla los porcentajes con víctimas. Las cifras por corredor dependen de las longitudes medidas sobre la Malla Vial Integral de Bogotá.
