@@ -153,7 +153,7 @@ horarios, días y tipos de actor vial muestran comportamientos
 recurrentes.
 
 Bogotá no es la excepción. El Anuario de Siniestralidad Vial 2024
-reportó más de 12 mil siniestros viales y 565 víctimas fatales. Los
+\citep{sdm2024} reportó más de 12 mil siniestros viales y 565 víctimas fatales. Los
 motociclistas representaron el 47,3 \% de las personas fallecidas, los
 sábados y viernes concentraron la mayor proporción de muertes (18,8 \% y
 18,1 \%), la franja de mayor registro fue entre las 10:00 p.~m. y las
@@ -510,8 +510,9 @@ formulan como hipótesis estadísticas, cada una con su prueba.
 Se rechaza $H_0$ cuando el p-valor es menor que 0,05, con corrección de
 Bonferroni por realizar varias pruebas. Como en una base grande casi
 cualquier diferencia resulta significativa, cada resultado se interpreta
-junto con su tamaño del efecto (V de Cramér: 0,1 pequeño, 0,3 mediano y
-0,5 grande).
+junto con su tamaño del efecto: V de Cramér para las tablas de
+independencia y w de Cohen para la bondad de ajuste de H1, ambos con
+los umbrales 0,1 pequeño, 0,3 mediano y 0,5 grande.
 
 \hypertarget{poblaciuxf3n-y-muestra}{%
 \subsection{Población y muestra}\label{poblaciuxf3n-y-muestra}}
@@ -612,8 +613,8 @@ Evento & Clase de siniestro & Nominal & Descriptiva \\
 El análisis se realizará en Python: pandas para la depuración, SciPy y
 statsmodels para las pruebas de hipótesis, scikit-learn para K-means,
 DBSCAN y el coeficiente de silueta, mlxtend para Apriori y FP-Growth,
-geopandas y folium para el análisis espacial y los mapas, y Plotly o
-Streamlit para el tablero.
+matplotlib y folium con un fondo de OpenStreetMap para los mapas, y
+Streamlit y Plotly para el tablero.
 
 \hypertarget{consideraciones-y-limitaciones}{%
 \subsection{Consideraciones y
@@ -671,7 +672,7 @@ del proyecto sobre la misma base de 3.624 eventos.
 \subsubsection{Revisión de la base y diccionario de variables}\label{etapa-1-adquisiciuxf3n-y-diccionario-de-variables}}
 
 Se utilizó el archivo \texttt{datos.zip}, suministrado al equipo como
-exportación en CSV de la base del SIMUR. Contiene los archivos de
+exportación en CSV de la base del SIMUR \citep{sdm2024}. Contiene los archivos de
 siniestros, vehículos, actores y diccionario. La unidad de análisis se
 mantuvo en el siniestro: las caracterizaciones de los dos primeros
 objetivos se calcularon sobre la tabla de siniestros, sin unir las tablas
@@ -746,6 +747,19 @@ del actor o la condición. Por tanto, la completitud de los indicadores
 transformados debe interpretarse junto con esa decisión de codificación.
 Para la gravedad se utilizó el indicador tradicional, sin mezclarlo con
 el indicador de seguimiento a 30 días.
+
+La base presenta un cambio de registro que afecta a esta variable. Entre
+2015 y 2022 se registraban cada año entre 12.557 y 24.256 siniestros con
+solo daños; en 2023 fueron 1.115 y en 2024 apenas 1.037, frente a 12.343
+con heridos y 569 con muertos. Una caída tan abrupta no se explica por
+una reducción real de esos eventos y sugiere un cambio en la forma de
+registrar los choques sin víctimas. En consecuencia, la categoría de solo daños está
+subregistrada en el año de estudio: en los diez corredores representa
+el 7,70\,\% de los eventos. El equipo decidió conservar las tres
+categorías de gravedad para H2 y H3, porque las de heridos y muertos no
+se ven afectadas por ese cambio, pero los porcentajes de eventos con
+víctimas deben leerse como proporciones dentro de los siniestros
+registrados, no dentro de todos los ocurridos.
 
 \hypertarget{etapa-2-definiciuxf3n-de-corredores-y-periodo}{%
 \subsubsection{Selección de corredores}\label{etapa-2-definiciuxf3n-de-corredores-y-periodo}}
@@ -1249,10 +1263,34 @@ $p=0{,}0337$, pero el intervalo bilateral de la razón de momios
 este resultado se interpreta como exploratorio. No constituye una
 confirmación adicional de H2 con el mismo nivel de control de error.
 
+La misma comparación con eventos con víctimas mostró el patrón
+contrario: el 84,73\,\% de los eventos de noche o madrugada de fin de
+semana tuvo heridos o muertos, frente al 93,22\,\% en el resto, porque
+en esos momentos se registran más eventos con solo daños (15,27\,\%
+frente a 6,78\,\%). Por tanto, la parte direccional de H2, según la
+cual las noches de fin de semana son más graves, solo encuentra apoyo
+exploratorio en la proporción de eventos con muertos y no en la de
+eventos con víctimas.
+
 Tampoco se encontró evidencia suficiente en el contraste complementario
 unilateral de eventos con muertos con y sin motocicleta ($p=0{,}0630$).
 Esto es compatible con el resultado principal: H3 estudia presencia de
 heridos o muertos en conjunto, no exclusivamente mortalidad.
+
+El subregistro de solo daños descrito en la preparación de datos afecta
+a H3: si los choques sin víctimas de motocicleta se reportaran en una
+proporción distinta que los demás, la diferencia observada podría
+ampliarse o reducirse. El resultado se interpreta, por tanto, dentro de
+los siniestros registrados en 2024.
+
+La metodología previó un clasificador complementario de la gravedad
+(árbol de decisión o Random Forest) solo si esta variable resultaba
+completa y confiable. Esa condición no se cumplió: la categoría de solo
+daños está subregistrada y los eventos con muertos son el 5,41\,\% de la
+base, por lo que un clasificador aprendería sobre todo el patrón de
+registro. Por esta razón no se aplicó y la gravedad se analizó con las
+pruebas descritas y, en las fases siguientes, como variable descriptiva
+de perfiles y reglas.
 
 Los valores p deben leerse bajo los supuestos del modelo. La selección
 de los corredores se hizo con los mismos conteos, las longitudes son
@@ -1826,7 +1864,7 @@ propuestas se cumple el entregable del sexto objetivo.
 
 \item Los resultados muestran que el mediodía presentó la mayor cantidad de siniestros, seguido de la tarde. Esto indica que durante estos periodos se registra una actividad importante de siniestros viales. Sin embargo, para determinar si existe una mayor probabilidad de ocurrencia en estas horas, sería necesario contar con información adicional sobre el flujo vehicular.
 
-\item La gravedad de los siniestros presentó diferencias según el momento del día. La madrugada y la noche registraron mayores proporciones de eventos con personas fallecidas en comparación con la mañana, el mediodía y la tarde. Las pruebas H2a y H2b confirmaron que estas diferencias son estadísticamente significativas, aunque sus efectos son pequeños. Por lo tanto, el horario está relacionado con la gravedad de los eventos, pero no es el único factor que influye en ella.
+\item La gravedad de los siniestros presentó diferencias según el momento del día. La madrugada y la noche registraron mayores proporciones de eventos con personas fallecidas en comparación con la mañana, el mediodía y la tarde. Las pruebas H2a y H2b confirmaron que estas diferencias son estadísticamente significativas, aunque sus efectos son pequeños. La idea de que las noches de fin de semana son más graves solo tuvo apoyo exploratorio: presentaron más eventos con muertos (7,38\,\% frente a 5,17\,\%), pero también más eventos con solo daños. Por lo tanto, el horario está relacionado con la gravedad de los eventos, pero no es el único factor que influye en ella.
 
 \item Las hipótesis H1 y H3 permitieron identificar dos aspectos importantes. Por un lado, la distribución de los siniestros no es proporcional a la longitud de los corredores. Por otro, se encontraron diferencias significativas entre los eventos con y sin participación de motocicletas en cuanto a la presencia de víctimas. Estos resultados ayudan a identificar aspectos que merecen mayor atención, aunque no permiten establecer relaciones de causalidad ni determinar el riesgo individual de los involucrados.
 
@@ -1912,6 +1950,11 @@ Ordoñez Cueto, J. L., \& Fernández Ebratt, L. V. (2025). Diseño de un
 \bibitem[Cohen(1988)]{cohen1988}
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences}
 (2.ª ed.). Lawrence Erlbaum Associates.
+
+\bibitem[Secretaría Distrital de Movilidad(s.f.)]{sdm2024}
+Secretaría Distrital de Movilidad. (s.f.). \emph{Anuario de siniestralidad vial 2024}
+[Conjunto de datos]. Datos Abiertos Bogotá.
+\url{https://datosabiertos.bogota.gov.co/dataset/anuario-siniestralidad}
 
 \bibitem[Ester et al.(1996)]{ester1996}
 Ester, M., Kriegel, H.-P., Sander, J., \& Xu, X. (1996).
