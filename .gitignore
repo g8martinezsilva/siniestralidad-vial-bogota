@@ -34,3 +34,6 @@ Thumbs.db
 
 # Teselas de fondo cartografico descargadas (se regeneran)
 data/external/cache_cartografia/
+
+# Tramos de la Malla Vial Integral descargados (se regeneran)
+data/external/cache_mvi/

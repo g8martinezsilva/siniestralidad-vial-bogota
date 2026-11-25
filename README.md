@@ -66,6 +66,7 @@ siniestralidad-vial-bogota/
 │   ├── carga.py           # Lectura de la base del SIMUR (.xlsx o .zip con CSV)
 │   ├── diccionario.py     # Diccionario de variables
 │   ├── corredores.py      # Corredor a partir de la dirección y top 10
+│   ├── longitudes.py      # Longitud de los corredores (Malla Vial Integral)
 │   ├── depuracion.py      # Limpieza, trazabilidad y variables derivadas
 │   ├── preparar.py        # OE1: etapas 1 a 3 de punta a punta
 │   ├── descriptivo.py     # OE2: frecuencias, tasas por km y cruces
@@ -96,6 +97,9 @@ python -m venv .venv && source .venv/bin/activate   # En Windows: .venv\Scripts\
 pip install -r requirements.txt
 
 # 2. La base del SIMUR ya viene en data/raw/datos.zip (ver data/README.md)
+
+# Opcional: volver a medir la longitud de los corredores (necesita conexión)
+python -m siniestralidad.longitudes
 
 # 3. Construir la base de análisis (OE1)
 python -m siniestralidad.preparar

@@ -1,11 +1,11 @@
 corredor,nombre,longitud_km,fuente,nota
-KR 72,Avenida Boyacá,29.3,Malla Vial Integral de Bogotá (IDECA),Longitud del eje; cada calzada se cuenta una vez
-KR 14,Avenida Caracas,26.4,Malla Vial Integral de Bogotá (IDECA),Longitud del eje; cada calzada se cuenta una vez
-KR 86,Avenida Ciudad de Cali,22.0,Malla Vial Integral de Bogotá (IDECA),Longitud del eje; cada calzada se cuenta una vez
-KR 30,Avenida NQS (Carrera 30),15.5,Malla Vial Integral de Bogotá (IDECA),Longitud del eje; cada calzada se cuenta una vez
-KR 7,Carrera Séptima,24.7,Malla Vial Integral de Bogotá (IDECA),El eje oficial empieza en el centro; parte de los siniestros queda al sur
-KR 10,Avenida Carrera 10,7.2,Malla Vial Integral de Bogotá (IDECA),Longitud del eje; cada calzada se cuenta una vez
-CL 26,Avenida El Dorado (Calle 26),11.8,Malla Vial Integral de Bogotá (IDECA),Longitud del eje; cada calzada se cuenta una vez
-CL 6,Avenida Calle 6,9.0,Malla Vial Integral de Bogotá (IDECA),Tramos con varios nombres; el 24 % de los siniestros asignados cae a más de 150 m del eje
-KR 45,Autopista Norte,16.9,Malla Vial Integral de Bogotá (IDECA),Longitud del eje; cada calzada se cuenta una vez
-CL 13,Avenida Centenario (Calle 13),14.9,Malla Vial Integral de Bogotá (IDECA),Incluye la Avenida Colón y el tramo occidental (11.0 km sin él)
+KR 72,Avenida Boyacá,29.5,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA BOYACA; AUTOPISTA AL LLANO O AVENIDA BOYACA. Nomenclaturas: AK 72, CL 56A S, TV 60, AC 61 S, CL 58A S, TV 17, KR 19, KR 17, CL 59A S, AC 71 S, AC 71B S, TV 18Q, CL 71BIS S. Más los tramos sin nombre de KR 72/AK 72 unidos al eje"
+KR 14,Avenida Caracas,26.4,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA CARACAS. Nomenclaturas: KR 14, AK 14, CL 51 S, TV 14, KR14, AK 20, KR 20, AC 80, CL 24C, AK 3. Más los tramos sin nombre de KR 14/AK 14 unidos al eje"
+KR 86,Avenida Ciudad de Cali,22.2,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA CIUDAD DE CALI. Nomenclaturas: AK 86, AK 104, CL 127, TV 85, AC 75 S, CL 75BIS S, KR 84C, KR 86A, AC 24, KR 85K, TV 86A, KR 85, CL 127BIS, TV 86, CL 79, AC 17, DG 20A, CL 24D. Más los tramos sin nombre de KR 86/AK 86 unidos al eje"
+KR 30,Avenida NQS (Carrera 30),15.5,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA CIUDAD DE QUITO. Nomenclaturas: AK 30, AC 45A S, TV 35, CL 45A S, TV 31, KR 30, CL 12 S, AK 24. Más los tramos sin nombre de KR 30/AK 30 unidos al eje"
+KR 7,Carrera Séptima,29.5,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA ALBERTO LLERAS CAMARGO. Nomenclaturas: AK 7, KR 7. Más los tramos sin nombre de KR 7/AK 7 unidos al eje"
+KR 10,Avenida Carrera 10,8.3,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA FERNANDO MAZUERA. Nomenclaturas: KR 10, CL 22 S. Más los tramos sin nombre de KR 10/AK 10 unidos al eje"
+CL 26,Avenida El Dorado (Calle 26),11.9,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA JORGE ELIECER GAITAN. Nomenclaturas: AC 26, CL 26, TV 3A, KR 1 E, AK 40, TV 72BBIS. Más los tramos sin nombre de CL 26/AC 26 unidos al eje"
+CL 6,Avenida Calle 6,11.3,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA DE LOS COMUNEROS; AVENIDA MANUEL CEPEDA VARGAS; AVENIDA DE LAS AMERICAS (solo AC 6). Nomenclaturas: AC 6, CL 6, DG 3, AC 3, KR 79, CL 5C. Más los tramos sin nombre de CL 6/AC 6 unidos al eje"
+KR 45,Autopista Norte,18.2,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA PASEO DE LOS LIBERTADORES. Nomenclaturas: AK 45, AK 20, KR 20, KR 45, KR 23. Más los tramos sin nombre de KR 45/AK 45 unidos al eje"
+CL 13,Avenida Centenario (Calle 13),16.3,Malla Vial Integral de Bogotá (IDECA),"Nombres oficiales: AVENIDA COLON; AVENIDA CENTENARIO; AVENIDA JIMENEZ (solo CL 13). Nomenclaturas: AC 13, AC 17, DG 16, CL 13, DG 13, CL 17A. Más los tramos sin nombre de CL 13/AC 13 unidos al eje"

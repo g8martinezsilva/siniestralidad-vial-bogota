@@ -27,6 +27,8 @@ La primera lectura del Excel tarda unos minutos; el programa guarda una copia en
 | `external/` | Longitud de los corredores (`longitudes_corredores.csv`), con su fuente | Sí |
 | `processed/` | Bases generadas por el programa | No (se regeneran) |
 
+`python -m siniestralidad.longitudes` mide las longitudes sobre la Malla Vial Integral de Bogotá (IDECA) y reescribe `longitudes_corredores.csv`.
+
 ## Columnas de la hoja de siniestros
 
 Según el diccionario publicado, todas vienen como texto:
