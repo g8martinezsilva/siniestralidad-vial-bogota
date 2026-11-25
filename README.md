@@ -148,7 +148,7 @@ python -m streamlit run src/siniestralidad/app.py
 | **OE3** Contraste de hipótesis | H1, H2 y H3 | ✅ Se rechaza H0 en las tres |
 | **OE4** Perfiles de siniestralidad | K-means y DBSCAN | ✅ 7 perfiles y 62 zonas densas |
 | **OE5** Reglas de asociación | FP-Growth | ✅ 217 reglas y 10 interpretadas |
-| **OE6** Tablero e informe | Tablero con 5 vistas y propuestas preventivas | ✅ Tablero y 4 propuestas; falta pasarlas al documento |
+| **OE6** Tablero e informe | Tablero con 5 vistas y propuestas preventivas | ✅ Tablero y 4 propuestas, incluidas en el informe |
 
 ## 🌿 Ramas
 

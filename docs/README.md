@@ -12,7 +12,7 @@ pdflatex main.tex   # segunda pasada para referencias
 
 La portada usa `escudo.png` (escudo de la universidad), que debe estar en esta misma carpeta.
 
-## Informe de los objetivos 1 a 5
+## Informe
 
 La numeración de capítulos, apartados, tablas y figuras se genera en LaTeX.
 Por ejemplo, las figuras del capítulo Desarrollo se numeran 5.1, 5.2, etc.

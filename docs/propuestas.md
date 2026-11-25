@@ -1,10 +1,10 @@
 # Propuestas preventivas (OE6)
 
-Cuatro propuestas, cada una apoyada en al menos dos análisis: la concentración por kilómetro (H1), los perfiles y zonas densas (OE4) o las reglas de asociación (OE5). Se priorizan los patrones con mayor proporción de siniestros con muertos; en los 10 corredores, 196 de los 3.624 siniestros (5,4 %) tuvieron muertos.
+Cuatro propuestas, cada una apoyada en al menos dos fuentes de evidencia: el análisis descriptivo, la concentración por kilómetro (H1), los perfiles y zonas densas (OE4) o las reglas de asociación (OE5). Se priorizan los patrones con mayor proporción de siniestros con muertos; en los 10 corredores, 196 de los 3.624 siniestros (5,4 %) tuvieron muertos.
 
 | Propuesta | Hallazgo que la sustenta | Corredores |
 |---|---|---|
-| 1. Intervención en los cruces densos de las avenidas cortas | Más siniestros por km de los esperados por su longitud y zonas densas con 7 % a 13 % con muertos | Carrera 10, NQS y Calle 6 |
+| 1. Intervención en los cruces densos de las avenidas cortas | Más siniestros por km de los esperados por su longitud y zonas densas como Carrera 10 con Calle 1 (11 % con muertos) y NQS con Calle 29 Sur (13 %) | Carrera 10, NQS y Calle 6 |
 | 2. Protección de peatones y personas mayores | El perfil de atropellos tiene 11,5 % con muertos y se concentra en la Caracas | Caracas |
 | 3. Control a vehículos de carga | El 16,7 % de los siniestros con carga tiene muertos, cerca de 3 veces el promedio | Boyacá y Ciudad de Cali |
 | 4. Control de velocidad y alcohol en la noche y la madrugada | La velocidad es la condición más asociada a muertes (lift 8,3) | Todos, entre las 20:00 y las 6:00 |
@@ -21,7 +21,7 @@ El cruce de la Carrera 10 con Calle 1 es la zona más densa de toda la base, con
 
 ## 2. Protección de peatones y personas mayores en la Caracas
 
-Los atropellos son el perfil más grave: 650 siniestros con 11,5 % con muertos, el doble del promedio. Cuando el peatón es una persona mayor, la proporción sube a 18,8 %. La Caracas concentra 156 atropellos, y la regla «Avenida Caracas y franja tarde → atropello» tiene confianza de 52 % (2,9 veces lo esperado).
+Los atropellos son el perfil más grave: 650 siniestros con 11,5 % con muertos, el doble del promedio. En los atropellos en que participa una persona mayor, la proporción sube a 18,8 %. La Caracas concentra 156 atropellos, y la regla «Avenida Caracas y franja tarde → atropello» tiene confianza de 52 % (2,9 veces lo esperado).
 
 Las reglas también unen peatón con transporte público en la Caracas (lift 2,6), lo que apunta a los accesos a las estaciones de TransMilenio. Además, las caídas de ocupantes en transporte público se asocian con personas mayores (lift 9,0).
 
@@ -31,7 +31,7 @@ Las reglas también unen peatón con transporte público en la Caracas (lift 2,6
 
 ## 3. Control a vehículos de carga en la Boyacá y la Ciudad de Cali
 
-Los vehículos de carga están solo en el 8,4 % de los siniestros, pero en el 16,7 % de ellos hay muertos, la proporción más alta entre los actores viales. La Boyacá suma 18 muertes en 75 siniestros con carga, y la Ciudad de Cali 10 en 49. La regla «carga y Avenida Boyacá → con muertos» tiene lift 4,4, y «carga y moto → con muertos», lift 3,7.
+Los vehículos de carga están solo en el 8,4 % de los siniestros, pero en el 16,7 % de ellos hay muertos, la proporción más alta entre los actores viales. La Boyacá suma 18 siniestros con muertos de 75 con carga, y la Ciudad de Cali 10 de 49. La regla «carga y Avenida Boyacá → con muertos» tiene lift 4,4, y «carga y moto → con muertos», lift 3,7.
 
 - Reforzar los controles de velocidad y del estado mecánico de vehículos de carga en la Boyacá y la Ciudad de Cali.
 - Evaluar restricciones horarias o carriles definidos para carga en los tramos con más siniestros.

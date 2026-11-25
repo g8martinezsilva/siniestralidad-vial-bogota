@@ -519,15 +519,15 @@ los umbrales 0,1 pequeño, 0,3 mediano y 0,5 grande.
 
 Los datos provienen de la base de siniestros viales de Bogotá del SIMUR,
 construida a partir del IPAT. La unidad de análisis es el siniestro
-vial, es decir, cada registro de esa base; para H3 se consideran
-también los actores viales asociados a cada siniestro.
+vial, es decir, cada registro de esa base; para H3 se utilizan los
+indicadores de participación de motocicleta que trae cada siniestro.
 
 La población objetivo son los siniestros viales ocurridos en los
 corredores principales de Bogotá, y la población accesible, los
 siniestros de 2024 registrados en la base del SIMUR en los diez
 corredores con mayor número de registros ese año. Se incluyen los
 registros con fecha y hora válidas, corredor identificable, coordenadas
-dentro de Bogotá y gravedad registrada; se excluyen los duplicados y los
+dentro de la ventana geográfica de Bogotá y gravedad registrada; se excluyen los duplicados y los
 que tengan fechas, horas o coordenadas inválidas.
 
 La selección se hace en dos etapas. En la primera, los corredores se
@@ -537,8 +537,8 @@ interés para la prevención. En la segunda, dentro de esos corredores se
 trabaja con un censo, es decir, con todos los siniestros que cumplen los
 criterios de inclusión. La base completa está disponible sin costo, así
 que tomar todos los datos posibles aprovecha toda la información y evita
-el error de muestreo. El tamaño final ($N$) se reportará después de la
-depuración.
+el error de muestreo. Tras la depuración, el tamaño final es
+$N=3.624$ siniestros.
 
 \hypertarget{variables}{%
 \subsection{Variables}\label{variables}}
@@ -1242,9 +1242,15 @@ a una probabilidad de accidente ni compararlo directamente con V.
 
 En H2a, $\chi^2(8)=77{,}228$ indicó asociación entre franja y gravedad,
 con efecto pequeño ($V=0{,}103$). En H2b,
-$\chi^2(2)=32{,}211$ indicó asociación con el tipo de día, aunque el
-efecto fue reducido ($V=0{,}094$). Estas pruebas no identifican por sí
-solas una interacción específica entre noche y fin de semana.
+$\chi^2(2)=32{,}211$ indicó asociación con el tipo de día, con un
+efecto despreciable según los umbrales adoptados ($V=0{,}094$). Ambas
+asociaciones provienen sobre todo de la categoría de solo daños, que
+aporta la mayor parte del estadístico. Si se compara únicamente la
+proporción de eventos con muertos frente al resto, la diferencia entre
+franjas da $p=0{,}048$, que no supera el umbral corregido de 0,0125, y
+la diferencia entre tipos de día no es significativa ($p=0{,}51$).
+Estas pruebas tampoco identifican por sí solas una interacción
+específica entre noche y fin de semana.
 
 En H3, 2.240 de los 2.330 siniestros con motocicleta presentaron víctimas
 (96,14\,\%), frente a 1.105 de 1.294 sin motocicleta (85,39\,\%).
@@ -1652,11 +1658,13 @@ El volumen también se separó de la gravedad. Las franjas de mayor cantidad
 de eventos no fueron las de mayor proporción de muertos: madrugada presentó
 7,47\,\% y noche 6,57\,\% frente a valores entre 4,24\,\% y 4,92\,\% en las
 restantes. H2a confirmó asociación entre franja y gravedad
-($V=0{,}103$), y H2b entre tipo de día y gravedad ($V=0{,}094$), aunque
-ambos efectos fueron pequeños. Por tanto, existe evidencia estadística de
-composición desigual, pero esta explica solo una parte limitada de la
-variación observada y no permite identificar una única hora o día como causa
-del desenlace.
+($V=0{,}103$, pequeña), y H2b entre tipo de día y gravedad ($V=0{,}094$,
+despreciable). Esas asociaciones se deben sobre todo a la distribución
+de los eventos con solo daños; la diferencia en la proporción de eventos
+con muertos entre franjas no superó el umbral corregido. Por tanto,
+existe evidencia de una composición desigual de la gravedad, pero esta
+explica solo una parte limitada de la variación observada y no permite
+identificar una única hora o día como causa del desenlace.
 
 La participación de actores añadió un hallazgo relacionado con la vulnerabilidad.
 La motocicleta estuvo registrada en 2.330 siniestros (64,29\,\%), mientras
@@ -1771,9 +1779,10 @@ subconjunto cambiaría su interpretación. Las figuras
 \subsubsection{Propuestas preventivas}
 
 A partir de los resultados se formularon cuatro propuestas preventivas,
-una más de las tres que exigía el objetivo. Cada una se apoya en al menos
-dos análisis distintos: la concentración por kilómetro (H1), los
-perfiles y las zonas densas (OE4) o las reglas de asociación (OE5). Se
+una más de las tres que exigía el objetivo. Cada una combina al menos
+dos fuentes de evidencia del estudio: el análisis descriptivo, la
+concentración por kilómetro (H1), los perfiles y las zonas densas (OE4)
+o las reglas de asociación (OE5). Se
 priorizaron los patrones con mayor proporción de siniestros con muertos;
 en los diez corredores, 196 de los 3.624 siniestros (5,4\,\%) tuvieron
 muertos. La tabla \ref{tab:oe6-propuestas} las resume.
@@ -1789,10 +1798,10 @@ muertos. La tabla \ref{tab:oe6-propuestas} las resume.
 \textbf{Propuesta} & \textbf{Hallazgo que la sustenta} & \textbf{Corredores}\\
 \midrule
 \endhead
-1. Intervención en los cruces densos de las avenidas cortas & Más siniestros por kilómetro de los esperados por su longitud (H1) y zonas densas con 7\,\% a 13\,\% de eventos con muertos & Carrera 10, NQS y Calle 6\\
+1. Intervención en los cruces densos de las avenidas cortas & Más siniestros por kilómetro de los esperados por su longitud (H1) y zonas densas como Carrera 10 con Calle 1 (11,0\,\% con muertos) y NQS con Calle 29 Sur (12,9\,\%) & Carrera 10, NQS y Calle 6\\
 2. Protección de peatones y personas mayores & El perfil de atropellos tiene 11,5\,\% de eventos con muertos y está sobrerrepresentado en la Caracas & Caracas\\
 3. Control a vehículos de carga & El 16,7\,\% de los siniestros con carga tiene muertos, cerca de tres veces el promedio & Boyacá y Ciudad de Cali\\
-4. Control de velocidad y alcohol en la noche y la madrugada & La velocidad es la condición más asociada a siniestros con muertos (\emph{lift} de 8,3) & Todos, entre las 20:00 y las 6:00\\
+4. Control de velocidad y alcohol en la noche y la madrugada & La velocidad es la condición más asociada a siniestros con muertos (\emph{lift} de 8,3) y la embriaguez se concentra de noche & Todos, entre las 20:00 y las 6:00\\
 \bottomrule
 \end{longtable}
 \endgroup
@@ -1811,8 +1820,8 @@ de 2024.
 
 \paragraph{2. Protección de peatones y personas mayores en la Caracas.}
 Los atropellos forman el perfil más grave: 650 siniestros con 11,5\,\%
-de eventos con muertos, el doble del promedio. Cuando el peatón es una
-persona mayor, la proporción sube a 18,8\,\%. La regla «Avenida Caracas
+de eventos con muertos, el doble del promedio. En los atropellos en que
+participa una persona mayor, la proporción sube a 18,8\,\%. La regla «Avenida Caracas
 y franja tarde $\rightarrow$ atropello» tiene una confianza de 52\,\%,
 2,9 veces lo esperado. Se propone revisar los tiempos de cruce peatonal
 para que alcancen a una persona mayor, con prioridad entre las 16:00 y
@@ -1838,7 +1847,10 @@ puntos ciegos y convivencia con motociclistas.
 Solo 29 siniestros registran exceso de velocidad, pero el 44,8\,\% de
 ellos tuvo muertos, y 23 de los 29 ocurrieron entre las 20:00 y las
 6:00. La embriaguez aparece en 153 siniestros, el 71\,\% de noche o de
-madrugada y el 58\,\% en fin de semana. Se propone programar controles
+madrugada y el 58\,\% en fin de semana; aunque su proporción de
+eventos con muertos (6,5\,\%) no difiere de forma significativa de la
+del resto, su concentración en esas horas coincide con la de la
+velocidad. Se propone programar controles
 de alcohol y velocidad en los corredores entre las 20:00 y las 6:00, con
 prioridad de viernes a domingo, y revisar el registro de la velocidad en
 el IPAT, porque 29 casos en un año sugieren subregistro.
@@ -1864,11 +1876,11 @@ propuestas se cumple el entregable del sexto objetivo.
 
 \item Los resultados muestran que el mediodía presentó la mayor cantidad de siniestros, seguido de la tarde. Esto indica que durante estos periodos se registra una actividad importante de siniestros viales. Sin embargo, para determinar si existe una mayor probabilidad de ocurrencia en estas horas, sería necesario contar con información adicional sobre el flujo vehicular.
 
-\item La gravedad de los siniestros presentó diferencias según el momento del día. La madrugada y la noche registraron mayores proporciones de eventos con personas fallecidas en comparación con la mañana, el mediodía y la tarde. Las pruebas H2a y H2b confirmaron que estas diferencias son estadísticamente significativas, aunque sus efectos son pequeños. La idea de que las noches de fin de semana son más graves solo tuvo apoyo exploratorio: presentaron más eventos con muertos (7,38\,\% frente a 5,17\,\%), pero también más eventos con solo daños. Por lo tanto, el horario está relacionado con la gravedad de los eventos, pero no es el único factor que influye en ella.
+\item La gravedad de los siniestros presentó diferencias según el momento del día. La madrugada y la noche registraron mayores proporciones de eventos con personas fallecidas en comparación con la mañana, el mediodía y la tarde. Las pruebas H2a y H2b confirmaron que la composición de la gravedad cambia según la franja y el tipo de día, aunque con efectos pequeños o despreciables y debidos sobre todo a los eventos con solo daños; la diferencia en la proporción de eventos con muertos no superó el umbral corregido. La idea de que las noches de fin de semana son más graves solo tuvo apoyo exploratorio: presentaron más eventos con muertos (7,38\,\% frente a 5,17\,\%), pero también más eventos con solo daños. Por lo tanto, el horario está relacionado con la gravedad de los eventos, pero no es el único factor que influye en ella.
 
 \item Las hipótesis H1 y H3 permitieron identificar dos aspectos importantes. Por un lado, la distribución de los siniestros no es proporcional a la longitud de los corredores. Por otro, se encontraron diferencias significativas entre los eventos con y sin participación de motocicletas en cuanto a la presencia de víctimas. Estos resultados ayudan a identificar aspectos que merecen mayor atención, aunque no permiten establecer relaciones de causalidad ni determinar el riesgo individual de los involucrados.
 
-\item La construcción de siete perfiles permitió identificar diferentes características y situaciones asociadas a los siniestros viales. El perfil de atropellos y peatones presentó la mayor proporción de eventos con personas fallecidas, seguido por el perfil de choques ocurridos durante la madrugada. Sin embargo, el valor de silueta de 0,2809 refleja una separación moderada entre los grupos. Por esta razón, los perfiles deben entenderse como una herramienta para explorar y resumir los datos, y no como categorías completamente definidas.
+\item La construcción de siete perfiles permitió identificar diferentes características y situaciones asociadas a los siniestros viales. El perfil de atropellos y peatones presentó la mayor proporción de eventos con personas fallecidas, seguido por el perfil de choques ocurridos durante la madrugada. Sin embargo, el valor de silueta de 0,2809 refleja una separación parcial entre los grupos. Por esta razón, los perfiles deben entenderse como una herramienta para explorar y resumir los datos, y no como categorías completamente definidas.
 
 \item Mediante el algoritmo DBSCAN se identificaron 62 zonas de concentración que agrupan el 36,73\,\% de los siniestros analizados. Entre las ubicaciones destacadas se encuentran Carrera 10 con Calle 1, Caracas con Calle 19 y Las Américas con Carrera 72. Estas zonas permiten reconocer puntos que podrían requerir una revisión de sus condiciones viales, aunque es necesario validar los resultados con diferentes parámetros y datos adicionales sobre el tránsito.
 
@@ -1882,25 +1894,32 @@ propuestas se cumple el entregable del sexto objetivo.
 
 \clearpage
 \begin{thebibliography}{99}
+\bibitem[Bejar Gladkowski(2023)]{bejar2023}
+Bejar Gladkowski, A. A. (2023). Análisis predictivo de accidentes de
+  tráfico en la ciudad de Madrid {[}Trabajo de fin de grado, Universitat
+  Oberta de Catalunya{]}.
+  \url{https://openaccess.uoc.edu/handle/10609/147306}
+
 \bibitem[Chand et al.(2021)]{chand2021}
 Chand, A., Jayesh, S., \& Bhasi, A. B. (2021). Road traffic accidents:
   An overview of data sources, analysis techniques and contributing
   factors. Materials Today: Proceedings, 47, 5135--5141.
   \url{https://doi.org/10.1016/j.matpr.2021.05.415}
 
-\bibitem[Sathiyanathan y Warnajith(2024)]{sathiyanathan2024}
-Sathiyanathan, R., \& Warnajith, N. (2024). Integration of k-means
-  clustering and association rule mining for road safety analysis. In
-  2024 International Conference on Smart Computing and Systems
-  Engineering (SCSE) (pp.~1--7). IEEE.
-  \url{https://doi.org/10.1109/SCSE61872.2024.10550547}
+\bibitem[Cohen(1988)]{cohen1988}
+Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences}
+(2.ª ed.). Lawrence Erlbaum Associates.
 
-\bibitem[Shahin et al.(2021)]{shahin2021}
-Shahin, M., et al.~(2021). Cluster-based association rule mining for
-  an intersection accident dataset. In 2021 International Conference on
-  Computing, Electronic and Electrical Engineering (ICE Cube)
-  (pp.~1--6). IEEE.
-  \url{https://doi.org/10.1109/ICECube53880.2021.9628206}
+\bibitem[Ester et al.(1996)]{ester1996}
+Ester, M., Kriegel, H.-P., Sander, J., \& Xu, X. (1996).
+A density-based algorithm for discovering clusters in large spatial databases with noise.
+Proceedings of KDD-96 (pp.~226--231). AAAI Press.
+\url{https://cdn.aaai.org/KDD/1996/KDD96-037.pdf}
+
+\bibitem[Han et al.(2000)]{han2000}
+Han, J., Pei, J., \& Yin, Y. (2000). Mining frequent patterns without candidate generation.
+Proceedings of ACM SIGMOD (pp.~1--12).
+\url{https://doi.org/10.1145/342009.335372}
 
 \bibitem[Job(2022)]{job2022}
 Job, R. F. S. (2022). Evaluations of speed camera interventions can
@@ -1915,30 +1934,10 @@ Klaylee, J., Iamtrakul, P., \& Sornlertlamvanich, V. (2022).
   Traffic and Logistic Engineering (ICTLE) (pp.~35--40). IEEE.
   \url{https://doi.org/10.1109/ICTLE55577.2022.9902103}
 
-\bibitem[Ospina-Mateus et al.(2022)]{ospina2022}
-Ospina-Mateus, H., Berrio García, S., Quintana Jiménez, L., \&
-  Salas-Navarro, K. (2022). Dataset of traffic accidents in
-  motorcyclists in Bogotá, Colombia. Data in Brief, 43, Article 108461.
-  \url{https://doi.org/10.1016/j.dib.2022.108461}
-
-\bibitem[Vargas Montero(2022)]{vargas2022}
-Vargas Montero, F. (2022). Análisis de datos de accidentalidad vial de
-  la ciudad de Bogotá a partir de datos abiertos y datos obtenidos desde
-  redes sociales {[}Trabajo de grado, Universidad Nacional de
-  Colombia{]}. \url{https://repositorio.unal.edu.co/handle/unal/81571}
-
-\bibitem[Bejar Gladkowski(2023)]{bejar2023}
-Bejar Gladkowski, A. A. (2023). Análisis predictivo de accidentes de
-  tráfico en la ciudad de Madrid {[}Trabajo de fin de grado, Universitat
-  Oberta de Catalunya{]}.
-  \url{https://openaccess.uoc.edu/handle/10609/147306}
-
-\bibitem[Zhang et al.(2023)]{zhang2023}
-Zhang, Y., Zhu, F., Li, Q., Qiu, Z., \& Xie, Y. (2023). Exploring
-  spatiotemporal patterns of expressway traffic accidents based on
-  density clustering and Bayesian network. ISPRS International Journal
-  of Geo-Information, 12(2), Article 73.
-  \url{https://doi.org/10.3390/ijgi12020073}
+\bibitem[OpenStreetMap(s.f.)]{osm}
+OpenStreetMap contributors. (s.f.). OpenStreetMap. Datos cartográficos bajo ODbL.
+Fondo consultado el 5 de noviembre de 2026.
+\url{https://www.openstreetmap.org/copyright}
 
 \bibitem[Ordoñez Cueto y Fernández Ebratt(2025)]{ordonez2025}
 Ordoñez Cueto, J. L., \& Fernández Ebratt, L. V. (2025). Diseño de un
@@ -1947,35 +1946,18 @@ Ordoñez Cueto, J. L., \& Fernández Ebratt, L. V. (2025). Diseño de un
   Universidad Nacional Abierta y a Distancia{]}.
   \url{https://repository.unad.edu.co/handle/10596/67670}
 
-\bibitem[Cohen(1988)]{cohen1988}
-Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences}
-(2.ª ed.). Lawrence Erlbaum Associates.
+\bibitem[Ospina-Mateus et al.(2022)]{ospina2022}
+Ospina-Mateus, H., Berrio García, S., Quintana Jiménez, L., \&
+  Salas-Navarro, K. (2022). Dataset of traffic accidents in
+  motorcyclists in Bogotá, Colombia. Data in Brief, 43, Article 108461.
+  \url{https://doi.org/10.1016/j.dib.2022.108461}
 
-\bibitem[Secretaría Distrital de Movilidad(s.f.)]{sdm2024}
-Secretaría Distrital de Movilidad. (s.f.). \emph{Anuario de siniestralidad vial 2024}
-[Conjunto de datos]. Datos Abiertos Bogotá.
-\url{https://datosabiertos.bogota.gov.co/dataset/anuario-siniestralidad}
-
-\bibitem[Ester et al.(1996)]{ester1996}
-Ester, M., Kriegel, H.-P., Sander, J., \& Xu, X. (1996).
-A density-based algorithm for discovering clusters in large spatial databases with noise.
-Proceedings of KDD-96 (pp.~226--231). AAAI Press.
-\url{https://cdn.aaai.org/KDD/1996/KDD96-037.pdf}
-
-\bibitem[Han et al.(2000)]{han2000}
-Han, J., Pei, J., \& Yin, Y. (2000). Mining frequent patterns without candidate generation.
-Proceedings of ACM SIGMOD (pp.~1--12).
-\url{https://doi.org/10.1145/342009.335372}
-
-\bibitem[SciPy(s.f.)]{scipy}
-SciPy. (s.f.). Chi2\_contingency. Documentación oficial. Consultada el 5 de noviembre de 2026.
-\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html}
-
-\bibitem[statsmodels(s.f.)]{statsmodels}
-statsmodels. (s.f.). Chisquare\_effectsize y proportions\_ztest. Documentación oficial.
-Consultada el 5 de noviembre de 2026.
-\url{https://www.statsmodels.org/stable/generated/statsmodels.stats.gof.chisquare_effectsize.html}
-\url{https://www.statsmodels.org/stable/generated/statsmodels.stats.proportion.proportions_ztest.html}
+\bibitem[Sathiyanathan y Warnajith(2024)]{sathiyanathan2024}
+Sathiyanathan, R., \& Warnajith, N. (2024). Integration of k-means
+  clustering and association rule mining for road safety analysis. In
+  2024 International Conference on Smart Computing and Systems
+  Engineering (SCSE) (pp.~1--7). IEEE.
+  \url{https://doi.org/10.1109/SCSE61872.2024.10550547}
 
 \bibitem[scikit-learn(s.f.)]{sklearn}
 scikit-learn. (s.f.). Clustering y silhouette\_score. Documentación oficial.
@@ -1983,10 +1965,41 @@ Consultada el 5 de noviembre de 2026.
 \url{https://scikit-learn.org/stable/modules/clustering.html}
 \url{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html}
 
-\bibitem[OpenStreetMap(s.f.)]{osm}
-OpenStreetMap contributors. (s.f.). OpenStreetMap. Datos cartográficos bajo ODbL.
-Fondo consultado el 5 de noviembre de 2026.
-\url{https://www.openstreetmap.org/copyright}
+\bibitem[SciPy(s.f.)]{scipy}
+SciPy. (s.f.). Chi2\_contingency. Documentación oficial. Consultada el 5 de noviembre de 2026.
+\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html}
+
+\bibitem[Secretaría Distrital de Movilidad(s.f.)]{sdm2024}
+Secretaría Distrital de Movilidad. (s.f.). \emph{Anuario de siniestralidad vial 2024}
+[Conjunto de datos]. Datos Abiertos Bogotá.
+\url{https://datosabiertos.bogota.gov.co/dataset/anuario-siniestralidad}
+
+\bibitem[Shahin et al.(2021)]{shahin2021}
+Shahin, M., et al.~(2021). Cluster-based association rule mining for
+  an intersection accident dataset. In 2021 International Conference on
+  Computing, Electronic and Electrical Engineering (ICE Cube)
+  (pp.~1--6). IEEE.
+  \url{https://doi.org/10.1109/ICECube53880.2021.9628206}
+
+\bibitem[statsmodels(s.f.)]{statsmodels}
+statsmodels. (s.f.). Chisquare\_effectsize y proportions\_ztest. Documentación oficial.
+Consultada el 5 de noviembre de 2026.
+\url{https://www.statsmodels.org/stable/generated/statsmodels.stats.gof.chisquare_effectsize.html}
+\url{https://www.statsmodels.org/stable/generated/statsmodels.stats.proportion.proportions_ztest.html}
+
+\bibitem[Vargas Montero(2022)]{vargas2022}
+Vargas Montero, F. (2022). Análisis de datos de accidentalidad vial de
+  la ciudad de Bogotá a partir de datos abiertos y datos obtenidos desde
+  redes sociales {[}Trabajo de grado, Universidad Nacional de
+  Colombia{]}. \url{https://repositorio.unal.edu.co/handle/unal/81571}
+
+\bibitem[Zhang et al.(2023)]{zhang2023}
+Zhang, Y., Zhu, F., Li, Q., Qiu, Z., \& Xie, Y. (2023). Exploring
+  spatiotemporal patterns of expressway traffic accidents based on
+  density clustering and Bayesian network. ISPRS International Journal
+  of Geo-Information, 12(2), Article 73.
+  \url{https://doi.org/10.3390/ijgi12020073}
+
 \end{thebibliography}
 
 \end{document}
